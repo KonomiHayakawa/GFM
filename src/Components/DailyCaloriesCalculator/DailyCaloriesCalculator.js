@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './DailyCaloriesCalculator.module.css'
-import * as firebase from 'firebase';
 
 
 const DailyCalories = (props) => {
