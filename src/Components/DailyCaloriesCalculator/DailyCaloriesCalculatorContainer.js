@@ -1,6 +1,6 @@
 import React from 'react'
-import DailyCalories from './DailyCalories'
-import {addDailyCaloriesInfo} from './../../redux/userPersonalData'
+import DailyCalories from './DailyCaloriesCalculator'
+import {addDailyCaloriesInfo} from '../../redux/userPersonalData'
 import { connect } from 'react-redux'
 
 class DailyCaloriesContainer extends React.Component {
@@ -10,7 +10,7 @@ class DailyCaloriesContainer extends React.Component {
   }
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     dailyCaloriesInfo: state.userPersonalData.dailyCaloriesInfo
   }

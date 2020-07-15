@@ -4,8 +4,10 @@ import './App.css';
 import Header from './Components/Header/Header';
 import MenuContainer from './Components/Menu/MenuContainer';
 import ProductsCalories from './Components/ProductsCalories/ProductsCalories';
-import DailyCalories from './Components/DailyCalories/DailyCalories';
+import PersonalCalculators from './Components/PersonalCalculators/PersonalCalculators';
 import RecipeConstructor from './Components/RecipeConstructor/RecipeConstructor';
+import LoginPageContainer from './Components/LoginPage/LoginPageContainer'
+import firebase from './firebase'
 
 function App() {
   return (
@@ -17,8 +19,10 @@ function App() {
         <main className='mainArea'>
           <Route path='/menu' render={() => <MenuContainer />} />
           <Route path='/productsCalories' render={() => <ProductsCalories />} />
-          <Route path='/dailyCalories' render={() => <DailyCalories />} />
+          <Route path='/personalCalculators' render={() => <PersonalCalculators />} />
           <Route path='/recipeConstructor' render={() => <RecipeConstructor />} />
+          <Route path='/login' render={() => <LoginPageContainer />} />
+          <Route path='/createAccount' render={() => <LoginPageContainer />} />
         </main>
       </div>
     </BrowserRouter>

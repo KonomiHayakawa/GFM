@@ -29,6 +29,7 @@
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
+  border-bottom:  3px solid rgb(156, 154, 154);
 }
 
 .logoImg {
