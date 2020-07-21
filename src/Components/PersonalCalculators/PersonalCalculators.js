@@ -4,13 +4,16 @@ import classes from './PersonalCalculators.module.css'
 import DailyCaloriesContainer from '../DailyCaloriesCalculator/DailyCaloriesCalculatorContainer'
 import DailyWaterCalculatorContainer from '../DailyWaterCalculator/DailyWaterCalculatorContainer'
 
-const personalCalculators = () => {
+const personalCalculators = (props) => {
+  console.log(props)
   return (
     <div className={classes.calculatorsPage}>
-      <div className={classes.reminderToLogin}>
-        Если ты <NavLink to={'/login'}>зарегистрируешься</NavLink> на этом сайте, сможешь сохранить все 
-        свои показатели и отслеживать их изменения. А если у тебя уже есть аккаунт, не забудь <NavLink to={'/login'}>авторизироваться</NavLink>!:)
-      </div>
+      { !props.isAuth && 
+        <div className={classes.reminderToLogin}>
+          Если ты <NavLink to={'/login'}>зарегистрируешься</NavLink> на этом сайте, сможешь сохранить все 
+          свои показатели и отслеживать их изменения. А если у тебя уже есть аккаунт, не забудь <NavLink to={'/login'}>авторизироваться</NavLink>!:)
+        </div>
+      }
       <DailyCaloriesContainer />
       <DailyWaterCalculatorContainer />
     </div>

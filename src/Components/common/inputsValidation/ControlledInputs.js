@@ -9,3 +9,12 @@ export const Input = ({input, meta, ...props}) => {
     </div>
   )
 }
+
+export const Select = ({input, meta, ...props}) => {
+  return (
+    <div className={classes.input}>
+     {meta.touched && meta.error && <span className={classes.warning}>{meta.error}</span>}
+      <select {...input} {...props}/>
+    </div>
+  )
+}

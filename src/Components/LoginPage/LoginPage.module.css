@@ -28,3 +28,8 @@
 
   width: 100%
 }
+
+.warning {
+  color: rgb(221, 53, 140);
+  font-size: 0.8em;
+}
