@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './LoginPage.module.css'
 import { Redirect } from 'react-router-dom'
-import {useFormik} from 'formik'
+import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 const LoginPage = (props) => {
@@ -21,34 +21,57 @@ const LoginPage = (props) => {
 }
 
 const LoginPageForm = (props) => {
+
   const validationSchema = Yup.object({
     email: Yup.string()
-      .required('Required')
-      .email('Email address is not correct'),
+      .required('Обязательное поле')
+      .email('Некорректный адрес'),
     password: Yup.string()
-      .required('Required'),
-  })
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    onSubmit: (formValue) => {props.action(formValue.email, formValue.password)},
-    validationSchema,
+      .required('Обязательное поле'),
   })
 
+  const initialValues = {
+    email: '',
+    password: '',
+  }
+
+  const onSubmit = (formValue, actions) => {
+    props.action(formValue.email, formValue.password)
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          actions.setFieldError('general', 'Указанный адрес уже используется для другого аккаунта');
+        } else if (error.code === 'auth/user-not-found') {
+          actions.setFieldError('general', 'Неверный адрес электронной почты');
+        } else if (error.code === 'auth/wrong-password') {
+          actions.setFieldError('general', 'Неверный пароль');
+        } else {
+          actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!');
+        }
+      })
+      // .finally(() => {
+      //   actions.setSubmitting(false);
+      // });
+  }
+
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <input {...formik.getFieldProps('email')} className={classes.input} type='text' name='email' placeholder='Введи свой email' />
-        {formik.touched.email && formik.errors.email ? <div className={classes.warning}>{formik.errors.email}</div> : null}
-      </div>
-      <div>
-        <input {...formik.getFieldProps('password')} className={classes.input} type='password' name='password' placeholder='Введи пароль' />
-        {formik.touched.password && formik.errors.password ? <div className={classes.warning}>{formik.errors.password}</div> : null}
-      </div>
-      <button className={classes.button} type='submit' name="submit">{props.button}</button>
-    </form>
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
+      {(FormikProps) => (
+        <Form>
+          <div>
+            <Field className={classes.input} type='text' name='email' placeholder='Введи свой email' />
+            <ErrorMessage component='div' className={classes.warning} name='email' />
+          </div>
+          <div>
+            <Field className={classes.input} type='password' name='password' placeholder='Введи пароль' />
+            <ErrorMessage component='div' className={classes.warning} name='password'/>
+          </div>
+          <div>
+            <button className={classes.button} type='submit' name="submit">{props.button}</button>
+            <div className={classes.generalWarning}>{FormikProps.errors.general}</div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 
 }

@@ -17,13 +17,12 @@ const authReducer = (state = initialState, action) => {
 export const setUserData = (isAuth, userId, userEmail) => ({type: 'SET_USER_DATA', isAuth, userId, userEmail})
 
 export const login = (email, password) => (dispatch) => {
-  authentication(email, password).then(response => {
-    dispatch(setUserData(true, response.user.uid, email))
-  })
+  return authentication(email, password)
+    .then(response => dispatch(setUserData(true, response.user.uid, email)))
 }
 
 export const signUp = (email, password) => (dispatch) => {
-  registration(email, password)
+  return registration(email, password)
     // dispatch(setUserData(true, user.$.W, email))
 }
 

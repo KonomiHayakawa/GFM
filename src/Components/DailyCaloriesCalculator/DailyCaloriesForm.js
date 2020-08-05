@@ -1,9 +1,10 @@
 import React from 'react'
 import classes from './DailyCaloriesCalculator.module.css'
-import {useFormik} from 'formik'
+import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 const DailyCaloriesForm = (props) => {
+
   const validationSchema = Yup.object({
     gender: Yup.string()
       .required('Обязательное поле'),
@@ -25,43 +26,42 @@ const DailyCaloriesForm = (props) => {
     activityLevel: Yup.string()
       .required('Обязательное поле'),
   })
-  const formik = useFormik({
-    initialValues: {
+    const initialValues = {
       gender: '',
       height: '',
       weight: '',
       age: '',
       activityLevel: '',
-    },
-    onSubmit: (value) => props.forSubmit(value),
-    validationSchema
-  })
+    }
+
+    const onSubmit = (value) => props.forSubmit(value)
 
   return (
-      <form onSubmit={formik.handleSubmit} className={classes.form}>
+    <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
+      <Form className={classes.form}>
         <div>
           Твой пол:
         </div>
         <div className={classes.selectSexBlock}>
-          <input {...formik.getFieldProps('gender')} type='radio' name='gender' id='male' value='male' className={classes.sexRadio} />
+          <Field type='radio' name='gender' id='male' value='male' className={classes.sexRadio} />
           <label htmlFor="male">Мужской</label>
-          <input {...formik.getFieldProps('gender')} type='radio' name='gender' id='female' value='female' />
+          <Field type='radio' name='gender' id='female' value='female' />
           <label htmlFor="female">Женский</label>
-          {formik.touched.gender && formik.errors.gender ? <div className={classes.warning}>{formik.errors.gender}</div> : null}
+          <ErrorMessage component='div' className={classes.warning} name='gender' />
         </div>
         <div>
           Рост (см):
         </div>
         <div>
-          <input {...formik.getFieldProps('height')} name='height' type='text' placeholder='180' className={classes.input}></input>
-          {formik.touched.height && formik.errors.height ? <div className={classes.warning}>{formik.errors.height}</div> : null}
+          <Field name='height' type='text' placeholder='180' className={classes.input}></Field>
+          <ErrorMessage component='div' className={classes.warning} name='height' />
         </div>
         <div>
           Вес (кг):
         </div>
         <div>
-          <input {...formik.getFieldProps('weight')} name='weight' type='text' placeholder='75' className={classes.input}></input>
-          {formik.touched.weight && formik.errors.weight ? <div className={classes.warning}>{formik.errors.weight}</div> : null}
+          <Field name='weight' type='text' placeholder='75' className={classes.input}></Field>
+          <ErrorMessage component='div' className={classes.warning} name='weight' />
         </div>
         <div>
         </div>
@@ -69,27 +69,28 @@ const DailyCaloriesForm = (props) => {
           Возвраст:
         </div>
         <div>
-          <input {...formik.getFieldProps('age')} name='age' type='text' placeholder='30' className={classes.input}></input>
-          {formik.touched.age && formik.errors.age ? <div className={classes.warning}>{formik.errors.age}</div> : null}
+          <Field name='age' type='text' placeholder='30' className={classes.input}></Field>
+          <ErrorMessage component='div' className={classes.warning} name='age' />
         </div>
         <div>
           Уровень ежедневной активности:
         </div>
         <div>
-          <select {...formik.getFieldProps('activityLevel')} name='activityLevel' className={classes.input}>
+          <Field as='select' name='activityLevel' className={classes.input}>
             <option value='1.2'>Минимальный уровень активности</option>
             <option value='1.375'>Низкий уровень активности</option>
             <option value='1.55'>Средний уровень активности</option>
             <option value='1.725'>Высокий уровень</option>
             <option value='1.9'>Очень высокий</option>
-          </select>
-          {formik.touched.activityLevel && formik.errors.activityLevel ? <div className={classes.warning}>{formik.errors.activityLevel}</div> : null}
+          </Field>
+          <ErrorMessage component='div' className={classes.warning} name='activityLevel' />
      
         </div>
         <div>
           <button type='submit'>Узнать норму калорий</button>
         </div>
-      </form>
+      </Form>
+      </Formik>
   )
 }
 

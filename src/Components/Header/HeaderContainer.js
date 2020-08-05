@@ -1,15 +1,9 @@
 import React from 'react'
 import Header from "./Header";
 import { connect } from 'react-redux';
-import {signOut, setUserData} from './../../redux/authReducer'
-import {onAuthStateChange} from './../../queries/queries'
+import {signOut} from './../../redux/authReducer'
 
 class HeaderContainer extends React.Component {
-  componentDidMount() {
-    this.props.onAuthStateChange((user) => {
-      this.props.setUserData(!!user, user.uid, user.email);
-    })
-  }
 
   render() {
     return (
@@ -20,7 +14,6 @@ class HeaderContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
   userData: state.authReducer,
-  onAuthStateChange,
 })
 
-export default connect(mapStateToProps, {signOut, setUserData})(HeaderContainer)
+export default connect(mapStateToProps, {signOut})(HeaderContainer)

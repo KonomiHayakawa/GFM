@@ -1,7 +1,21 @@
 import firebase from './../firebase';
 
+export const getUserData = () => {
+  const user = firebase.auth().currentUser
+  if (user != null) {
+    console.log('got user data')
+    return user.providerData[0]
+    //   console.log("Sign-in provider: " + profile.providerId);
+    //   console.log("  Provider-specific UID: " + profile.uid);
+    //   console.log("  Name: " + profile.displayName);
+    //   console.log("  Email: " + profile.email);
+    //   console.log("  Photo URL: " + profile.photoURL);
+  }
+}
+
+
 export const registration = (email, password) => {
-  return firebase.auth().createUserWithEmailAndPassword(email, password)
+  return firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => response)
 }
 
 export const authentication = (email, password) => {
@@ -39,3 +53,12 @@ export const kek = (userId, ) => {
   //   console.log(snapshot.val())
   // })
 }
+
+export const addUserData = (name, avatar) => {
+  const user = firebase.auth().currentUser
+    return user.updateProfile({
+    displayName: name,
+    photoURL: avatar,
+  })
+}
+
