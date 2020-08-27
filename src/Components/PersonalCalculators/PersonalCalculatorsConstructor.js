@@ -11,6 +11,7 @@ class PersonalCalculatorsConstructor extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  calculatorsData: state.userPersonalData,
   isAuth: state.authReducer.isAuth,
 })
 

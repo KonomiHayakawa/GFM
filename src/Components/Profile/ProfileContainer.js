@@ -1,13 +1,19 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import {updateUserData} from './../../redux/userPersonalData'
+import {updateUserData, setAllUserInfo} from './../../redux/userPersonalData'
 import { Redirect } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
+
+  componentDidMount() {
+    if (this.props.authInfo.isAuth){
+      this.props.setAllUserInfo(this.props.authInfo.userId)
+    }
+  }
+
   render() {
-console.log(this.props)
-    if (!this.props.isAuthorized) {
+    if (!this.props.authInfo.isAuth) {
       return <Redirect to='/login' />
     }
 
@@ -18,9 +24,8 @@ console.log(this.props)
 }
 
 const mapStateToProps = (state) => ({
-  isAuthorized: state.authReducer.isAuth,
+  authInfo: state.authReducer,
   userData: state.userPersonalData,
-  calculatorsData: state.calculatorsReducer
 })
 
-export default connect(mapStateToProps, {updateUserData})(ProfileContainer)
+export default connect(mapStateToProps, {updateUserData, setAllUserInfo})(ProfileContainer)

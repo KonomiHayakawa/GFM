@@ -50,33 +50,23 @@ const DailyCaloriesForm = (props) => {
           <ErrorMessage component='div' className={classes.warning} name='gender' />
         </div>
         <div>
-          Рост (см):
-        </div>
-        <div>
-          <Field name='height' type='text' placeholder='180' className={classes.input}></Field>
+          <label htmlFor="height">Рост (см):</label>
+          <Field name='height' id='height' type='text' placeholder='180' className={classes.input}></Field>
           <ErrorMessage component='div' className={classes.warning} name='height' />
         </div>
         <div>
-          Вес (кг):
-        </div>
-        <div>
+          <label htmlFor="weight">Вес (кг):</label>
           <Field name='weight' type='text' placeholder='75' className={classes.input}></Field>
           <ErrorMessage component='div' className={classes.warning} name='weight' />
         </div>
         <div>
-        </div>
-        <div>
-          Возвраст:
-        </div>
-        <div>
-          <Field name='age' type='text' placeholder='30' className={classes.input}></Field>
+          <label htmlFor="age">Возвраст:</label>
+          <Field name='age' id='age' type='text' placeholder='30' className={classes.input}></Field>
           <ErrorMessage component='div' className={classes.warning} name='age' />
         </div>
         <div>
-          Уровень ежедневной активности:
-        </div>
-        <div>
-          <Field as='select' name='activityLevel' className={classes.input}>
+          <label htmlFor="activityLevel">Уровень ежедневной активности:</label>
+          <Field as='select' name='activityLevel' id='activityLevel' className={classes.input}>
             <option value='1.2'>Минимальный уровень активности</option>
             <option value='1.375'>Низкий уровень активности</option>
             <option value='1.55'>Средний уровень активности</option>
@@ -84,7 +74,6 @@ const DailyCaloriesForm = (props) => {
             <option value='1.9'>Очень высокий</option>
           </Field>
           <ErrorMessage component='div' className={classes.warning} name='activityLevel' />
-     
         </div>
         <div>
           <button type='submit'>Узнать норму калорий</button>

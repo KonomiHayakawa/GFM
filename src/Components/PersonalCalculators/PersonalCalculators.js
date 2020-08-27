@@ -5,7 +5,7 @@ import DailyCaloriesContainer from '../DailyCaloriesCalculator/DailyCaloriesCalc
 import DailyWaterCalculatorContainer from '../DailyWaterCalculator/DailyWaterCalculatorContainer'
 
 const personalCalculators = (props) => {
-  console.log(props)
+
   return (
     <div className={classes.calculatorsPage}>
       { !props.isAuth && 

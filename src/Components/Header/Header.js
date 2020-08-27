@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <div className={classes.header}>
       <div>
-        <NavLink to={'menu'}><img src={logo} className={classes.logoImg} alt='logo'/></NavLink>
+        <NavLink to={'/menu'}><img src={logo} className={classes.logoImg} alt='logo'/></NavLink>
       </div>
       <div>
         <ul className={classes.navigation}>

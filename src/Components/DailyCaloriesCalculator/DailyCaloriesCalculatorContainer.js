@@ -1,6 +1,6 @@
 import React from 'react'
 import DailyCalories from './DailyCaloriesCalculator'
-import {setDailyCalories, saveDailyCalories} from '../../redux/calculatorsReducer'
+import {setDailyCalories, saveDailyCalories} from '../../redux/userPersonalData'
 import { connect } from 'react-redux'
 
 class DailyCaloriesContainer extends React.Component {
@@ -12,9 +12,10 @@ class DailyCaloriesContainer extends React.Component {
   }
 
   updateCalories = (form) => {
+    console.log(form)
     const calories = this.calculateCalories(form)
     this.props.userData.isAuth
-    ? this.props.saveDailyCalories(this.props.userData.userId, Math.round(calories))
+    ? this.props.saveDailyCalories(this.props.userData.userId, form.gender, form.weight, form.height, form.age, form.activityLevel, Math.round(calories))
     : this.props.setDailyCalories(Math.round(calories))
   }
 
@@ -28,7 +29,7 @@ class DailyCaloriesContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.authReducer,
-    dailyCalories: state.calculatorsReducer.dailyCalories,
+    dailyCalories: state.userPersonalData.dailyCalories,
   }
 }
 
