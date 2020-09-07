@@ -1,31 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import {updateUserData, setAllUserInfo} from './../../redux/userPersonalData'
+import {saveName, saveAvatar} from './../../redux/userPersonalData'
 import { Redirect } from "react-router-dom";
 
-class ProfileContainer extends React.Component {
+// class ProfileContainer extends React.Component {
 
-  componentDidMount() {
-    if (this.props.authInfo.isAuth){
-      this.props.setAllUserInfo(this.props.authInfo.userId)
-    }
-  }
+// // const [editMode , toggleEditMode] = useі
 
-  render() {
-    if (!this.props.authInfo.isAuth) {
-      return <Redirect to='/login' />
-    }
+//   render() {
+//     if (!this.props.authInfo.isAuth) {
+//       return <Redirect to='/login' />
+//     }
 
-    return (
-      <Profile {...this.props}/>
-    )
-  }
+//     return (
+//       <Profile {...this.props}/>
+//     )
+//   }
+// }
+
+// const mapStateToProps = (state) => ({
+//   authInfo: state.authReducer,
+//   userData: state.userPersonalData,
+// })
+
+const ProfileContainer = (props) => {
+
+  const [editMode , toggleEditMode] = useState(false)
+  
+  
+  if (!props.authInfo.isAuth) {
+    return <Redirect to='/login' />
+  } 
+
+  return (
+    <Profile {...props}
+      editMode={editMode}
+      toggleEditMode={toggleEditMode}/>
+  )
+
+
+    
 }
+  
+  const mapStateToProps = (state) => ({
+    authInfo: state.authReducer,
+    userData: state.userPersonalData,
+  })
+  
 
-const mapStateToProps = (state) => ({
-  authInfo: state.authReducer,
-  userData: state.userPersonalData,
-})
-
-export default connect(mapStateToProps, {updateUserData, setAllUserInfo})(ProfileContainer)
+export default connect(mapStateToProps, {saveName, saveAvatar})(ProfileContainer)

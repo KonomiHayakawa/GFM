@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#modal {
+  position: absolute;
+  background-color: rgb(242, 246, 250);
+  
+}

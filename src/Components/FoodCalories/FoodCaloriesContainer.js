@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import {getFoodGroupsData} from '../../queries/queries'
+import FoodCalories from './FoodCalories'
+import { connect } from 'react-redux'
+import {openFoodCategoryInModal} from './../../redux/recipeConstructorReducer'
 
-import {getFoodGroupsData, getFoodGroup} from '../../queries/queries'
-import ProductsCalories from './ProductsCalories'
+const FoodCaloriesContainer = (props) => {
 
-const ProductsCaloriesContainer = () => {
+  const [groups, setGroups] = useState([])
 
+  useEffect(() => {
+    getFoodGroupsData()
+    .then(setGroups)
+  }, [])
 
-  
   return (
-   <ProductsCalories props={lel}/>
+    <FoodCalories groups={groups} {...props}/>
   )
 }
 
-export default ProductsCalories
+const mapStateToProps = (state, ownProps) => {
+  return ({
+    addToRecipe: ownProps.addToRecipe,
+  })
+}
+
+export default connect(mapStateToProps, {openFoodCategoryInModal})(FoodCaloriesContainer)

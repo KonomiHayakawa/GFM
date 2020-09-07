@@ -1,18 +1,52 @@
 import React from 'react'
-import {getFoodGroup} from './../../../queries/queries'
-
+import ChooseIngredientForm from '../../RecipeConstructor/ChooseIngredientForm'
 
 
 const FoodCategory = (props) => {
-  const getFoodGroup = (groupName) => {
-    getFoodGroup(groupName).then((response) => console.log(response))
-  }
+
+  const table = props.foodData.map((foodstuff, index) => 
+
+    <tr>
+      <td>
+        <img src={foodstuff.img} alt={foodstuff.title}/>
+      </td>
+      <td>
+        {foodstuff.title}
+      </td>
+      <td>
+        {foodstuff.proteins}
+      </td>
+      <td>
+        {foodstuff.fats}</td>
+      <td>
+        {foodstuff.carbohydrates}
+      </td>
+      <td>
+        {foodstuff.calories}
+      </td>
+      <td>
+        {props.addRecipeButton && !props.weightFieldOpen &&
+          <button onClick={() => props.changeWeightFieldOpen(index)}>Добавить</button>
+        }
+        {props.addRecipeButton && props.weightFieldOpen === index &&
+            <span>
+              <ChooseIngredientForm ingredientId={index} addIngredientToRecipe={props.addIngredientToRecipe}/>
+            </span>
+        }
+      </td>
+    </tr>
+  )
 
   return (
     <div>
       <table>
-        
+        <tbody>
+          {table}
+        </tbody>
       </table>
+      <div>
+        pagination
+      </div>
     </div>
   )
 }

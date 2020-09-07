@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react'
-
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {getFoodGroupsData} from '../../queries/queries'
 
-const FoodCalories = () => {
+const FoodCalories = (props) => {
 
-  const [groups, setGroups] = useState([])
-
-  useEffect(() => {  getFoodGroupsData()
-    .then((groups) => groups.map((group) => <div><NavLink to={group.linkTo}>{group.name}</NavLink></div>))
-    .then(result => setGroups(result))
-  }, [])
-  
   return (
     <div>
       <NavLink to='/menu'>BACK TO MENU</NavLink>
-      <div>{groups}</div>
+      <div>{props.groups.map((group) => {
+        return props.addToRecipe
+        ? <div><a onClick={() => props.openFoodCategoryInModal(true, `${group.linkTo}`)}>{group.name}</a></div>
+        : <div><NavLink to={`foodGroup/${group.linkTo}`}>{group.name}</NavLink></div>
+      })}</div>
     </div>
   )
 }
