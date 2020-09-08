@@ -15,7 +15,7 @@ const initialState = {
   dailyCalories: '',
   dailyWater: '',
   bodyMassIndex: '',
-  savedRecipes: [],
+  savedRecipes: [ ],
 }
 
 const userPersonalData = (state = initialState, action) => {
@@ -51,9 +51,6 @@ const userPersonalData = (state = initialState, action) => {
 export const setName = (name) => ({type: 'SET_NAME', name})
 export const setAvatar = (avatar) => ({type: 'SET_AVATAR', avatar})
 
-export const setRecipe = (recipe) => ({type: 'SET_RECIPE', recipe})
-
-
 
 export const saveName = (name) => (dispatch) => {
   updateUserName(name).then(() => dispatch(setName(name)))
@@ -78,7 +75,7 @@ export const setDailyCalories = (calories) => ({type: 'SET_DAILY_CALORIES', dail
 export const setDailyWater = (water) => ({type: 'SET_DAILY_WATER', dailyWater: water})
 export const setBodyMassIndex = (bodyMassIndex) => ({type: 'SET_BODY_MASS_INDEX', bodyMassIndex})
 
-
+export const setRecipe = (recipe) => ({type: 'SET_RECIPE', recipe})
 
 export const saveUserSex = (userId, sex) => (dispatch) => {
   return addUserParameter(userId, 'sex', sex).then(() => dispatch(setUserSex(sex)))
@@ -111,12 +108,19 @@ export const saveDailyCalories = (userId, sex, weight, height, age, activityType
     .then(() => addUserParameter(userId, 'height', height))
     .then(() => addUserParameter(userId, 'age', age))
     .then(() => addUserParameter(userId, 'activityType', activityType))
+    .then(() => dispatch(setUserSex(sex)))
+    .then(() => dispatch(setUserWeight(weight)))
+    .then(() => dispatch(setUserHeight(height)))
+    .then(() => dispatch(setUserAge(age)))
+    .then(() => dispatch(setUserActivityType(activityType)))
     .then(() => dispatch(setDailyCalories(calories)))
 }
 export const saveDailyWater = (userId, sex, weight, water) => (dispatch) => {
   addUserParameter(userId, 'dailyWater', water)
   .then(() => addUserParameter(userId, 'sex', sex))
   .then(() => addUserParameter(userId, 'weight', weight))
+  .then(() => dispatch(setUserSex(sex)))
+  .then(() => dispatch(setUserWeight(weight)))
   .then(() => dispatch(setDailyWater(water)))
 }
 
@@ -124,37 +128,25 @@ export const saveBodyMassIndex = (userId, weight, height, bodyMassIndex) => (dis
   addUserParameter(userId, 'bodyMassIndex', bodyMassIndex)
   .then(() => addUserParameter(userId, 'weight', weight))
   .then(() => addUserParameter(userId, 'height', height))
+  .then(() => addUserParameter(userId, 'weight', weight))
+  .then(() => addUserParameter(userId, 'height', height))
   .then(() => dispatch(setBodyMassIndex(bodyMassIndex)))
 }
-
-// export const setAllUserInfo = (userId) => (dispatch) => {
-//   getAllUserInfo(userId).then((response => {
-//     if (response.val()) {
-//     dispatch(setUserSex(response.val().sex || null))
-//     dispatch(setUserWeight(response.val().weight || null))
-//     dispatch(setUserHeight(response.val().height || null))
-//     dispatch(setUserAge(response.val().age || null))
-//     dispatch(setUserActivityType(response.val().activityType || null ))
-//     dispatch(setDailyCalories(response.val().dailyCalories || null))
-//     dispatch(setDailyWater(response.val().dailyWater || null))
-//     dispatch(setBodyMassIndex(response.val().bodyMassIndex))
-//     } 
-//   }))
-// }
 
 export const setAllUserInfo = (userId) => (dispatch) => {
   getAllUserInfo(userId)
     .then((response => {
       if (response.val()) {
-        dispatch(setUserSex(response.val().sex || null))
-        dispatch(setUserWeight(response.val().weight || null))
-        dispatch(setUserHeight(response.val().height || null))
-        dispatch(setUserAge(response.val().age || null))
-        dispatch(setUserActivityType(response.val().activityType || null ))
-        dispatch(setDailyCalories(response.val().dailyCalories || null))
-        dispatch(setDailyWater(response.val().dailyWater || null))
-        dispatch(setBodyMassIndex(response.val().bodyMassIndex))
-      } 
+        response.val().sex  && dispatch(setUserSex(response.val().sex))
+        response.val().weight && dispatch(setUserWeight(response.val().weight))
+        response.val().height && dispatch(setUserHeight(response.val().height))
+        response.val().age && dispatch(setUserAge(response.val().age))
+        response.val().activityType && dispatch(setUserActivityType(response.val().activityType))
+        response.val().dailyCalories && dispatch(setDailyCalories(response.val().dailyCalories))
+        response.val().dailyWater && dispatch(setDailyWater(response.val().dailyWater))
+        response.val().bodyMassIndex && dispatch(setBodyMassIndex(response.val().bodyMassIndex))
+        // response.val().savedRecipes && dispatch(setRecipe(response.val().savedRecipes))
+      }
     }))
     .then(() => getUserData())
     .then((mainData) => {

@@ -7,7 +7,7 @@ import {calcEditedIngredient, calcWithoutRemovedIngredient} from './../common/ca
 import {saveRecipe} from './../../queries/queries'
 
 const RecipeConstructorContainer = (props) => {
-console.log(props.savedRecipes)
+  console.log(props.savedRecipes)
   const [editingWeight, switchEditingWeight] = useState(false)
   const [savingRecipe, switchSavingRecipe] = useState(false)
 
@@ -22,9 +22,21 @@ console.log(props.savedRecipes)
     return props.deleteIngredient(ingredient.title, ...newTotalData)
   }
 
+
+
+
+
   const saveNewRecipe = (recipe) => {
-    saveRecipe(props.userId, recipe)
-      .then(() => props.setRecipe(recipe))
+    props.setRecipe(recipe) 
+    // saveRecipe(props.userId, props.savedRecipes)
+    // console.log(recipe)
+    // console.log(props.savedRecipes)
+    test()
+  }
+
+  const test = () => {
+    saveRecipe(props.userId, props.savedRecipes)
+        console.log(props.savedRecipes)
   }
 
   return (

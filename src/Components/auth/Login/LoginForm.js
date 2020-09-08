@@ -1,26 +1,9 @@
 import React from 'react'
-import classes from './LoginPage.module.css'
-import { Redirect } from 'react-router-dom'
+import classes from './Login.module.css'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
-const LoginPage = (props) => {
-  if (props.isAuth === true) {
-    return <Redirect to={'/profile'}/>
-  }
-  return (
-    <div className={classes.wrapper}>
-      <div className={classes.info}>
-        {props.welcomeText} на сайте позволит сохранять твои личные показатели и отслеживать изменения в весе
-      </div>
-      <div>
-        <LoginPageForm button={props.button} action={props.action} />
-      </div>
-    </div>
-  )
-}
-
-const LoginPageForm = (props) => {
+const LoginForm = (props) => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -48,9 +31,6 @@ const LoginPageForm = (props) => {
           actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!');
         }
       })
-      // .finally(() => {
-      //   actions.setSubmitting(false);
-      // });
   }
 
   return (
@@ -73,7 +53,6 @@ const LoginPageForm = (props) => {
       )}
     </Formik>
   )
-
 }
 
-export default LoginPage
+export default LoginForm

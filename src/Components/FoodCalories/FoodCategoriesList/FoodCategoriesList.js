@@ -1,11 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const FoodCalories = (props) => {
+const FoodCategoriesList = (props) => {
 
   return (
     <div>
-      <NavLink to='/menu'>BACK TO MENU</NavLink>
       <div>{props.groups.map((group) => {
         return props.addToRecipe
         ? <div><a onClick={() => props.openFoodCategoryInModal(true, `${group.linkTo}`)}>{group.name}</a></div>
@@ -15,4 +14,4 @@ const FoodCalories = (props) => {
   )
 }
 
-export default FoodCalories
+export default FoodCategoriesList

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import PersonalCalculators from './PersonalCalculators'
+import CalculatorsPage from './CalculatorsPage'
 import { connect } from 'react-redux'
 
-class PersonalCalculatorsConstructor extends React.Component {
+class CalculatorsPageContainer extends React.Component {
   render() {
     return (
-      <PersonalCalculators {...this.props}/>
+      <CalculatorsPage {...this.props}/>
     )
   }
 }
@@ -15,4 +15,4 @@ const mapStateToProps = (state) => ({
   isAuth: state.authReducer.isAuth,
 })
 
-export default connect(mapStateToProps, {})(PersonalCalculatorsConstructor)
+export default connect(mapStateToProps, {})(CalculatorsPageContainer)

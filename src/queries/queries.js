@@ -22,15 +22,23 @@ export const onAuthStateChange = (func) => {
 
 // user personal data
 
-export const saveRecipe = (userId, recipe) => {
-  return firebase.database().ref(`UsersData/${userId}/savedRecipes/${recipe.title}`).set(recipe)
-}
-
 export const addUserParameter = (userId, parameterName, parameter) => {
   let updates = {};
   updates[`UsersData/${userId}/${parameterName}`] = parameter;
   return firebase.database().ref().update(updates);
 }
+
+export const saveRecipe = (userId, recipe) => {
+  return firebase.database().ref(`UsersData/${userId}/savedRecipes`).set(recipe)
+}
+
+export const getAllUserInfo = (userId) => {
+  return firebase.database().ref(`/UsersData/${userId}`).once('value')
+}
+
+
+
+
 
 export const updateUserName = (name) => {
   const user = firebase.auth().currentUser
@@ -72,9 +80,7 @@ return firebase.database().ref().update(updates);
 
 
 
-export const getAllUserInfo = (userId) => {
-  return firebase.database().ref(`/UsersData/${userId}`).once('value')
-}
+
 
 // Страница калорийности продуктов
 

@@ -50,8 +50,6 @@ export const changeIngredient = (ingredient) => ({type: 'CHANGE_INGREDIENT', ing
 export const removeIngredient = (title) => ({type: 'REMOVE_INGREDIENT', title})
 
 
-
-
 export const openFoodCategoryInModal = (openCategory, categoryLink) => (dispatch) => {
   dispatch(setOpenFoodCategory(openCategory))
   dispatch(setFoodCategoryLink(categoryLink))

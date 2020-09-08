@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import BMICalculator from './BMICalculator'
 import { connect } from 'react-redux'
-import {saveBodyMassIndex, setBodyMassIndex} from './../../../redux/userPersonalData'
-import {calcBodyMassIndex} from './../../common/calculations'
+import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalData'
+import {calcBodyMassIndex} from '../../common/calculations'
 
 const BMICalculatorContainer = (props) => {
 

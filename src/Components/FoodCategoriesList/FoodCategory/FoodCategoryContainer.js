@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {getFoodGroup, getIngredient} from '../../../queries/queries'
+import {getFoodGroup} from '../../../../queries/queries'
 import FoodCategory from './FoodCategory'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {addIngredient} from '../../../redux/recipeConstructorReducer'
-import {calculateIngredientCalories} from '../../common/calculations'
+import {addIngredient} from '../../../../redux/recipeConstructorReducer'
+import {getIngredient} from '../../../../queries/queries'
+import {calculateIngredientCalories} from '../../../common/calculations'
 
 const FoodCategoryContainer = (props) => {
 

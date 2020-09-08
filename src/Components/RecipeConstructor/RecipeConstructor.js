@@ -1,10 +1,10 @@
 import React from 'react'
 import classes from './RecipeConstructor.module.css'
-import FoodCaloriesContainer from './../FoodCalories/FoodCaloriesContainer'
+import FoodCategoriesListContainer from '../foodCalories/FoodCategoriesList/FoodCategoriesListContainer'
 import Modal from './../common/Modal';
-import FoodCategoryContainer from '../FoodCalories/FoodCategory/FoodCategoryContainer';
+import FoodCategoryContainer from '../foodCalories/FoodCategory/FoodCategoryContainer';
 import EditIngredientForm from './EditIngredientForm';
-import {updateUserEmail, getUserData} from './../../queries/queries'
+import {getAllUserInfo} from './../../queries/queries'
 import SavingRecipeForm from './SavingRecipeForm';
 
 
@@ -13,9 +13,8 @@ const RecipeConstructor = (props) => {
   return (
 
     <div>
-      {/* <button>for kek</button> */}
+      <button onClick={() => getAllUserInfo('wASTbKXtnNXoS23aOyWD0YLjJSq2').then(resp => console.log(resp.val().savedRecipes))}>for kek</button>
       <div>
-        <input type='text' placeholder='Название блюда'></input>
         <h4>Ингредиенты</h4>
 
         <div>
@@ -76,7 +75,7 @@ const RecipeConstructor = (props) => {
       <React.Fragment>
         { props.modalData.showModal && !props.modalData.openFoodCategory && (
           <Modal>
-            <FoodCaloriesContainer addToRecipe={true}/>
+            <FoodCategoriesListContainer addToRecipe={true}/>
           </Modal> 
         )}
         { props.modalData.showModal && props.modalData.openFoodCategory && (
