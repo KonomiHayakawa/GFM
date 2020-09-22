@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 const DailyCaloriesForm = (props) => {
 
   const validationSchema = Yup.object({
-    gender: Yup.string()
+    sex: Yup.string()
       .required('Обязательное поле'),
     height: Yup.number()
       .typeError('Введи число')
@@ -27,7 +27,7 @@ const DailyCaloriesForm = (props) => {
       .required('Обязательное поле'),
   })
     const initialValues = {
-      gender: '',
+      sex: '',
       height: '',
       weight: '',
       age: '',
@@ -43,11 +43,11 @@ const DailyCaloriesForm = (props) => {
           Твой пол:
         </div>
         <div className={classes.selectSexBlock}>
-          <Field type='radio' name='gender' id='male' value='male' className={classes.sexRadio} />
+          <Field type='radio' name='sex' id='male' value='male' className={classes.sexRadio} />
           <label htmlFor="male">Мужской</label>
-          <Field type='radio' name='gender' id='female' value='female' />
+          <Field type='radio' name='sex' id='female' value='female' />
           <label htmlFor="female">Женский</label>
-          <ErrorMessage component='div' className={classes.warning} name='gender' />
+          <ErrorMessage component='div' className={classes.warning} name='sex' />
         </div>
         <div>
           <label htmlFor="height">Рост (см):</label>

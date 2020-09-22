@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './DailyWaterCalculator.module.css'
 import DailyWaterForm from './DailyWaterCalculatorForm'
+import ErrorMessage from '../../common/ErrorMessage'
 
 const DailyWaterCalculator = (props) => {
   return (
@@ -33,6 +34,7 @@ const DailyWaterCalculator = (props) => {
           </div>
         )
       }
+      {props.errorMessage && <ErrorMessage />}
     </div>
   )
 }

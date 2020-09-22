@@ -1,4 +1,5 @@
-import {authentication, registration, logout} from './../queries/queries'
+import {authentication, registration, logout} from './../queries/auth'
+import {clearUserPersonalData} from './userPersonalData'
 
 const initialState = {
   isAuth: false,
@@ -18,17 +19,18 @@ export const setUserData = (isAuth, userId, userEmail) => ({type: 'SET_USER_DATA
 
 export const login = (email, password) => (dispatch) => {
   return authentication(email, password)
-    .then(response => dispatch(setUserData(true, response.user.uid, email)))
+  .then(response => dispatch(setUserData(true, response.user.uid, email)))
 }
 
 export const signUp = (email, password) => (dispatch) => {
   return registration(email, password)
-    // dispatch(setUserData(true, user.$.W, email))
+  .then(response => dispatch(setUserData(true, response.user.uid, email)))
 }
 
 export const signOut = () => (dispatch) => {
   logout()
   dispatch(setUserData(false, null, null))
+  dispatch(clearUserPersonalData())
 }
 
 export default authReducer

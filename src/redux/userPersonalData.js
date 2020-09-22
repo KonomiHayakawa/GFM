@@ -1,5 +1,4 @@
-import {addUserParameter, getAllUserInfo, updateUserName, updateUserAvatar, getUserData} from './../queries/queries'
-
+import {addUserParameter, getAllUserInfo, updateUserName, updateAvatar, getUserData} from './../queries/personalData'
 
 const initialState = {
   mainData: {
@@ -15,57 +14,44 @@ const initialState = {
   dailyCalories: '',
   dailyWater: '',
   bodyMassIndex: '',
-  savedRecipes: [ ],
+  savedRecipes: [],
 }
 
 const userPersonalData = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_NAME':
-      return {...state, mainData: {...state.mainData, name: action.name}};
+      return {...state, mainData: {...state.mainData, name: action.name}}
     case 'SET_AVATAR':
-      return {...state, mainData: {...state.mainData, avatar: action.avatar}};
-    // case 'SET_EMAIL':
-    //   return {...state, mainData: {...state.mainData, email: action.email}};
+      return {...state, mainData: {...state.mainData, avatar: action.avatar}}
     case 'SET_USER_SEX':
-      return {...state, sex: action.sex};
+      return {...state, sex: action.sex}
     case 'SET_USER_WEIGHT':
-      return {...state, weight: action.weight};
+      return {...state, weight: action.weight}
     case 'SET_USER_HEIGHT':
-      return {...state, height: action.height};
+      return {...state, height: action.height}
     case 'SET_USER_AGE':
-      return {...state, age: action.age};
+      return {...state, age: action.age}
     case 'SET_USER_ACTIVITY_TYPE':
-      return {...state, activityType: action.activityType};
+      return {...state, activityType: action.activityType}
     case 'SET_DAILY_CALORIES': 
-      return {...state, dailyCalories: action.dailyCalories};
+      return {...state, dailyCalories: action.dailyCalories}
     case 'SET_DAILY_WATER':
-      return {...state, dailyWater: action.dailyWater};
+      return {...state, dailyWater: action.dailyWater}
     case 'SET_BODY_MASS_INDEX':
-      return {...state, bodyMassIndex: action.bodyMassIndex};
+      return {...state, bodyMassIndex: action.bodyMassIndex}
     case 'SET_RECIPE':
-      return {...state, savedRecipes: [...state.savedRecipes, action.recipe]}
+      return {...state, savedRecipes: [...state.savedRecipes, ...action.recipe]}
+    case 'UPDATE_RECIPES':
+      return {...state, savedRecipes: [...action.recipes]}
+    case 'CLEAR_USER_PERSONAL_DATA':
+      return initialState
     default: return state
   }
 }
 
+// action creators
 export const setName = (name) => ({type: 'SET_NAME', name})
 export const setAvatar = (avatar) => ({type: 'SET_AVATAR', avatar})
-
-
-export const saveName = (name) => (dispatch) => {
-  updateUserName(name).then(() => dispatch(setName(name)))
-}
-
-export const saveAvatar = (avatar) => (dispatch) => {
-  updateUserAvatar(avatar).then(() => dispatch(setAvatar(avatar)))
-}
-
-// export const updateUserData = (name, avatar) => (dispatch) => {
-//   updateUserData(name, avatar)
-//   .then(() => getUserData())
-//   .then((userData) => dispatch(addMainData(userData.email, userData.displayName, userData.photoURL)))
-// }
-
 export const setUserSex = (sex) => ({type: 'SET_USER_SEX', sex})
 export const setUserWeight = (weight) => ({type: 'SET_USER_WEIGHT', weight})
 export const setUserHeight = (height) => ({type: 'SET_USER_HEIGHT', height})
@@ -74,8 +60,15 @@ export const setUserActivityType = (activityType) => ({type: 'SET_USER_ACTIVITY_
 export const setDailyCalories = (calories) => ({type: 'SET_DAILY_CALORIES', dailyCalories: calories})
 export const setDailyWater = (water) => ({type: 'SET_DAILY_WATER', dailyWater: water})
 export const setBodyMassIndex = (bodyMassIndex) => ({type: 'SET_BODY_MASS_INDEX', bodyMassIndex})
-
 export const setRecipe = (recipe) => ({type: 'SET_RECIPE', recipe})
+export const updateRecipes = (recipes) => ({type: 'UPDATE_RECIPES', recipes})
+export const clearUserPersonalData = () => ({type: 'CLEAR_USER_PERSONAL_DATA'}) 
+
+// thunk
+
+export const saveName = (name) => (dispatch) => updateUserName(name).then(() => dispatch(setName(name)))
+
+export const saveAvatar = (avatarLink) => (dispatch) => updateAvatar(avatarLink).then(() => dispatch(setAvatar(avatarLink)))
 
 export const saveUserSex = (userId, sex) => (dispatch) => {
   return addUserParameter(userId, 'sex', sex).then(() => dispatch(setUserSex(sex)))
@@ -96,10 +89,6 @@ export const saveUserAge = (userId, age) => (dispatch) => {
 export const saveUserActivityType = (userId, activityType) => (dispatch) => {
   addUserParameter(userId, 'activityType', activityType).then(() => dispatch(setUserActivityType(activityType)))
 }
-
-// export const saveBodyMassIndex = (userId, bodyMassIndex) => (dispatch) => {
-//   addUserParameter(userId, 'bodyMassIndex', bodyMassIndex).then(() => dispatch(setBodyMassIndex(bodyMassIndex)))
-// }
 
 export const saveDailyCalories = (userId, sex, weight, height, age, activityType, calories) => (dispatch) => {
   return addUserParameter(userId, 'dailyCalories', calories)
@@ -128,8 +117,8 @@ export const saveBodyMassIndex = (userId, weight, height, bodyMassIndex) => (dis
   addUserParameter(userId, 'bodyMassIndex', bodyMassIndex)
   .then(() => addUserParameter(userId, 'weight', weight))
   .then(() => addUserParameter(userId, 'height', height))
-  .then(() => addUserParameter(userId, 'weight', weight))
-  .then(() => addUserParameter(userId, 'height', height))
+  .then(() => dispatch(setUserWeight(weight)))
+  .then(() => dispatch(setUserHeight(height)))
   .then(() => dispatch(setBodyMassIndex(bodyMassIndex)))
 }
 
@@ -145,7 +134,8 @@ export const setAllUserInfo = (userId) => (dispatch) => {
         response.val().dailyCalories && dispatch(setDailyCalories(response.val().dailyCalories))
         response.val().dailyWater && dispatch(setDailyWater(response.val().dailyWater))
         response.val().bodyMassIndex && dispatch(setBodyMassIndex(response.val().bodyMassIndex))
-        // response.val().savedRecipes && dispatch(setRecipe(response.val().savedRecipes))
+        response.val().savedRecipes && dispatch(setRecipe(response.val().savedRecipes))
+        // console.log(...response.val().savedRecipes) 
       }
     }))
     .then(() => getUserData())
@@ -153,6 +143,7 @@ export const setAllUserInfo = (userId) => (dispatch) => {
       dispatch(setName(mainData.displayName))
       dispatch(setAvatar(mainData.photoURL))
     })
+
 }
 
 export default userPersonalData

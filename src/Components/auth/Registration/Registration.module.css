@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.info {
+  width: 50%;
+  text-align: center;
+  padding: 15px;
+}
+
+.input {
+  padding: 15px;
+  background-color: rgb(203, 234, 234, 0.3);
+  border: 3px solid rgb(124, 143, 143);
+  margin-bottom: 15px;
+  width: 270px;
+}
+
+.button {
+  padding: 15px;
+  background-color: rgb(172, 226, 196);
+  border: 3px solid rgb(124, 143, 124);
+  width: 100%;
+}
+
+.warning {
+  display: block;
+  color: rgb(221, 53, 140);
+  font-size: 0.8em;
+  width: 100%;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.generalWarning {
+  width: 100%;
+  color: red;
+  width: 260px;
+  text-align: center;
+  padding: 10px;
+}

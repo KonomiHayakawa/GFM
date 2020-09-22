@@ -1,7 +1,8 @@
 import React from 'react'
 import classes from './DailyCaloriesCalculator.module.css'
 import DailyCaloriesForm from './DailyCaloriesForm'
-import { NavLink } from 'react-router-dom';
+import ErrorMessage from '../../common/ErrorMessage'
+      
 
 const DailyCalories = (props) => {
   return (
@@ -9,11 +10,6 @@ const DailyCalories = (props) => {
       { !props.dailyCalories || props.isChangingData
         ? (
           <div>
-            <div>
-              Если ты <NavLink to={'/login'}>зарегистрируешься</NavLink> на этом сайте, сможешь сохранить все 
-              свои показатели и отслеживать их изменения. А если у тебя уже есть аккаунт, не забудь 
-              <NavLink to={'/login'}>авторизироваться</NavLink>!:)
-            </div>
             <h2 className={classes.title}>
               Рассчитать дневную норму калорий
             </h2>
@@ -39,6 +35,7 @@ const DailyCalories = (props) => {
           </div>
         )
       }
+      {props.errorMessage && <ErrorMessage />}
     </div>
   )
 }

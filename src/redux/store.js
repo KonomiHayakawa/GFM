@@ -5,6 +5,7 @@ import userPersonalData from './userPersonalData'
 import authReducer from './authReducer'
 import thunkMiddleware from 'redux-thunk'
 import recipeConstructorReducer from "./recipeConstructorReducer";
+import forError from "./forError";
 
 const reducers = combineReducers({
   menuReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   userPersonalData,
   authReducer,
   recipeConstructorReducer,
+  forError,
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))

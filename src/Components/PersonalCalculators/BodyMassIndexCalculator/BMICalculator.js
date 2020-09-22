@@ -1,5 +1,6 @@
 import React from 'react'
 import BMIForm from './BMIForm'
+import ErrorMessage from '../../common/ErrorMessage'
 
 
 const BMICalculator = (props) => {
@@ -28,6 +29,7 @@ const BMICalculator = (props) => {
           </div>
         )
       }
+      {props.errorMessage && <ErrorMessage />}
     </div>
   )
 }

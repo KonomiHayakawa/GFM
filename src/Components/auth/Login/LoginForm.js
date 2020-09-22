@@ -19,11 +19,9 @@ const LoginForm = (props) => {
   }
 
   const onSubmit = (formValue, actions) => {
-    props.action(formValue.email, formValue.password)
+    props.login(formValue.email, formValue.password)
       .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          actions.setFieldError('general', 'Указанный адрес уже используется для другого аккаунта');
-        } else if (error.code === 'auth/user-not-found') {
+        if (error.code === 'auth/user-not-found') {
           actions.setFieldError('general', 'Неверный адрес электронной почты');
         } else if (error.code === 'auth/wrong-password') {
           actions.setFieldError('general', 'Неверный пароль');
@@ -46,7 +44,7 @@ const LoginForm = (props) => {
             <ErrorMessage component='div' className={classes.warning} name='password'/>
           </div>
           <div>
-            <button className={classes.button} type='submit' name="submit">{props.button}</button>
+            <button className={classes.button} type='submit' name="submit">Войти</button>
             <div className={classes.generalWarning}>{FormikProps.errors.general}</div>
           </div>
         </Form>

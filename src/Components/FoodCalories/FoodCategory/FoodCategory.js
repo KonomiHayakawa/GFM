@@ -1,9 +1,10 @@
 import React from 'react'
-import ChooseIngredientForm from '../../RecipeConstructor/ChooseIngredientForm'
+import ChooseIngredientForm from '../../recipeConstructor/Ingredients/ChooseIngredientForm'
+import ErrorMessage from '../../common/ErrorMessage'
 
 
 const FoodCategory = (props) => {
-
+console.log()
   const table = props.foodData.map((foodstuff, index) => 
 
     <tr>
@@ -25,12 +26,14 @@ const FoodCategory = (props) => {
         {foodstuff.calories}
       </td>
       <td>
-        {props.addRecipeButton && !props.weightFieldOpen &&
+        {props.addRecipeButton && props.weightFieldOpen !== index &&
           <button onClick={() => props.changeWeightFieldOpen(index)}>Добавить</button>
         }
         {props.addRecipeButton && props.weightFieldOpen === index &&
             <span>
-              <ChooseIngredientForm ingredientId={index} addIngredientToRecipe={props.addIngredientToRecipe}/>
+              <ChooseIngredientForm 
+                ingredientId={index} 
+                addIngredientToRecipe={props.addIngredientToRecipe}/>
             </span>
         }
       </td>
@@ -47,6 +50,7 @@ const FoodCategory = (props) => {
       <div>
         pagination
       </div>
+      {props.errorMessage && <ErrorMessage />}
     </div>
   )
 }

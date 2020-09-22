@@ -19,7 +19,7 @@ const EditIngredientForm = (props) => {
   const onSubmit = (formData) => {
     props.editIngredientAndCalculate(formData.ingredient, formData.newWeight)
   }
-  
+
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {() => (

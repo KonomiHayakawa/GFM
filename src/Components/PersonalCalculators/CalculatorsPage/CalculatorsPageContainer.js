@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CalculatorsPage from './CalculatorsPage'
 import { connect } from 'react-redux'
 
-class CalculatorsPageContainer extends React.Component {
-  render() {
-    return (
-      <CalculatorsPage {...this.props}/>
-    )
-  }
+const CalculatorsPageContainer = (props) => {
+  return <CalculatorsPage {...props}/>
 }
 
 const mapStateToProps = (state) => ({

@@ -3,6 +3,7 @@ import DailyWaterCalculator from './DailyWaterCalculator'
 import { connect } from 'react-redux'
 import {setDailyWater, saveDailyWater} from '../../../redux/userPersonalData'
 import {calcDailyWater} from '../../common/calculations'
+import {setError} from './../../../redux/forError'
 
 const DailyWaterCalculatorContainer = (props) => {
 
@@ -11,7 +12,8 @@ const DailyWaterCalculatorContainer = (props) => {
   const updateDailyWater = (form) => {
     const dailyWater = calcDailyWater(form)
     props.userData.isAuth
-    ? props.saveDailyWater(props.userData.userId, form.gender, form.weight, dailyWater)
+    ? props.saveDailyWater(props.userData.userId, form.sex, form.weight, dailyWater)
+      .catch((error) => props.setError(error))
     : props.setDailyWater(dailyWater)
     toggleIsChangingData(false)
   }
@@ -30,7 +32,8 @@ const mapStateToProps = (state) => {
   return ({
     userData: state.authReducer,
     dailyWater: state.userPersonalData.dailyWater,
+    errorMessage: state.forError.errorMessage
   })
 }
 
-export default connect(mapStateToProps, {setDailyWater, saveDailyWater})(DailyWaterCalculatorContainer)
+export default connect(mapStateToProps, {setDailyWater, saveDailyWater, setError})(DailyWaterCalculatorContainer)
