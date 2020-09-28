@@ -19,9 +19,14 @@ const MyRecipes = (props) => {
             props.savedRecipes.map(recipe => {
               return (
                 <div>
-                  <div><img src={recipe.img} alt='recipePicture' className={classes.recipeImg}/> {recipe.title}</div>
+                  <div>
+                    <img src={recipe.img} alt='recipePicture' className={classes.recipeImg}/>
+                    {recipe.title}
+                    <div>Итоговый вес: {recipe.weight}</div>
+                    <div>Калорийность: {recipe.calories} ккал</div>
+                  </div>
+                  <NavLink to={`/savedRecipe/${recipe.id}`}>Подробнее</NavLink> 
                   <button onClick={() => props.deleteRecipe(recipe)}>Удалить</button>
-                  <NavLink to={`/savedRecipe/${recipe.title}`}>Изменить</NavLink> 
                   {props.errorMessage && <ErrorMessage />}
                 </div>
               )

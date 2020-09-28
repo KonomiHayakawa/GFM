@@ -14,7 +14,7 @@ const FoodCategoriesListContainer = (props) => {
     getFoodGroupsData()
     .then(setGroups)
     .catch((error) => props.setError(error))
-  }, [])
+  }, [props])
 
   return (
     <FoodCategoriesList groups={groups} {...props}/>

@@ -12,7 +12,7 @@ const ChooseIngredientForm = (props) => {
   
   const initialValues = {
     weight: '',
-    ingredientId: props.ingredientId,
+    ingredientId: props.foodId,
   }
 
 

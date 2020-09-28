@@ -28,20 +28,7 @@ const CalculationsDataEditingForm = (props) => {
     }
 
     const onSubmit = (form) => {
-      let whatChanged
-      if (form.weight !== props.userData.weight) {
-        whatChanged = 'all'
-      } else if (form.sex !== props.userData.sex) {
-        whatChanged = 'caloriesAndWater'
-      } else if (form.height !== props.userData.height) {
-        whatChanged = 'caloriesAndBodyMassIndex'
-      } else {
-        whatChanged = 'all'
-      }
-      props.editCalculationsData(form, whatChanged)
-      
-
-
+      props.editCalculationsData(form)
     }
 
   return (

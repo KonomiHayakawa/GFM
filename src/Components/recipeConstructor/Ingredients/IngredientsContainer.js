@@ -36,6 +36,7 @@ const mapStateToProps = (state) => {
     stateTotalCalories: state.recipeConstructorReducer.nutritionalValue.totalCalories,
     stateTotalWeight: state.recipeConstructorReducer.nutritionalValue.totalWeight,
     nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
+    modalData: state.recipeConstructorReducer.modalData
   })
 }
 

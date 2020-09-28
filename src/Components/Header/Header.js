@@ -23,8 +23,7 @@ const Header = (props) => {
           { !props.userData.isAuth
             && <li><NavLink to={'/login'}>Войти</NavLink></li>
           }
-          <li><NavLink to={'/aboutUs'}>О нас</NavLink></li>
-          <li><NavLink to={'/contacts'}>Контакты</NavLink></li>
+          <li><NavLink to={'/feedbackForm'}>Обратная связь</NavLink></li>
         </ul>
       </div>
     </div>

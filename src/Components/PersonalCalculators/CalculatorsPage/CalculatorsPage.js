@@ -17,9 +17,16 @@ const CalculatorsPage = (props) => {
           <NavLink to={'/login'}> авторизироваться</NavLink>!:)
         </div>
       }
-      <DailyCaloriesContainer />
-      <DailyWaterCalculatorContainer />
-      <BMICalculatorContainer />
+     
+      <div className={classes.calculatorSwitcher}>
+        <div onClick={() => props.setChosenCalculator('dailyCalories')} className={classes.calculatorOption}>Дневная норма калорий</div>
+        <div onClick={() => props.setChosenCalculator('dailyWater')} className={classes.calculatorOption}>Дневная норма воды</div>
+        <div onClick={() => props.setChosenCalculator('bodyMassIndex')} className={classes.calculatorOption}>Индекс массы тела</div>
+      </div>
+
+      {props.chosenCalculator === 'dailyCalories' && <DailyCaloriesContainer />}
+      {props.chosenCalculator === 'dailyWater' && <DailyWaterCalculatorContainer />}
+      {props.chosenCalculator === 'bodyMassIndex' && <BMICalculatorContainer />}
     </div>
   )
 }

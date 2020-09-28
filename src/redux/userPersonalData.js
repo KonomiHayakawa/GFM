@@ -135,7 +135,7 @@ export const setAllUserInfo = (userId) => (dispatch) => {
         response.val().dailyWater && dispatch(setDailyWater(response.val().dailyWater))
         response.val().bodyMassIndex && dispatch(setBodyMassIndex(response.val().bodyMassIndex))
         response.val().savedRecipes && dispatch(setRecipe(response.val().savedRecipes))
-        // console.log(...response.val().savedRecipes) 
+        // console.log(response.val().savedRecipes) 
       }
     }))
     .then(() => getUserData())

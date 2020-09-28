@@ -13,7 +13,7 @@ const DailyWaterCalculatorContainer = (props) => {
     const dailyWater = calcDailyWater(form)
     props.userData.isAuth
     ? props.saveDailyWater(props.userData.userId, form.sex, form.weight, dailyWater)
-      .catch((error) => props.setError(error))
+      // .catch((error) => props.setError(error))
     : props.setDailyWater(dailyWater)
     toggleIsChangingData(false)
   }

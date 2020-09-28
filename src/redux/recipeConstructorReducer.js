@@ -24,6 +24,8 @@ const recipeConstructorReducer = (state = initialState, action) => {
       return {...state, modal: {...state.modal, foodCategoryLink: action.categoryLink}}
     case 'SET_NEW_INGREDIENT':
       return {...state, addedFood: [...state.addedFood, action.ingredient]}
+    case 'SET_ALL_INGREDIENTS':
+      return {...state, addedFood: [action.ingredients]}
     case 'SET_TOTAL_CALORIES':
       return {...state, nutritionalValue: {...state.nutritionalValue, totalCalories: action.calories}}
     case 'SET_TOTAL_WEIGHT':
@@ -56,6 +58,8 @@ export const setOpenFoodCategory = (openCategory) => ({type: 'SET_OPEN_FOOD_CATE
 export const setFoodCategoryLink = (categoryLink) => ({type: 'SET_FOOD_CATEGORY_LINK', categoryLink})
 
 export const setNewIngredient = (ingredient) => ({type: 'SET_NEW_INGREDIENT', ingredient})
+export const setAllIngredients = (ingredients) => ({type: 'SET_ALL_INGREDIENTS', ingredients})
+
 export const setTotalCalories = (calories) => ({type: 'SET_TOTAL_CALORIES', calories})
 export const setTotalWeight = (weight) => ({type: 'SET_TOTAL_WEIGHT', weight})
 // export const setTotalProteins = (proteins) => ({type: 'SET_TOTAL_PROTEINS', proteins})
@@ -109,6 +113,18 @@ export const clearRecipe = () => (dispatch) => {
   // dispatch(setTotalProteins(0))
   // dispatch(setTotalFats(0))
   // dispatch(setTotalCarbs(0))
+}
+
+export const setRecipeData = (ingredients, calories, weight) => (dispatch) => {
+  dispatch(removeAllIngredients())
+  ingredients.map(ingredient => {
+    dispatch(setNewIngredient(ingredient))
+  })
+  // dispatch(setAllIngredients([...ingredients]))
+  // console.log([...ingredients])
+  // console.log(ingredients)
+  dispatch(setTotalCalories(calories))
+  dispatch(setTotalWeight(weight))
 }
 
 export default recipeConstructorReducer

@@ -1,55 +1,25 @@
 import React from 'react'
-import ChooseIngredientForm from '../../recipeConstructor/Ingredients/ChooseIngredientForm'
 import ErrorMessage from '../../common/ErrorMessage'
-
+import FoodItemContainer from './../FoodItem/FoodItemContainer'
 
 const FoodCategory = (props) => {
-console.log()
-  const table = props.foodData.map((foodstuff, index) => 
-
-    <tr>
-      <td>
-        <img src={foodstuff.img} alt={foodstuff.title}/>
-      </td>
-      <td>
-        {foodstuff.title}
-      </td>
-      <td>
-        {foodstuff.proteins}
-      </td>
-      <td>
-        {foodstuff.fats}</td>
-      <td>
-        {foodstuff.carbohydrates}
-      </td>
-      <td>
-        {foodstuff.calories}
-      </td>
-      <td>
-        {props.addRecipeButton && props.weightFieldOpen !== index &&
-          <button onClick={() => props.changeWeightFieldOpen(index)}>Добавить</button>
-        }
-        {props.addRecipeButton && props.weightFieldOpen === index &&
-            <span>
-              <ChooseIngredientForm 
-                ingredientId={index} 
-                addIngredientToRecipe={props.addIngredientToRecipe}/>
-            </span>
-        }
-      </td>
-    </tr>
-  )
+  
+  const suggestions = props.searchMatches.map((suggestion) => {
+    return <FoodItemContainer foodItem={suggestion}/>
+  })
 
   return (
     <div>
+      <input type='text' placeholder='name' onChange={(e) => props.searchIngredient(e)} />
+ 
       <table>
         <tbody>
-          {table}
+          {suggestions}
+          {props.searchMatches.length === 0 && 
+            props.foodData.map((foodstuff) => <FoodItemContainer foodItem={foodstuff}/>)
+          }
         </tbody>
       </table>
-      <div>
-        pagination
-      </div>
       {props.errorMessage && <ErrorMessage />}
     </div>
   )

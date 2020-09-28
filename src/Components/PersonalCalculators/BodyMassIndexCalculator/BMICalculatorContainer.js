@@ -8,12 +8,13 @@ import {setError} from './../../../redux/forError'
 const BMICalculatorContainer = (props) => {
 
   const [isChangingData, toggleIsChangingData] = useState(false)
+  const [showExplanation, toggleShowExplanation] = useState(false)
 
   const updateBMI = (form) => {
     const BodyMassIndex = calcBodyMassIndex(form)
     props.userData.isAuth
       ? props.saveBodyMassIndex(props.userData.userId, form.weight, form.height, BodyMassIndex)
-        .catch((error) => props.setError(error))
+        // .catch((error) => props.setError(error))
       : props.setBodyMassIndex(BodyMassIndex)
     toggleIsChangingData(false)
   }
@@ -24,6 +25,8 @@ const BMICalculatorContainer = (props) => {
       bodyMassIndex={props.bodyMassIndex} 
       isChangingData={isChangingData}
       toggleIsChangingData={toggleIsChangingData}
+      showExplanation={showExplanation}
+      toggleShowExplanation={toggleShowExplanation}
     />
   )
 

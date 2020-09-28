@@ -4,8 +4,6 @@ import IngredientsContainer from '../Ingredients/IngredientsContainer';
 import RecipeCalculationsContainer from '../RecipeCalculations/RecipeCalculationsContainer';
 import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer';
 import ChoosingIngredientsModal from '../ChoosingIngredientsModal/ChoosingIngredientsModal';
-import { kek } from '../../../queries/queries';
-import firebase from '../../../firebase'
 
 
 

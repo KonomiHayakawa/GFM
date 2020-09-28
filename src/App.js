@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Ripple } from 'react-preloaders'
@@ -16,11 +16,10 @@ import ProfileContainer from './Components/Profile/ProfileContainer';
 import FoodCategoryContainer from './Components/foodCalories/FoodCategory/FoodCategoryContainer';
 import RegistrationContainer from './Components/auth/Registration/RegistrationContainer';
 import SavedRecipeContainer from './Components/Profile/SavedRecipe/SavedRecipeContainer';
+import FeedbackPageContainer from './Components/FeedbackPage/FeedbackPageContainer';
 
 
 const App = (props) => {
-
-  // const [loadingPage, changeLoadingPage] = useState(true)
 
   useEffect(() => {
     props.onAuthStateChange((user) => {
@@ -31,7 +30,6 @@ const App = (props) => {
         props.setUserData(false, null, null);
       }
     })
-    // changeLoadingPage(false)
   }, [props])
  
   return (
@@ -50,14 +48,13 @@ const App = (props) => {
           <Route path='/recipeConstructor' render={() => <RecipeConstructorContainer />} />
           <Route path='/profile' render={() => <ProfileContainer/>} />
           <Route path='/savedRecipe/:category' render={() => <SavedRecipeContainer/>} />
+          <Route path='/feedbackForm' render={() => <FeedbackPageContainer/>} />
           <Ripple/>
         </main>
       </div>
     </BrowserRouter>
   )
 }
-
-
 
 const mapStateToProps = (state) => {
   return ({

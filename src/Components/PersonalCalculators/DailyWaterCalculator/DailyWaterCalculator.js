@@ -15,16 +15,13 @@ const DailyWaterCalculator = (props) => {
             <h4>
               Введи пол и вес, чтобы узнать свою дневную норму воды.
             </h4>
-            <DailyWaterForm forSubmit={(obj) => props.updateDailyWater(obj)}/>
+            <DailyWaterForm forSubmit={props.updateDailyWater}/>
           </div>
         )
         : (
           <div>
             <div>
-              Твоя дневная норма воды:
-            </div>
-            <div>
-              {props.dailyWater} л.
+              Твоя дневная норма воды: {props.dailyWater} л.
             </div>
             <div>
               <button onClick={() => props.toggleIsChangingData(true)}>

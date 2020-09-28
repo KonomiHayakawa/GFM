@@ -4,6 +4,7 @@ import MainProfileData from './MainProfileData'
 import {saveName, saveAvatar} from './../../../redux/userPersonalData'
 import {addAvatarFile, getAvatarLink, deleteAvatarFile, getDefaultAvatarLink} from './../../../queries/personalData'
 import { setError } from '../../../redux/forError'
+import { Ripple } from 'react-preloaders'
 
 const MainProfileDataContainer = (props) => {
 
@@ -31,10 +32,10 @@ const MainProfileDataContainer = (props) => {
     .catch((error) => props.setError(error))
   }
 
-
   return (
+    <React.Fragment>
     <MainProfileData
-      mainData={props.mainData} 
+      {...props} 
       editingName={editingName} 
       switchEditingName={switchEditingName} 
       changeName={changeName}
@@ -45,12 +46,15 @@ const MainProfileDataContainer = (props) => {
       deleteAvatar={deleteAvatar}
       errorMessage={props.errorMessage}
     />
+    <Ripple customLoading={false}/> 
+    </React.Fragment>
   )
 }
 
 const mapStateToProps = (state) => ({
   mainData: state.userPersonalData.mainData,
   userId: state.authReducer.userId,
+  email: state.authReducer.userEmail,
   errorMessage: state.forError.errorMessage
 })
 

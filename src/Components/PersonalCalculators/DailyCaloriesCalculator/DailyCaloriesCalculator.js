@@ -16,16 +16,13 @@ const DailyCalories = (props) => {
             <h4 className={classes.explanation}>
               Введи свои данные ниже и узнай, сколько калорий в день тебе можно съедать со спокойной душой
             </h4>
-            <DailyCaloriesForm forSubmit={(obj) => props.updateCalories(obj)}/>
+            <DailyCaloriesForm forSubmit={props.updateCalories}/>
           </div>
         )
         : (
           <div>
             <div>
-              Твоя дневная норма калорий:
-            </div>
-            <div>
-              {props.dailyCalories} ккал
+              Твоя дневная норма калорий: {props.dailyCalories} ккал
             </div>
             <div>
               <button onClick={() => props.toggleIsChangingData(true)}>

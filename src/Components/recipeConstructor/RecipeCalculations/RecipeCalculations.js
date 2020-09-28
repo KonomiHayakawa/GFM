@@ -1,6 +1,7 @@
 import React from 'react'
 
 const RecipeCalculations = (props) => {
+
   return (
     <div>
       <h4>Итого:</h4><button onClick={() => props.toggleShowInfo(!props.showInfo)}>?</button>
@@ -18,7 +19,7 @@ const RecipeCalculations = (props) => {
         {
           Number.isInteger(props.nutritionalValue.totalCalories) 
           ? props.nutritionalValue.totalCalories
-          : props.nutritionalValue.totalCalories.toFixed(1)
+          : Math.abs(props.nutritionalValue.totalCalories.toFixed(1))
         } ккал
       </p>
       

@@ -13,7 +13,7 @@ const DailyCaloriesContainer = (props) => {
     const calories = calcDailyCalories(form)
     props.userData.isAuth
       ? props.saveDailyCalories(props.userData.userId, form.sex, form.weight, form.height, form.age, form.activityLevel, Math.round(calories))
-        .catch((error) => props.setError(error))
+        // .catch((error) => props.setError(error))
       : props.setDailyCalories(Math.round(calories))
     toggleIsChangingData(false)
   }

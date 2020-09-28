@@ -1,10 +1,14 @@
-import firebase from './../firebase'
+import firebase from '../firebase'
 
 // kek
 
-export const kek = (file) => {
-  let storageRef = firebase.storage().ref('img')
-  storageRef.put(file)
+export const kek = (category, enteredLetters) => {
+}
+
+// feedback 
+
+export const addFeedbackMessage = (messageId, message) => {
+  firebase.database().ref(`/messages/${messageId}`).set(message)
 }
 
 
