@@ -5,8 +5,6 @@ import RecipeCalculationsContainer from '../RecipeCalculations/RecipeCalculation
 import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer';
 import ChoosingIngredientsModal from '../ChoosingIngredientsModal/ChoosingIngredientsModal';
 
-
-
 const RecipeConstructor = (props) => {
 
   return (

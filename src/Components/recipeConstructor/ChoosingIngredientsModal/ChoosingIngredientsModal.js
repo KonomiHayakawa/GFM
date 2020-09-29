@@ -15,6 +15,7 @@ const ChoosingIngredientsModal = (props) => {
     { props.modalData.showModal && props.modalData.openFoodCategory && (
       <Modal>
         <button onClick={() => props.setOpenFoodCategory(false)}>back</button>
+        <button onClick={() => {props.setShowModal(false); props.setOpenFoodCategory(false)}}>close modal</button>
         <FoodCategoryContainer categoryLink={props.modalData.foodCategoryLink}/>
       </Modal> 
     )}

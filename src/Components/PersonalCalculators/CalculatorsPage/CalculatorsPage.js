@@ -4,7 +4,9 @@ import DailyCaloriesContainer from '../DailyCaloriesCalculator/DailyCaloriesCalc
 import DailyWaterCalculatorContainer from '../DailyWaterCalculator/DailyWaterCalculatorContainer'
 import BMICalculatorContainer from '../BodyMassIndexCalculator/BMICalculatorContainer';
 import { NavLink } from 'react-router-dom';
-
+import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.svg'
+import dailyWaterImg from './../../../img/personalCalculations/dailyWater.svg'
+import bodyMassIndexImg from './../../../img/personalCalculations/bodyMassIndex.svg'
 
 const CalculatorsPage = (props) => {
 
@@ -19,9 +21,18 @@ const CalculatorsPage = (props) => {
       }
      
       <div className={classes.calculatorSwitcher}>
-        <div onClick={() => props.setChosenCalculator('dailyCalories')} className={classes.calculatorOption}>Дневная норма калорий</div>
-        <div onClick={() => props.setChosenCalculator('dailyWater')} className={classes.calculatorOption}>Дневная норма воды</div>
-        <div onClick={() => props.setChosenCalculator('bodyMassIndex')} className={classes.calculatorOption}>Индекс массы тела</div>
+        <div onClick={() => props.setChosenCalculator('dailyCalories')} className={classes.calculatorOption}>
+          <img className={classes.calculatorImg} src={dailyCaloriesImg} alt='dailyCalories'/>
+          Дневная норма калорий
+        </div>
+        <div onClick={() => props.setChosenCalculator('dailyWater')} className={classes.calculatorOption}>
+          <img className={classes.calculatorImg} src={dailyWaterImg} alt='dailyWater'/>
+          Дневная норма воды
+        </div>
+        <div onClick={() => props.setChosenCalculator('bodyMassIndex')} className={classes.calculatorOption}>
+          <img className={classes.calculatorImg} src={bodyMassIndexImg} alt='bodyMassIndex'/>
+          Индекс массы тела
+        </div>
       </div>
 
       {props.chosenCalculator === 'dailyCalories' && <DailyCaloriesContainer />}

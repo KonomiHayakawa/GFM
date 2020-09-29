@@ -17,7 +17,7 @@ const FoodCategoriesListContainer = (props) => {
   }, [props])
 
   return (
-    <FoodCategoriesList groups={groups} {...props}/>
+    <FoodCategoriesList categories={groups} {...props}/>
   )
 }
 

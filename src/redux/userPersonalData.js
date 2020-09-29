@@ -2,7 +2,6 @@ import {addUserParameter, getAllUserInfo, updateUserName, updateAvatar, getUserD
 
 const initialState = {
   mainData: {
-    email: '',
     name: '',
     avatar: '',
   },

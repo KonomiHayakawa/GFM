@@ -7,7 +7,7 @@ const NameEditingForm = (props) => {
     newName: Yup.string()
     .typeError('Введи новый ник')
     .required('Нельзя оставаться без ника :)')
-    .min(5, 'Минимальная длина - 5 символов')
+    .min(3, 'Минимальная длина - 3 символа')
   })
   
   const initialValues = {

@@ -19,13 +19,13 @@ const Ingredients = (props) => {
             <img src={ingredient.img} alt={ingredient.title} />
             {ingredient.title} {ingredient.weight}
 
-            {props.editingWeight !==  ingredient.title && 
-              <span onClick={() => {props.switchEditingWeight(ingredient.title)}}>
+            {props.editingWeight !==  ingredient.id && 
+              <span onClick={() => {props.switchEditingWeight(ingredient.id)}}>
                 (Изменить)
               </span>
             }
 
-            {props.editingWeight === ingredient.title && 
+            {props.editingWeight === ingredient.id && 
               <EditIngredientForm ingredient={ingredient}
                 editIngredientAndCalculate={props.editIngredientAndCalculate}
                 cancelEditing={props.switchEditingWeight}

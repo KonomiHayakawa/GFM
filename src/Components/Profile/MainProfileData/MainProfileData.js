@@ -2,21 +2,24 @@ import React from 'react'
 import classes from './MainProfileData.module.css'
 import NameEditingForm from './NameEditingForm'
 import ErrorMessage from '../../common/ErrorMessage'
+import defaultAvatar from './../../../img/default/avatar.svg'
 
 const MainProfileData = (props) => {
 
   return (
     <div>
       <div>
-        <img src={props.mainData.avatar} alt='avatar' className={classes.avatar} />
+        <img src={props.mainData.avatar || defaultAvatar} alt='avatar' className={classes.avatar} />
         { props.editingAvatar
         ? <div>
             <input type='file' accept='.jpg, .jpeg, .png' onChange={(event) => props.setUserAvatar(event.target.files[0])}/>  
             <button onClick={() => props.changeAvatar()}>Сохранить</button>
           </div>
-        : <button onClick={() => props.switchEditingAvatar(true)}>Сменить аватар</button>
+        : <div>
+            <button onClick={() => props.switchEditingAvatar(true)}>Сменить аватар</button>
+            {props.mainData.avatar && <button onClick={() => props.deleteAvatar()}>Удалить</button>}
+          </div>
         }
-        <button onClick={() => props.deleteAvatar()}>Удалить</button>
       </div>
 
     {props.editingName

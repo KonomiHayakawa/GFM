@@ -7,7 +7,7 @@ import {onAuthStateChange} from './../src/queries/auth'
 import {setUserData} from './redux/authReducer'
 import {setAllUserInfo} from './redux/userPersonalData'
 import HeaderContainer from './Components/Header/HeaderContainer';
-import MenuContainer from './Components/Menu/MenuContainer';
+import Menu from './Components/Menu/Menu';
 import FoodCategoriesListContainer from './Components/foodCalories/FoodCategoriesList/FoodCategoriesListContainer';
 import CalculatorsPageContainer from './Components/personalCalculators/CalculatorsPage/CalculatorsPageContainer';
 import RecipeConstructorContainer from './Components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer';
@@ -39,7 +39,7 @@ const App = (props) => {
           <HeaderContainer />
         </header>
         <main className='mainArea'>
-          <Route path='/menu' render={() => <MenuContainer />} />
+          <Route path='/menu' render={() => <Menu />} />
           <Route path='/createAccount' render={() => <RegistrationContainer />} />
           <Route path='/login' render={() => <LoginContainer />} />
           <Route path='/foodCategoriesList' render={() => <FoodCategoriesListContainer />} />

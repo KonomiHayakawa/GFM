@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import menuReducer from './menuReducer'
 import foodCaloriesReducer from './foodCaloriesReducer'
 import userPersonalData from './userPersonalData'
 import authReducer from './authReducer'
@@ -8,7 +7,6 @@ import recipeConstructorReducer from "./recipeConstructorReducer";
 import forError from "./forError";
 
 const reducers = combineReducers({
-  menuReducer,
   foodCaloriesReducer,
   userPersonalData,
   authReducer,

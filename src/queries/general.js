@@ -2,7 +2,8 @@ import firebase from '../firebase'
 
 // kek
 
-export const kek = (category, enteredLetters) => {
+export const kek = (parameter) => {
+
 }
 
 // feedback 

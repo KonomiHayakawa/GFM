@@ -18,9 +18,8 @@ const SavingRecipeContainer = (props) => {
     if (titles.includes(recipe.title)) {
       switchSavingRecipe('errorSameTitle')
     } else {
-      const defaultRecipeImg = 'https://firebasestorage.googleapis.com/v0/b/goodfoodmood-b0f8c.appspot.com/o/default%2FdefaultRecipeImg.png?alt=media&token=50a6aca2-5bb1-428a-8941-0c2ed1e2d116'
       if (recipe.img.length === 0) {
-        recipe = {...recipe, img: defaultRecipeImg, id: recipeId}
+        recipe = {...recipe, img: null, id: recipeId}
         props.setRecipe([recipe]) 
         saveUserRecipes(props.userId, [...props.savedRecipes, recipe])
         .catch((error) => props.setError(error))

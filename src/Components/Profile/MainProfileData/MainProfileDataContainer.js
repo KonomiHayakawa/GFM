@@ -27,8 +27,7 @@ const MainProfileDataContainer = (props) => {
 
   const deleteAvatar = () => {
     deleteAvatarFile(props.userId)
-    .then(() => getDefaultAvatarLink())
-    .then((avatarLink) => props.saveAvatar(avatarLink))
+    .then(() => props.saveAvatar(null))
     .catch((error) => props.setError(error))
   }
 

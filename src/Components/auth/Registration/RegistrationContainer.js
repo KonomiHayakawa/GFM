@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import {signUp} from '../../../redux/authReducer'
 import Registration from './Registration';
 import {saveName, saveAvatar} from './../../../redux/userPersonalData'
+// import defaultAvatar from './../../../img/default/avatar.svg'
 
 
 const RegistrationContainer = (props) => {
@@ -13,9 +14,7 @@ const RegistrationContainer = (props) => {
   }
 
   const addNewUserMainData = (nickname) => {
-    const defaultAvatar = 'https://firebasestorage.googleapis.com/v0/b/goodfoodmood-b0f8c.appspot.com/o/default%2FdefaultAvatar.png?alt=media&token=e3375b62-ae97-4cc9-8571-219a212ceb79'
     props.saveName(nickname)
-    .then(() => props.saveAvatar(defaultAvatar))
   }
 
   return (

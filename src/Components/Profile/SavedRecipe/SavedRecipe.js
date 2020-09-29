@@ -5,7 +5,7 @@ import IngredientsContainer from '../../recipeConstructor/Ingredients/Ingredient
 import RecipeCalculationsContainer from '../../recipeConstructor/RecipeCalculations/RecipeCalculationsContainer'
 import UpdateRecipeForm from './UpdateRecipeForm'
 import ChoosingIngredientsModal from '../../recipeConstructor/ChoosingIngredientsModal/ChoosingIngredientsModal'
-
+import defaultRecipeImg from './../../../img/default/recipe.svg'
 
 const SavedRecipe = (props) => {
 
@@ -14,7 +14,7 @@ const SavedRecipe = (props) => {
       <NavLink to='/profile'>BACK</NavLink>
       <div>
         <h5>{props.recipe.title}</h5>
-        <img className={classes.recipeImg} src={props.recipe.img} alt='recipeImg' />
+        <img className={classes.recipeImg} src={props.recipe.img || defaultRecipeImg} alt='recipeImg' />
         <div>
         <button onClick={() => props.switchUpdatingRecipeImg(!props.updatingRecipeImg)}>Изменить обложку рецепта</button>
         {props.updatingRecipeImg && <UpdateRecipeForm recipe={props.recipe} updateRecipeImg={props.updateRecipeImg}/> }

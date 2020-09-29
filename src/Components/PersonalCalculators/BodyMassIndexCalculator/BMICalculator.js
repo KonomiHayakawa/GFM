@@ -17,7 +17,7 @@ const BMICalculator = (props) => {
         : (
           <div>
             <div>
-              Твой ИМС: {props.bodyMassIndex.toFixed(2)}
+              Твой ИМС: {props.bodyMassIndex}
               
               <button onClick={() => props.toggleShowExplanation(!props.showExplanation)}>
                 Что это значит?

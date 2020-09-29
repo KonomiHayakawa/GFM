@@ -4138,97 +4138,78 @@ export const alcohol = [
 export const foodCategories = [
   {
     'name': 'Овощи',
-    'img': 'dkkdk',
     'linkTo': 'vegetables',
   },
   {
     'name': 'Фрукты',
-    'img': 'dkkdk',
     'linkTo': 'fruits',
   },
   {
     'name': 'Ягоды',
-    'img': 'dkkdk',
     'linkTo': 'berries',
   },
   {
     'name': 'Хлебобулочные изделия',
-    'img': 'dkkdk',
     'linkTo': 'bread',
   },
   {
     'name': 'Крупы и каши',
-    'img': 'dkkdk',
     'linkTo': 'cereals',
   },
   {
     'name': 'Мука и мучные изделия',
-    'img': 'dkkdk',
     'linkTo': 'flourProducts',
   },
   {
     'name': 'Сыры и творог',
-    'img': 'dkkdk',
     'linkTo': 'cheese',
   },
   {
     'name': 'Молочные продукты',
-    'img': 'dkkdk',
     'linkTo': 'milkProducts',
   },
   {
     'name': 'Яйца',
-    'img': 'dkkdk',
     'linkTo': 'eggs',
   },
   {
     'name': 'Мясо и мясные продукты',
-    'img': 'dkkdk',
     'linkTo': 'meat',
   },
   {
     'name': 'Колбасные изделия',
-    'img': 'dkkdk',
     'linkTo': 'sausages',
   },
   {
     'name': 'Рыба и морепродукты',
-    'img': 'dkkdk',
     'linkTo': 'seafood',
   },
   {
     'name': 'Грибы',
-    'img': 'dkkdk',
     'linkTo': 'mushrooms',
   },
   {
     'name': 'Масла и жиры',
-    'img': 'dkkdk',
     'linkTo': 'fats',
   },
   {
     'name': 'Шоколад',
-    'img': 'dkkdk',
     'linkTo': 'chocolate',
   },
   {
     'name': 'Орехи и сухофрукты',
-    'img': 'dkkdk',
     'linkTo': 'nutsAndDriedFruits',
   },
   {
     'name': 'Снэки',
-    'img': 'dkkdk',
     'linkTo': 'snacks',
   },
   {
     'name': 'Алкогольные напитки',
-    'img': 'dkkdk',
     'linkTo': 'alcohol',
   },
   {
     'name': 'Добавки и специи',
-    'img': 'dkkdk',
     'linkTo': 'spice',
   },
 ]

@@ -16,7 +16,7 @@ const RegistrationForm = (props) => {
       .oneOf([Yup.ref('password'), null], 'Введенные пароли должны совпадать!'),
     nickname: Yup.string()
       .required('Обязательное поле')
-      .min(5, 'Минимальная длина - 5 символов')
+      .min(3, 'Минимальная длина - 3 символа')
   })
 
   const initialValues = {

@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './MyRecipes.module.css'
 import { NavLink } from 'react-router-dom'
 import ErrorMessage from './../../common/ErrorMessage'
+import defaultRecipeImg from './../../../img/default/recipe.svg'
 
 const MyRecipes = (props) => {
 
@@ -20,7 +21,7 @@ const MyRecipes = (props) => {
               return (
                 <div>
                   <div>
-                    <img src={recipe.img} alt='recipePicture' className={classes.recipeImg}/>
+                    <img src={recipe.img || defaultRecipeImg} alt='recipePicture' className={classes.recipeImg}/>
                     {recipe.title}
                     <div>Итоговый вес: {recipe.weight}</div>
                     <div>Калорийность: {recipe.calories} ккал</div>

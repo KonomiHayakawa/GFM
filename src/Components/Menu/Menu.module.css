@@ -20,12 +20,12 @@
   border: 2px solid #99c939;
 }
 
-.menuItemImg {
+.menuItemImgWrapper {
   position: relative;
   z-index: 2;
 }
 
-.menuItemImg::after {
+.menuItemImgWrapper::after {
   content: '';
   display: block;
   position: absolute;
@@ -33,6 +33,10 @@
   bottom: 60px;
   width: 30%;
   border-bottom: 2px solid grey;
+}
+
+.menuItemImg {
+  width: 100px;
 }
 
 .menuItemTitle {
