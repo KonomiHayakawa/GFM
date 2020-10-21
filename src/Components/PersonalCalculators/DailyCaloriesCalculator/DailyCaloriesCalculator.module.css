@@ -1,44 +1,20 @@
-.title {
-  font-size: 1.5em;
-  color: #6fbd86; 
+.resultHeading{
+  font-weight: normal;
+  margin: 0px;
+  color: gray;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-/* 
-.form {
-  display: grid;
-  grid-template-columns: 1fr 7fr ;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
-} */
-
-
-.input {
-  padding: 15px;
-  background-color: rgb(203, 234, 234, 0.3);
-  border: 3px solid rgb(124, 143, 143);
+.calculateAgainButton {
+  background-color: rgb(249, 198, 219);
+  border: none;
+  color: rgb(44, 35, 39);
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
   margin-bottom: 15px;
-  width: 30%;
 }
 
-.resultBlock {
-  display: inline-flex;
-  align-items: center;
-}
 
-.resultField {
-  padding: 15px;
-  background-color: rgb(236, 213, 225);
-  border: 3px solid rgb(141, 124, 143);
-  width: 30%;
-  text-align: center;
-}
-
-.warning {
-  color: rgb(221, 53, 140);
-  font-size: 0.8em;
-  padding-bottom: 15px;
+.calculateAgainButton:hover {
+  background-color: rgb(228, 179, 199);
 }

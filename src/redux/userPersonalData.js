@@ -89,35 +89,35 @@ export const saveUserActivityType = (userId, activityType) => (dispatch) => {
   addUserParameter(userId, 'activityType', activityType).then(() => dispatch(setUserActivityType(activityType)))
 }
 
-export const saveDailyCalories = (userId, sex, weight, height, age, activityType, calories) => (dispatch) => {
+export const saveDailyCalories = (userId, formData, calories) => (dispatch) => {
   return addUserParameter(userId, 'dailyCalories', calories)
-    .then(() => addUserParameter(userId, 'sex', sex))
-    .then(() => addUserParameter(userId, 'weight', weight))
-    .then(() => addUserParameter(userId, 'height', height))
-    .then(() => addUserParameter(userId, 'age', age))
-    .then(() => addUserParameter(userId, 'activityType', activityType))
-    .then(() => dispatch(setUserSex(sex)))
-    .then(() => dispatch(setUserWeight(weight)))
-    .then(() => dispatch(setUserHeight(height)))
-    .then(() => dispatch(setUserAge(age)))
-    .then(() => dispatch(setUserActivityType(activityType)))
+    .then(() => addUserParameter(userId, 'sex', formData.sex))
+    .then(() => addUserParameter(userId, 'weight', formData.weight))
+    .then(() => addUserParameter(userId, 'height', formData.height))
+    .then(() => addUserParameter(userId, 'age', formData.age))
+    .then(() => addUserParameter(userId, 'activityType', formData.activityType))
+    .then(() => dispatch(setUserSex(formData.sex)))
+    .then(() => dispatch(setUserWeight(formData.weight)))
+    .then(() => dispatch(setUserHeight(formData.height)))
+    .then(() => dispatch(setUserAge(formData.age)))
+    .then(() => dispatch(setUserActivityType(formData.activityType)))
     .then(() => dispatch(setDailyCalories(calories)))
 }
-export const saveDailyWater = (userId, sex, weight, water) => (dispatch) => {
+export const saveDailyWater = (userId, form, water) => (dispatch) => {
   addUserParameter(userId, 'dailyWater', water)
-  .then(() => addUserParameter(userId, 'sex', sex))
-  .then(() => addUserParameter(userId, 'weight', weight))
-  .then(() => dispatch(setUserSex(sex)))
-  .then(() => dispatch(setUserWeight(weight)))
+  .then(() => addUserParameter(userId, 'sex', form.sex))
+  .then(() => addUserParameter(userId, 'weight', form.weight))
+  .then(() => dispatch(setUserSex(form.sex)))
+  .then(() => dispatch(setUserWeight(form.weight)))
   .then(() => dispatch(setDailyWater(water)))
 }
 
-export const saveBodyMassIndex = (userId, weight, height, bodyMassIndex) => (dispatch) => {
+export const saveBodyMassIndex = (userId, form, bodyMassIndex) => (dispatch) => {
   addUserParameter(userId, 'bodyMassIndex', bodyMassIndex)
-  .then(() => addUserParameter(userId, 'weight', weight))
-  .then(() => addUserParameter(userId, 'height', height))
-  .then(() => dispatch(setUserWeight(weight)))
-  .then(() => dispatch(setUserHeight(height)))
+  .then(() => addUserParameter(userId, 'weight', form.weight))
+  .then(() => addUserParameter(userId, 'height', form.height))
+  .then(() => dispatch(setUserWeight(form.weight)))
+  .then(() => dispatch(setUserHeight(form.height)))
   .then(() => dispatch(setBodyMassIndex(bodyMassIndex)))
 }
 

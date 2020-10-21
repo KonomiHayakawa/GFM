@@ -17,28 +17,32 @@ const SavingRecipeContainer = (props) => {
   const saveNewRecipe = (recipe) => {
     if (titles.includes(recipe.title)) {
       switchSavingRecipe('errorSameTitle')
+    } else if (!recipe.ingredients.length) {
+        switchSavingRecipe('errorNoIngredients')
     } else {
       if (recipe.img.length === 0) {
-        recipe = {...recipe, img: null, id: recipeId}
-        props.setRecipe([recipe]) 
-        saveUserRecipes(props.userId, [...props.savedRecipes, recipe])
-        .catch((error) => props.setError(error))
+        try {
+          recipe = {...recipe, img: null, id: recipeId}
+          props.setRecipe([recipe]) 
+          saveUserRecipes(props.userId, [...props.savedRecipes, recipe])
+        } catch (error) {
+          props.setError(error)
+        }
       } else {
-        console.log(recipe.img)
-        addRecipeImg(props.userId, recipe.img, recipeId)
-          .then(() => getRecipeImgLink(props.userId, recipeId))
-          .then((link) => recipe = {...recipe, img: link, id: recipeId})
-          .then(() => props.setRecipe([recipe])) 
-          .then(() => saveUserRecipes(props.userId, [...props.savedRecipes, recipe]))
-          .catch((error) => props.setError(error))
+        try {
+          addRecipeImg(props.userId, recipe.img, recipeId)
+            .then(() => getRecipeImgLink(props.userId, recipeId))
+            .then((link) => recipe = {...recipe, img: link, id: recipeId})
+            .then(() => props.setRecipe([recipe])) 
+            .then(() => saveUserRecipes(props.userId, [...props.savedRecipes, recipe]))
+        } catch (error) {
+          props.setError(error)
+        }
       }
+      switchSavingRecipe(false)
+      props.clearRecipe()
       switchSavingRecipe('done')
     }
-  }
-
-  const constructNewRecipe = () => {
-    switchSavingRecipe(false)
-    props.clearRecipe()
   }
 
   return (
@@ -47,7 +51,6 @@ const SavingRecipeContainer = (props) => {
       savingRecipe={savingRecipe}
       switchSavingRecipe={switchSavingRecipe}
       saveRecipe={saveNewRecipe}
-      constructNewRecipe={constructNewRecipe}
     />
   )
 }
@@ -60,7 +63,7 @@ const mapStateToProps = (state) => {
     userId: state.authReducer.userId,
     savedRecipes: state.userPersonalData.savedRecipes,
     isAuth: state.authReducer.isAuth,
-    errorMessage: state.forError.errorMessage
+    error: state.forError.error
   })
 }
 

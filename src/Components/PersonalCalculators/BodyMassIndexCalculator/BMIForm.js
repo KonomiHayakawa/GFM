@@ -1,6 +1,8 @@
 import React from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import classes from './BMICalculator.module.css'
+import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
 
 const BodyMassIndexForm = (props) => {
 
@@ -21,26 +23,32 @@ const BodyMassIndexForm = (props) => {
     weight: '',
   }
 
-  const onSubmit = (value) => props.updateBMI(value)
+  const onSubmit = (formData) => props.updateBMI(formData)
 
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
-        <div>
-          <label htmlFor="height">Рост (см):</label>
-          <Field name='height' id='height' type='text' placeholder='180'></Field>
-          <ErrorMessage component='div' name='height' />
-        </div>
-        <div>
-          <label htmlFor="weight">Вес (кг):</label>
-          <Field name='weight' type='text' placeholder='75'></Field>
-          <ErrorMessage component='div' name='weight' />
-        </div>
-        <div>
-          <button type='submit'>Узнать индекс массы тела</button>
-        </div>
+        <label htmlFor="height">Рост (см)</label>
+          <Field 
+            component={AntInput} 
+            style={{ width: 300}} 
+            name='height' 
+            id='height' 
+            type='text' 
+          />
+          
+          <label htmlFor="weight">Вес(кг)</label>
+          <Field
+            component={AntInput} 
+            style={{ width: 300}}  
+            name='weight' 
+            id='weight' 
+            type='text'  
+          />
+
+          <button className={classes.calculateAgainButton} type='submit'>Узнать индекс массы тела</button>
       </Form>
-      </Formik>
+    </Formik>
   )
 }
 

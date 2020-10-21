@@ -1,0 +1,27 @@
+.wrapper {
+  margin-top: 25px;
+}
+
+.saveButton {
+  background-color: rgb(222, 206, 254);
+  border: none;
+  color: rgb(54, 56, 122);
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.saveButton:hover{
+  background-color: rgb(198, 181, 233); 
+}
+
+.savingRecipeAlert {
+  width: 60%;
+  background-color: rgba(221, 205, 254, 0.342);
+  border: 1px solid rgb(175, 154, 219);
+}
+
+.linkToProfile {
+  color: black;
+  font-weight: bolder;
+}

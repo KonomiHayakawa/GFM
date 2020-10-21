@@ -15,11 +15,15 @@ const SavedRecipeContainer = (props) => {
   const [updatingRecipeImg, switchUpdatingRecipeImg] = useState(false)
 
   useEffect(() => {
-    getRecipe(props.userId, props.match.params.category)
-    .then(recipe => {
-      setOpenedRecipe(recipe)
-      props.setRecipeData(recipe.ingredients, recipe.calories, recipe.weight)
-    })
+    try {
+      getRecipe(props.userId, props.match.params.category)
+        .then(recipe => {
+          setOpenedRecipe(recipe)
+          props.setRecipeData(recipe.ingredients, recipe.calories, recipe.weight)
+        })
+    } catch (error) {
+      props.setError(error)
+    }
     return function cleanup() {
       setOpenedRecipe({})
       props.clearRecipe()
@@ -28,24 +32,28 @@ const SavedRecipeContainer = (props) => {
 
   const updateRecipeImg = (formData) => {
     let updatedRecipes = []
-    addRecipeImg(props.userId, formData.img, openedRecipe.id)
-    .then(() => getRecipeImgLink(props.userId, openedRecipe.id))
-    .then((link) => {
-      updatedRecipes = props.savedRecipes.map((recipe) => {
-        if(recipe.id === openedRecipe.id) {
-          return ({
-            ...recipe,
-            img: link,
+    try {
+      addRecipeImg(props.userId, formData.img, openedRecipe.id)
+        .then(() => getRecipeImgLink(props.userId, openedRecipe.id))
+        .then((link) => {
+          updatedRecipes = props.savedRecipes.map((recipe) => {
+            if(recipe.id === openedRecipe.id) {
+              return ({
+                ...recipe,
+                img: link,
+              })
+            } else {
+              return recipe
+            }
           })
-        } else {
-          return recipe
-        }
-      })
-    })
-    .then(() => props.updateRecipes(updatedRecipes)) 
-    .then(() => saveUserRecipes(props.userId, updatedRecipes))
-    .then(() => switchUpdatingRecipeImg(false))
-    .catch((error) => props.setError(error))
+        })
+        .then(() => props.updateRecipes(updatedRecipes)) 
+        .then(() => saveUserRecipes(props.userId, updatedRecipes))
+        .then(() => switchUpdatingRecipeImg(false))
+    } catch (error) {
+      props.setError(error)
+    }
+    
   }
 
   const updateRecipe = () => {
@@ -61,14 +69,19 @@ const SavedRecipeContainer = (props) => {
         return recipe
       }
     })
-    props.updateRecipes(updatedRecipes)
-    saveUserRecipes(props.userId, updatedRecipes)
-    .then(() => switchEditingRecipe(false))
+    try {
+      props.updateRecipes(updatedRecipes)
+      saveUserRecipes(props.userId, updatedRecipes)
+        .then(() => switchEditingRecipe(false))
+    } catch (error) {
+      props.setError(error)
+    }
+
 }
   
   return (
     <SavedRecipe 
-    {...props}
+      {...props}
       recipe={openedRecipe}
       updateRecipe={updateRecipe}
       modalData={props.modalData}
@@ -89,6 +102,7 @@ const mapStateToProps = (state) => ({
   addedFood: state.recipeConstructorReducer.addedFood,
   nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
   modalData: state.recipeConstructorReducer.modal,
+  error: state.forError.error,
 })
 
 export default withRouter(connect(mapStateToProps, 

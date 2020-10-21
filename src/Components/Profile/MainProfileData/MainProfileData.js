@@ -3,15 +3,17 @@ import classes from './MainProfileData.module.css'
 import NameEditingForm from './NameEditingForm'
 import ErrorMessage from '../../common/ErrorMessage'
 import defaultAvatar from './../../../img/default/avatar.svg'
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const MainProfileData = (props) => {
-
   return (
     <div>
       <div>
-        <img src={props.mainData.avatar || defaultAvatar} alt='avatar' className={classes.avatar} />
+      <Avatar size={64} icon={<UserOutlined />} src={props.mainData.avatar || defaultAvatar} />
+         {/* <img src={props.mainData.avatar || defaultAvatar} alt='avatar' className={classes.avatar} /> */}
         { props.editingAvatar
-        ? <div>
+        ? <div id='kek'>
             <input type='file' accept='.jpg, .jpeg, .png' onChange={(event) => props.setUserAvatar(event.target.files[0])}/>  
             <button onClick={() => props.changeAvatar()}>Сохранить</button>
           </div>
@@ -32,7 +34,7 @@ const MainProfileData = (props) => {
       </div>
     }
 
-    {props.errorMessage && <ErrorMessage />}
+    {props.error && <ErrorMessage />}
 
     </div>
   )

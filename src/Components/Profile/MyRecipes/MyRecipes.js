@@ -19,23 +19,31 @@ const MyRecipes = (props) => {
           {
             props.savedRecipes.map(recipe => {
               return (
-                <div>
-                  <div>
-                    <img src={recipe.img || defaultRecipeImg} alt='recipePicture' className={classes.recipeImg}/>
-                    {recipe.title}
-                    <div>Итоговый вес: {recipe.weight}</div>
-                    <div>Калорийность: {recipe.calories} ккал</div>
-                  </div>
-                  <NavLink to={`/savedRecipe/${recipe.id}`}>Подробнее</NavLink> 
-                  <button onClick={() => props.deleteRecipe(recipe)}>Удалить</button>
-                  {props.errorMessage && <ErrorMessage />}
-                </div>
+                <RecipeItem {...props} recipe={recipe} key={recipe.id}/>
               )
             })
           }
         </div>
       }
+      {props.error && <ErrorMessage />}
     </div>
+  )
+}
+
+const RecipeItem = (props) => {
+  return (
+    <React.Fragment>
+      <div>
+        <div>
+          <img src={props.recipe.img || defaultRecipeImg} alt={props.recipe.title} className={classes.recipeImg}/>
+          {props.recipe.title}
+          <div>Итоговый вес: {props.recipe.weight}</div>
+          <div>Калорийность: {props.recipe.calories} ккал</div>
+        </div>
+        <NavLink to={`/savedRecipe/${props.recipe.id}`}>Подробнее</NavLink> 
+        <button onClick={() => props.deleteRecipe(props.recipe)}>Удалить</button>
+      </div>
+    </React.Fragment>
   )
 }
 

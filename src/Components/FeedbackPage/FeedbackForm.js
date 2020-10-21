@@ -2,20 +2,19 @@ import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
-
 const FeedbackForm = (props) => {
   const validationSchema = Yup.object({
     name: Yup.string()
-    .required('Не пропускай это поле!')
-    .min(3, 'Минимальная длина - 3 символов'),
+      .required('Не пропускай это поле!')
+      .min(3, 'Минимальная длина - 3 символов'),
     email: Yup.string()
-    .required('Не пропускай это поле!')
-    .email('Некорректный адрес'),
+      .required('Не пропускай это поле!')
+      .email('Некорректный адрес'),
     feedbackType: Yup.string()
-    .required('Не пропускай это поле!'),
+      .required('Не пропускай это поле!'),
     feedbackDescription: Yup.string()
-    .required('Не пропускай это поле!')
-    .min(15, 'Минимальная длина - 15 символов'),
+      .required('Не пропускай это поле!')
+      .min(15, 'Минимальная длина - 15 символов'),
   })
   
   const initialValues = {
@@ -25,13 +24,11 @@ const FeedbackForm = (props) => {
     feedbackDescription: '',
   }
 
-
   const onSubmit = (formData) => {
     props.sendFeedbackMessage(formData)
   }
   
-  return (
-    
+  return ( 
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {() => (
         <Form>

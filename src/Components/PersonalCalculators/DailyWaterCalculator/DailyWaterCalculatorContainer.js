@@ -11,10 +11,15 @@ const DailyWaterCalculatorContainer = (props) => {
 
   const updateDailyWater = (form) => {
     const dailyWater = calcDailyWater(form)
-    props.userData.isAuth
-    ? props.saveDailyWater(props.userData.userId, form.sex, form.weight, dailyWater)
-      // .catch((error) => props.setError(error))
-    : props.setDailyWater(dailyWater)
+    if (props.userData.isAuth) {
+      try {
+        props.saveDailyWater(props.userData.userId, form, dailyWater)
+      } catch (error) {
+        props.setError(error)
+      }
+    } else {
+      props.setDailyWater(dailyWater)
+    }
     toggleIsChangingData(false)
   }
 
@@ -23,7 +28,9 @@ const DailyWaterCalculatorContainer = (props) => {
       dailyWater={props.dailyWater} 
       updateDailyWater={updateDailyWater}
       isChangingData={isChangingData}
-      toggleIsChangingData={toggleIsChangingData}/>
+      toggleIsChangingData={toggleIsChangingData}
+      error={props.error}
+    />
   )
   
 }
@@ -32,7 +39,7 @@ const mapStateToProps = (state) => {
   return ({
     userData: state.authReducer,
     dailyWater: state.userPersonalData.dailyWater,
-    errorMessage: state.forError.errorMessage
+    error: state.forError.error
   })
 }
 

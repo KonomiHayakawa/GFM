@@ -1,0 +1,10 @@
+.FoodCategoriesPageWrapper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+
+}
+
+.mainImage {
+  width: 100%;
+  align-self: center;
+}

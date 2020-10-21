@@ -1,7 +1,8 @@
 import React from 'react'
 import classes from './DailyCaloriesCalculator.module.css'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import {AntSelect, AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
 
 const DailyCaloriesForm = (props) => {
 
@@ -23,7 +24,7 @@ const DailyCaloriesForm = (props) => {
       .positive('Минусового возраста не бывает :)')
       .integer('Введи целое число')
       .required('Обязательное поле'),
-    activityLevel: Yup.string()
+    activityType: Yup.string()
       .required('Обязательное поле'),
   })
     const initialValues = {
@@ -31,55 +32,74 @@ const DailyCaloriesForm = (props) => {
       height: '',
       weight: '',
       age: '',
-      activityLevel: '',
+      activityType: '',
     }
 
-    const onSubmit = (value) => props.forSubmit(value)
+  const onSubmit = (formData) => props.updateCalories(formData)
 
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
-      <Form className={classes.form}>
-        <div>
-          Твой пол:
-        </div>
-        <div className={classes.selectSexBlock}>
-          <Field type='radio' name='sex' id='male' value='male' className={classes.sexRadio} />
-          <label htmlFor="male">Мужской</label>
-          <Field type='radio' name='sex' id='female' value='female' />
-          <label htmlFor="female">Женский</label>
-          <ErrorMessage component='div' className={classes.warning} name='sex' />
-        </div>
-        <div>
-          <label htmlFor="height">Рост (см):</label>
-          <Field name='height' id='height' type='text' placeholder='180' className={classes.input}></Field>
-          <ErrorMessage component='div' className={classes.warning} name='height' />
-        </div>
-        <div>
-          <label htmlFor="weight">Вес (кг):</label>
-          <Field name='weight' type='text' placeholder='75' className={classes.input}></Field>
-          <ErrorMessage component='div' className={classes.warning} name='weight' />
-        </div>
-        <div>
-          <label htmlFor="age">Возвраст:</label>
-          <Field name='age' id='age' type='text' placeholder='30' className={classes.input}></Field>
-          <ErrorMessage component='div' className={classes.warning} name='age' />
-        </div>
-        <div>
-          <label htmlFor="activityLevel">Уровень ежедневной активности:</label>
-          <Field as='select' name='activityLevel' id='activityLevel' className={classes.input}>
-            <option value='1.2'>Минимальный уровень активности</option>
-            <option value='1.375'>Низкий уровень активности</option>
-            <option value='1.55'>Средний уровень активности</option>
-            <option value='1.725'>Высокий уровень</option>
-            <option value='1.9'>Очень высокий</option>
-          </Field>
-          <ErrorMessage component='div' className={classes.warning} name='activityLevel' />
-        </div>
-        <div>
-          <button type='submit'>Узнать норму калорий</button>
-        </div>
+      <Form>
+
+        <label htmlFor="sex">Пол:</label>
+        <Field 
+          component={AntSelect}
+          selectOptions={[
+            {name:'Мужской', value: 'male'},
+            {name:'Женский', value:'female'},
+          ]}
+          style={{ width: 300}}
+          name='sex'
+          id='sex'
+        />
+
+        <label htmlFor="height">Рост (см)</label>
+        <Field 
+          component={AntInput} 
+          style={{ width: 300}} 
+          name='height' 
+          id='height' 
+          type='text' 
+        />
+         
+        <label htmlFor="weight">Вес(кг)</label>
+        <Field
+          component={AntInput} 
+          style={{ width: 300}}  
+          name='weight' 
+          id='weight' 
+          type='text'  
+        />
+  
+    
+        <label htmlFor="age">Возвраст</label>
+        <Field 
+          component={AntInput} 
+          style={{ width: 300}} 
+          name='age' 
+          id='age' 
+          type='text' 
+        />
+
+        <label htmlFor="activityType">Уровень ежедневной активности:</label>
+        <Field 
+          component={AntSelect}
+          selectOptions={[
+            {name:'Минимальный уровень активности', value: '1.2'},
+            {name:'Низкий уровень активности', value: '1.375'},
+            {name:'Средний уровень активности', value:'1.55'},
+            {name:'Высокий уровень', value:'1.725'},
+            {name:'Очень высокий', value:'1.9'}
+          ]}
+          style={{ width: 300}}
+          name='activityType'
+          id='activityType'
+        />
+
+        <button className={classes.calculateAgainButton} type='submit'>Узнать норму калорий</button>
+
       </Form>
-      </Formik>
+    </Formik>
   )
 }
 

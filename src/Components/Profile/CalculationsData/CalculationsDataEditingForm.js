@@ -17,14 +17,14 @@ const CalculationsDataEditingForm = (props) => {
       .typeError('Введи число')
       .positive('Минусового возраста не бывает :)')
       .integer('Введи целое число'),
-    activityLevel: Yup.string(),
+    activityType: Yup.string(),
   })
     const initialValues = {
       sex: props.userData.sex,
       height: props.userData.height,
       weight: props.userData.weight,
       age: props.userData.age,
-      activityLevel: props.userData.activityType,
+      activityType: props.userData.activityType,
     }
 
     const onSubmit = (form) => {
@@ -44,29 +44,29 @@ const CalculationsDataEditingForm = (props) => {
         </div>
         <div>
           <label htmlFor="height">Рост (см):</label>
-          <Field name='height' id='height' type='text' placeholder='180' ></Field>
+          <Field name='height' id='height' type='text'></Field>
           <ErrorMessage component='div' name='height' />
         </div>
         <div>
           <label htmlFor="weight">Вес (кг):</label>
-          <Field name='weight' type='text' placeholder='75'></Field>
+          <Field name='weight' type='text'></Field>
           <ErrorMessage component='div' name='weight' />
         </div>
         <div>
           <label htmlFor="age">Возвраст:</label>
-          <Field name='age' id='age' type='text' placeholder='30'></Field>
+          <Field name='age' id='age' type='text'></Field>
           <ErrorMessage component='div' name='age' />
         </div>
         <div>
-          <label htmlFor="activityLevel">Уровень ежедневной активности:</label>
-          <Field as='select' name='activityLevel' id='activityLevel'>
+          <label htmlFor="activityType">Уровень ежедневной активности:</label>
+          <Field as='select' name='activityType' id='activityType'>
             <option value='1.2'>Минимальный уровень активности</option>
             <option value='1.375'>Низкий уровень активности</option>
             <option value='1.55'>Средний уровень активности</option>
             <option value='1.725'>Высокий уровень</option>
             <option value='1.9'>Очень высокий</option>
           </Field>
-          <ErrorMessage component='div' name='activityLevel' />
+          <ErrorMessage component='div' name='activityType' />
         </div>
         <div>
           <button type='submit'>Изменить</button>

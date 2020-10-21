@@ -1,0 +1,12 @@
+.noResultsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.sorryMessage {
+  font-size: x-large;
+  margin-left: 10px;
+}

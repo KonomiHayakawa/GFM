@@ -1,6 +1,6 @@
 .appWrapper {
   display: grid;
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 15vh 85vh;
   grid-template-areas: 
   'header'
   'mainContent';

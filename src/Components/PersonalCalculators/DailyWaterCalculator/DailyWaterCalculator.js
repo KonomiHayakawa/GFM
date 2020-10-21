@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './DailyWaterCalculator.module.css'
 import DailyWaterForm from './DailyWaterCalculatorForm'
 import ErrorMessage from '../../common/ErrorMessage'
+import { Statistic, Row, Col } from 'antd';
 
 const DailyWaterCalculator = (props) => {
   return (
@@ -12,26 +13,28 @@ const DailyWaterCalculator = (props) => {
             <h2 className={classes.title}>
               Рассчитать дневную норму воды
             </h2>
-            <h4>
-              Введи пол и вес, чтобы узнать свою дневную норму воды.
-            </h4>
             <DailyWaterForm forSubmit={props.updateDailyWater}/>
           </div>
         )
         : (
           <div>
-            <div>
-              Твоя дневная норма воды: {props.dailyWater} л.
-            </div>
-            <div>
-              <button onClick={() => props.toggleIsChangingData(true)}>
-                Посчитать заново
-              </button>
-            </div>
+            <Row gutter={16} >
+              <Col span={12}>
+                <Statistic 
+                  title={
+                    <h2 className={classes.resultHeading}>Твоя дневная норма воды</h2>
+                  }
+                  value={props.dailyWater}
+                />
+              </Col>
+            </Row>
+            <button className={classes.calculateAgainButton} onClick={() => props.toggleIsChangingData(true)}>
+              Посчитать заново
+            </button>
           </div>
         )
       }
-      {props.errorMessage && <ErrorMessage />}
+      {props.error && <ErrorMessage />}
     </div>
   )
 }

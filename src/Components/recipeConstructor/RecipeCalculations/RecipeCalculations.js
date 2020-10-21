@@ -1,45 +1,34 @@
 import React from 'react'
+import { Statistic, Row, Col } from 'antd';
+
 
 const RecipeCalculations = (props) => {
+  const weight = props.nutritionalValue.totalWeight >= 1000
+    ? (props.nutritionalValue.totalWeight / 1000).toFixed(2)
+    : props.nutritionalValue.totalWeight
+
+  const units = props.nutritionalValue.totalWeight >= 1000
+    ? 'кг'
+    : 'грамм'
 
   return (
     <div>
-      <h4>Итого:</h4><button onClick={() => props.toggleShowInfo(!props.showInfo)}>?</button>
-      { props.showInfo &&
-        <p>
-          Хотя в процессе приготовления ингредиенты могут увеличиться или уменьшиться в объеме, 
-          на итоговую калорийность это никак не повлияет. Продукты меняют свою массу, в первую очередь, 
-          из-за воды, в которой 0 калорий.
-          Не забудь разделить итоговые показатели на
-          количество порций, ведь так ты точно будешь знать, какой % от твоей дневной нормы займёт такая вкуснятина.
-        </p>
-      }
-      <p>
-        Общая калорийность блюда: 
-        {
-          Number.isInteger(props.nutritionalValue.totalCalories) 
-          ? props.nutritionalValue.totalCalories
-          : Math.abs(props.nutritionalValue.totalCalories.toFixed(1))
-        } ккал
-      </p>
-      
-      <p>Общий вес сырой заготовки: 
-        {
-          props.nutritionalValue.totalWeight >= 1000
-          ? (props.nutritionalValue.totalWeight / 1000).toFixed(2)
-          : props.nutritionalValue.totalWeight
-        }
-        {
-          props.nutritionalValue.totalWeight >= 1000
-          ? <span>кг</span>
-          : <span>грамм</span>
-        }
-      </p>
-{/* 
-      <span>Белки: {props.nutritionalValue.totalProteins.toFixed(2)}</span>
-      <span>Жиры: {props.nutritionalValue.totalFats.toFixed(2)}</span>
-      <span>Углеводы: {props.nutritionalValue.totalCarbs.toFixed(2)}</span> */}
-
+      <h2>Итого</h2>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Statistic 
+            title='Калорийность блюда (ккал)' 
+            value={props.nutritionalValue.totalCalories}
+          />
+        </Col>
+        <Col span={12}>
+          <Statistic 
+            title={`Bес сырой заготовки (${units})`} 
+            value={weight} 
+            precision={2}
+          />
+        </Col>
+      </Row>
     </div>
   )
 }

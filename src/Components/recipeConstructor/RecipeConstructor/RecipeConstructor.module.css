@@ -1,0 +1,29 @@
+.wrapper{
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+
+.recipeConstructor{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  height: 80%;
+  margin-top: 10%;
+}
+
+.pageMainImage{
+  width: 80%;
+  margin-right: 10%;
+  align-self: center;
+  justify-self: center;
+}
+
+.titleWrapper{
+  display: inline-flex;
+}
+
+.showInfo {
+  vertical-align: super;
+  font-size: smaller;
+  cursor: pointer;
+}

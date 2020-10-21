@@ -1,0 +1,26 @@
+.calculatorOption {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid rgb(249, 198, 219);
+  color: rgb(73, 58, 64);
+  cursor: pointer;
+  text-align: left; 
+  font-size: larger;
+  height: 80px;
+  width: 180px;
+  transition: transform .2s;
+}
+
+.calculatorOption:hover {
+  background-color: rgba(219, 172, 192, 0.308);
+  transform: scale(1.2);
+}
+
+.calculatorOptionImg {
+  width: 40px;
+  margin-left: 5px;
+}
+
+.calculatorOptionTitle {
+  margin-left: 7px;
+}

@@ -14,11 +14,14 @@ const CalculationsDataContainer = (props) => {
     const dailyCalories = Math.round(calcDailyCalories(form))
     const dailyWater = calcDailyWater(form)
     const bodyMassIndex = calcBodyMassIndex(form)
-    props.saveDailyCalories(props.userId, form.sex, form.weight, form.height, form.age, form.activityLevel, dailyCalories) 
-      .then(() => props.saveDailyWater(props.userId, form.sex, form.weight, dailyWater))
-      .then(props.saveBodyMassIndex(props.userId, form.weight, form.height, bodyMassIndex))
-      .then(() => switchEditingMode(false))
-      .catch((error) => props.setError(error))
+    try {
+      props.saveDailyCalories(props.userId, form, dailyCalories) 
+        .then(() => props.saveDailyWater(props.userId, form, dailyWater))
+        .then(props.saveBodyMassIndex(props.userId, form, bodyMassIndex))
+        .then(() => switchEditingMode(false))
+    } catch (error) {
+      props.setError(error)
+    }
   }
 
   return <CalculationsData 
@@ -26,7 +29,7 @@ const CalculationsDataContainer = (props) => {
     editingMode={editingMode} 
     switchEditingMode={switchEditingMode}
     editCalculationsData={editCalculationsData}
-    errorMessage={props.errorMessage} 
+    error={props.error} 
     showBMIExplanation={showBMIExplanation}
     toggleShowBMIExplanation={toggleShowBMIExplanation}
   />
@@ -36,7 +39,7 @@ const mapStateToProps = (state) => {
   return ({
     userData: state.userPersonalData,
     userId: state.authReducer.userId,
-    errorMessage: state.forError.errorMessage,
+    error: state.forError.error,
   })
 }
 

@@ -1,13 +1,14 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import classes from './Header.module.css'
 import logo from './../../img/logo.svg'
-import { NavLink } from 'react-router-dom'
+
 
 const Header = (props) => {
   return (
     <div className={classes.header}>
       <div>
-        <NavLink to={'/menu'}><img src={logo} className={classes.logoImg} alt='logo'/></NavLink>
+        <NavLink to={'/'}><img src={logo} className={classes.logoImg} alt='logo'/></NavLink>
       </div>
       <div>
         <ul className={classes.navigation}>

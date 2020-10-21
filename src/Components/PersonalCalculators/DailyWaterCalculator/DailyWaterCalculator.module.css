@@ -1,4 +1,19 @@
-.title {
-  font-size: 1.5em;
-  color: #6fbd86; 
+.resultHeading{
+  font-weight: normal;
+  margin: 0px;
+  color: gray;
+}
+
+.calculateAgainButton {
+  background-color: rgb(139, 208, 228);
+  border: none;
+  color: rgb(31, 47, 51);
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.calculateAgainButton:hover {
+  background-color: rgb(118, 176, 192);
 }

@@ -1,17 +1,22 @@
 import React from 'react'
-import SavingRecipeForm from './SavingRecipeForm'
+import SavingRecipeForm from './SavingRecipeForm/SavingRecipeForm'
 import { NavLink } from 'react-router-dom'
 import ErrorMessage from '../../common/ErrorMessage'
+import classes from './SavingRecipe.module.css'
+import { Alert } from 'antd';
 
 const SavingRecipe = (props) => {
   return (
-    props.isAuth
-    ? <SavingRecipeIfAuth {...props}/>
-    : <div>
-        Если <NavLink to='/createAccount'>зарегистрируешься</NavLink> на этом сайте, сможешь сохранять
-        все свои рецепты и редактировать их в любое время :) Уже регистрировался? 
-        Тогда не забудь <NavLink to='/login'>войти</NavLink> в свой аккаунт!
-      </div>
+    <div className={classes.wrapper}>
+      {props.isAuth
+        ? <SavingRecipeIfAuth {...props}/>
+        : <div>
+            Если <NavLink to='/createAccount'>зарегистрируешься</NavLink> на этом сайте, сможешь сохранять
+            все свои рецепты и редактировать их в любое время :) Уже регистрировался? 
+            Тогда не забудь <NavLink to='/login'>войти</NavLink> в свой аккаунт!
+          </div>
+      }
+    </div>
   )
 }
 
@@ -19,21 +24,49 @@ const SavingRecipeIfAuth = (props) => {
   return (
     <div>
     {props.savingRecipe === 'done' && 
-      <div>
-        Рецепт сохранен, можешь найти его у себя в <NavLink to='/profile'>профиле</NavLink>
-        <button onClick={() => props.constructNewRecipe()}>Составить новый рецепт</button>
-      </div>
+      <Alert
+        message='Готово :)'
+        description={
+          <span>
+            Рецепт сохранен, можешь найти его у себя 
+            в <NavLink className={classes.linkToProfile} to='/profile'>
+              профиле
+            </NavLink>
+          </span>
+        }
+        type='success'
+        showIcon
+        closable
+        onClose={() => props.switchSavingRecipe(false)}
+        className={classes.savingRecipeAlert}
+      />
     }
     {props.savingRecipe === 'errorSameTitle' &&
-      <div>
-      Ты уже сохранял рецепт с таким названием! Нужно придумать что-то другое :)
-      <button onClick={() => props.switchSavingRecipe(true)}>Сохранить с другим названием</button>
-    </div>
+      <Alert
+        message='Не получилось :('
+        description='Ты уже сохранял рецепт с таким названием! Нужно придумать что-то другое :)'
+        type='error'
+        showIcon
+        closable
+        onClose={() => props.switchSavingRecipe(true)}
+        className={classes.savingRecipeAlert}
+      />
     }
-    {!props.savingRecipe && 
-      <button onClick={() => props.switchSavingRecipe(true)}>
+    { props.savingRecipe === 'errorNoIngredients' &&
+      <Alert
+        message='Не получилось :('
+        description='В рецепте нет ингредиентов'
+        type='error'
+        showIcon
+        closable
+        onClose={() => props.switchSavingRecipe(false)}
+        className={classes.savingRecipeAlert}
+      />
+    }
+     {!props.savingRecipe && 
+      <button className={classes.saveButton} onClick={() => props.switchSavingRecipe(true)}>
         Сохранить рецепт
-      </button>
+      </button> 
     }
     {props.savingRecipe === true && 
       <SavingRecipeForm 
@@ -43,7 +76,7 @@ const SavingRecipeIfAuth = (props) => {
         saveRecipe={props.saveRecipe}
       />
     }
-    {props.errorMessage && <ErrorMessage />
+    {props.error && <ErrorMessage />
 
     }
   </div>

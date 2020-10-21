@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.foodCategoryContainer {
+  margin-left: 60px;
+}
+
+.mainImage {
+  position: fixed;
+  top: 6%;
+  right: 0%;
+  width: 50%;
+}

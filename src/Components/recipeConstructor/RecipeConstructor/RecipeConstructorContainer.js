@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import RecipeConstructor from './RecipeConstructor'
-import {setOpenFoodCategory, setShowModal} from '../../../redux/recipeConstructorReducer'
+import {closeModal, clearRecipe} from '../../../redux/recipeConstructorReducer'
 
 const RecipeConstructorContainer = (props) => {
 
+  const [showInfo, switchShowInfo] = useState(false)
+
+  useEffect(() => {
+    return () => {props.clearRecipe(); props.closeModal()}
+  }, [])
+
   return (
-   <RecipeConstructor {...props} />
+    <RecipeConstructor 
+      {...props}
+      showInfo={showInfo}
+      switchShowInfo={switchShowInfo}
+    />
   )
 }
 
@@ -16,4 +26,4 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps, {setOpenFoodCategory, setShowModal})(RecipeConstructorContainer)
+export default connect(mapStateToProps, {closeModal, clearRecipe})(RecipeConstructorContainer)

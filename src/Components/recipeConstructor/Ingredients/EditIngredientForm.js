@@ -1,6 +1,8 @@
 import React from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import classes from './Ingredients.module.css'
+import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
 
 const EditIngredientForm = (props) => {
   const validationSchema = Yup.object({
@@ -15,23 +17,40 @@ const EditIngredientForm = (props) => {
     ingredient: props.ingredient
   }
 
-
   const onSubmit = (formData) => {
-    props.editIngredientAndCalculate(formData.ingredient, formData.newWeight)
+    props.editIngredientAndCalculate(formData.ingredient, Number(formData.newWeight))
   }
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {() => (
         <Form>
-          <div>
-            <Field name='newWeight' type='number' placeholder='вес в граммах'></Field>
-            <ErrorMessage component='div' name='newWeight' />
+            <Field 
+              component={AntInput} 
+              style={{width: '100%'}} 
+              placeholder='вес в граммах'
+              name='newWeight' 
+              id={props.ingredient.id} 
+              type='number' 
+              className={`${classes.editingWeightInput} ${classes.input}`}
+            />
             <Field type='hidden' name="ingredient" />
-          </div>
           <div>
-            <button type='submit' name="submit">Изменить</button>
-            <button type='reset' name="cancel" onClick={() => {props.cancelEditing()}}>Отмена</button>
+            <button 
+              className={classes.editingBtn} 
+              type='submit' 
+              name="submit"
+            >
+              Изменить
+            </button>
+            <button 
+              className={`${classes.editingBtn}`} 
+              type='reset' 
+              name="cancel" 
+              onClick={() => {props.cancelEditing()}}
+            >
+              Отмена
+            </button>
           </div>
         </Form>
       )}

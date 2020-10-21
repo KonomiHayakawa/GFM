@@ -6,12 +6,7 @@ const Registration = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.info}>
-        Регистрация на сайте позволит сохранять твои личные показатели и отслеживать изменения в весе
-      </div>
-      <div>
-        <RegistrationForm signUp={props.signUp} addNewUserMainData={props.addNewUserMainData}/>
-      </div>
+      <RegistrationForm signUp={props.signUp} addNewUserMainData={props.addNewUserMainData}/>
     </div>
   )
 }

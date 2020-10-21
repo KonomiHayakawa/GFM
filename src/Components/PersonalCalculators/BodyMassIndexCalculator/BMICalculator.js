@@ -2,37 +2,55 @@ import React from 'react'
 import BMIForm from './BMIForm'
 import ErrorMessage from '../../common/ErrorMessage'
 import BMIExplanation from './BMIExplanation'
+import {QuestionCircleOutlined} from '@ant-design/icons'
+import classes from './BMICalculator.module.css'
+import { Statistic, Row, Col } from 'antd';
 
 const BMICalculator = (props) => {
-
+ 
   return (
     <div>
-      { !props.bodyMassIndex || props.isChangingData
+      {!props.bodyMassIndex || props.isChangingData
         ? (
           <div>
-            <p>Узнать индекс массы тела:</p>
+            <h2>Узнать индекс массы тела:</h2>
             <BMIForm updateBMI={props.updateBMI}/>
           </div>
         )
         : (
-          <div>
+          <div className={classes.resultWrapper}>
             <div>
-              Твой ИМС: {props.bodyMassIndex}
+              <Row gutter={16} >
+                <Col span={12}>
+                  <Statistic 
+                    title={
+                      <div className={classes.headerWrapper}>
+                        <h2>Твой индекс массы тела</h2>
+                        <QuestionCircleOutlined 
+                          className={classes.showInfoIcon} 
+                          onClick={() => props.toggleShowExplanation(!props.showExplanation)}
+                        />
+                      </div>
+                    }
+                    value={props.bodyMassIndex}
+                  />
+                </Col>
+              </Row>
+
+              <div className={classes.infoAlert}>
+                {props.showExplanation && <BMIExplanation />}
+              </div>
               
-              <button onClick={() => props.toggleShowExplanation(!props.showExplanation)}>
-                Что это значит?
-              </button>
-              {props.showExplanation && <BMIExplanation />}
             </div>
 
-            <button onClick={() => props.toggleIsChangingData(true)}>
+            <button className={classes.calculateAgainButton} onClick={() => props.toggleIsChangingData(true)}>
               Посчитать заново
             </button>
 
           </div>
         )
       }
-      {props.errorMessage && <ErrorMessage />}
+      {props.error && <ErrorMessage />}
     </div>
   )
 }

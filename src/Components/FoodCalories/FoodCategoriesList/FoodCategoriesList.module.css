@@ -1,3 +1,32 @@
+.categoriesWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 10px;
+  justify-items: center;
+  align-items: center;
+}
+
+.categoryWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid rgb(145, 213, 255);
+  border-top: 2px solid transparent;
+  color: rgb(10, 69, 109);
+  cursor: pointer;
+  text-align: center;
+  width: 150px;
+  padding: 7px;
+  height: 140px;
+}
+
+.categoryWrapper:hover {
+  background-color: rgb(221, 240, 252);
+}
+
 .categoryImg {
   width: 60px;
+  margin-bottom: 10px;
 }

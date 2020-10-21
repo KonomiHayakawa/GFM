@@ -1,0 +1,17 @@
+.addIngredientBtn,
+.cancelAddingBtn {
+  background-color: transparent;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #3FA9FF;
+  color: rgb(54, 56, 122);
+  transition: transform .2s;
+}
+  
+.addIngredientBtn:hover,
+.cancelAddingBtn:hover {
+  background-color: rgb(231, 240, 254);
+  transform: scale(1.2);
+}

@@ -4,8 +4,9 @@ import classes from './SavedRecipe.module.css'
 import IngredientsContainer from '../../recipeConstructor/Ingredients/IngredientsContainer'
 import RecipeCalculationsContainer from '../../recipeConstructor/RecipeCalculations/RecipeCalculationsContainer'
 import UpdateRecipeForm from './UpdateRecipeForm'
-import ChoosingIngredientsModal from '../../recipeConstructor/ChoosingIngredientsModal/ChoosingIngredientsModal'
 import defaultRecipeImg from './../../../img/default/recipe.svg'
+import ErrorMessage from '../../common/ErrorMessage'
+import ChoosingIngredients from './../../recipeConstructor/ChoosingIngredients/ChoosingIngredients'
 
 const SavedRecipe = (props) => {
 
@@ -24,12 +25,8 @@ const SavedRecipe = (props) => {
       {!props.editingRecipe && props.recipe.ingredients &&
         <div>
           Ингредиенты: {props.recipe.ingredients.map((ingredient) => {
-            return <div>
-              <img className={classes.ingredientImg} src={ingredient.img} alt='ingredient.title'/>
-              {ingredient.title}
-              {ingredient.portionCalories} калорий
-            </div>
-        })}
+            return <RecipeIngredientsInfo key={ingredient.id} ingredient={ingredient}/>
+          })}
         <div>
           Общий вес: {
             props.recipe.weight >= 1000
@@ -57,16 +54,22 @@ const SavedRecipe = (props) => {
           <IngredientsContainer />
           <RecipeCalculationsContainer />
           <button onClick={() => props.updateRecipe()}>Сохранить изменения</button>
-          <ChoosingIngredientsModal 
-            modalData={props.modalData}
-            setShowModal={props.setShowModal}
-            setOpenFoodCategory={props.setOpenFoodCategory}
-          />
+          <ChoosingIngredients {...props.modalData}/>
         </div>
       }
 
-     
+      {props.error && <ErrorMessage />}
     </div>
+  )
+}
+
+const RecipeIngredientsInfo = (props) => {
+  return (
+    <React.Fragment>
+      <img className={classes.ingredientImg} src={props.ingredient.img} alt={props.ingredient.title}/>
+      {props.ingredient.title}
+      {props.ingredient.portionCalories} калорий
+    </React.Fragment>
   )
 }
 

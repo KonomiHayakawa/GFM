@@ -1,11 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const ErrorMessage = () => {
+const ErrorMessage = (props) => {
+  const errorStyles = {
+    color: 'red',
+    fontSize: '50px',
+    position: 'absolute',
+    bottom: '0px',
+  }
+
   return (
-    <React.Fragment>
-      <span>Возникла неожиданная ошибка. Повтори попытку позже</span>
-    </React.Fragment>
+    <div style={errorStyles}>
+      {props.errorMessage}
+    </div>
   )
 }
 
-export default ErrorMessage
+const mapStateToProps = (state) => ({
+  errorMessage: state.forError.errorMessage
+})
+
+export default connect(mapStateToProps, {})(ErrorMessage)

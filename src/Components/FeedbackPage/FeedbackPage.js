@@ -1,4 +1,5 @@
 import React from 'react'
+import ErrorMessage from '../common/ErrorMessage'
 import FeedbackForm from './FeedbackForm'
 
 const FeedbackPage = (props) => {
@@ -12,6 +13,7 @@ const FeedbackPage = (props) => {
           отправим ответ на указанный имеил :)
         </div>
       }
+      {props.error && <ErrorMessage />}
     </div>
   )
 }

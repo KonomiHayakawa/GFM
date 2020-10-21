@@ -11,10 +11,16 @@ const DailyCaloriesContainer = (props) => {
 
   const updateCalories = (form) => {
     const calories = calcDailyCalories(form)
-    props.userData.isAuth
-      ? props.saveDailyCalories(props.userData.userId, form.sex, form.weight, form.height, form.age, form.activityLevel, Math.round(calories))
-        // .catch((error) => props.setError(error))
-      : props.setDailyCalories(Math.round(calories))
+    if (props.userData.isAuth) {
+      try {
+        props.saveDailyCalories(props.userData.userId, form, Math.round(calories))
+      } catch (error) {
+        props.setError(error)
+        console.log(error)
+      }
+    } else {
+      props.setDailyCalories(Math.round(calories))
+    }
     toggleIsChangingData(false)
   }
 
@@ -23,7 +29,9 @@ const DailyCaloriesContainer = (props) => {
         dailyCalories={props.dailyCalories}
         updateCalories={updateCalories}
         isChangingData={isChangingData}
-        toggleIsChangingData={toggleIsChangingData}/>
+        toggleIsChangingData={toggleIsChangingData}
+        error={props.error}
+      />
     )
 }
 
@@ -31,7 +39,7 @@ const mapStateToProps = (state) => {
   return {
     userData: state.authReducer,
     dailyCalories: state.userPersonalData.dailyCalories,
-    errorMessage: state.forError.errorMessage,
+    error: state.forError.error,
   }
 }
 

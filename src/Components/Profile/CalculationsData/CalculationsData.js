@@ -86,7 +86,7 @@ const UserCalculationData = (props) => {
       }
 
       </div>
-      {props.errorMessage && <ErrorMessage />}
+      {props.error && <ErrorMessage />}
   </React.Fragment>
   )
 }

@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import RecipeCalculations from './RecipeCalculations'
 
 
 const RecipeCalculationsContainer = (props) => {
-
-  const [showInfo, toggleShowInfo] = useState(false)
-
-  return <RecipeCalculations 
-    {...props} 
-    showInfo={showInfo}
-    toggleShowInfo={toggleShowInfo}
-  />
+  return <RecipeCalculations {...props} />
 }
 
 const mapStateToProps = (state) => {

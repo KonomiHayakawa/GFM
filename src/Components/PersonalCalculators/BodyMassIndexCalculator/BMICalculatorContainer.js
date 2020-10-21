@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import BMICalculator from './BMICalculator'
 import { connect } from 'react-redux'
 import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalData'
 import {calcBodyMassIndex} from '../../common/calculations'
+import BMICalculator from './BMICalculator'
 import {setError} from './../../../redux/forError'
 
 const BMICalculatorContainer = (props) => {
@@ -12,10 +12,15 @@ const BMICalculatorContainer = (props) => {
 
   const updateBMI = (form) => {
     const BodyMassIndex = calcBodyMassIndex(form)
-    props.userData.isAuth
-      ? props.saveBodyMassIndex(props.userData.userId, form.weight, form.height, BodyMassIndex)
-        // .catch((error) => props.setError(error))
-      : props.setBodyMassIndex(BodyMassIndex)
+    if (props.userData.isAuth) {
+      try {
+        props.saveBodyMassIndex(props.userData.userId, form, BodyMassIndex)
+      } catch (error) {
+        props.setError(error)
+      }
+    } else {
+      props.setBodyMassIndex(BodyMassIndex) 
+    }
     toggleIsChangingData(false)
   }
 
@@ -27,17 +32,15 @@ const BMICalculatorContainer = (props) => {
       toggleIsChangingData={toggleIsChangingData}
       showExplanation={showExplanation}
       toggleShowExplanation={toggleShowExplanation}
+      error={props.error}
     />
   )
-
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    userData: state.authReducer,
-    bodyMassIndex: state.userPersonalData.bodyMassIndex,
-    errorMessage: state.forError.errorMessage,
-  })
-}
+const mapStateToProps = (state) => ({
+  userData: state.authReducer,
+  bodyMassIndex: state.userPersonalData.bodyMassIndex,
+  error: state.forError.error,
+})
 
 export default connect(mapStateToProps, {saveBodyMassIndex, setBodyMassIndex, setError})(BMICalculatorContainer)

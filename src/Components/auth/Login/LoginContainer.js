@@ -1,8 +1,8 @@
 import React from 'react'
-import Login from './Login'
 import { connect } from 'react-redux';
-import {login, signUp} from './../../../redux/authReducer'
 import { Redirect } from 'react-router-dom'
+import {login, signUp} from './../../../redux/authReducer'
+import Login from './Login'
 
 
 const LoginContainer = (props) => {
@@ -11,7 +11,6 @@ const LoginContainer = (props) => {
     return <Redirect to={'/profile'}/>
   }
   
-
   return <Login {...props}/>
   
 }

@@ -8,16 +8,15 @@ import {setUserData} from './redux/authReducer'
 import {setAllUserInfo} from './redux/userPersonalData'
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Menu from './Components/Menu/Menu';
-import FoodCategoriesListContainer from './Components/foodCalories/FoodCategoriesList/FoodCategoriesListContainer';
 import CalculatorsPageContainer from './Components/personalCalculators/CalculatorsPage/CalculatorsPageContainer';
 import RecipeConstructorContainer from './Components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer';
 import LoginContainer from './Components/auth/Login/LoginContainer'
 import ProfileContainer from './Components/Profile/ProfileContainer';
-import FoodCategoryContainer from './Components/foodCalories/FoodCategory/FoodCategoryContainer';
 import RegistrationContainer from './Components/auth/Registration/RegistrationContainer';
 import SavedRecipeContainer from './Components/Profile/SavedRecipe/SavedRecipeContainer';
 import FeedbackPageContainer from './Components/FeedbackPage/FeedbackPageContainer';
-
+import FoodCategoriesPage from './Components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
+import FoodCategoryPage from './Components/foodCalories/FoodCategoryPage/FoodCategoryPage'
 
 const App = (props) => {
 
@@ -39,11 +38,11 @@ const App = (props) => {
           <HeaderContainer />
         </header>
         <main className='mainArea'>
-          <Route path='/menu' render={() => <Menu />} />
+          <Route exact path='/' render={() => <Menu />} />
           <Route path='/createAccount' render={() => <RegistrationContainer />} />
           <Route path='/login' render={() => <LoginContainer />} />
-          <Route path='/foodCategoriesList' render={() => <FoodCategoriesListContainer />} />
-          <Route path='/foodGroup/:category' render={() => <FoodCategoryContainer/>} />
+          <Route path='/foodCategoriesList' render={() => <FoodCategoriesPage />} />
+          <Route path='/foodGroup/:category' render={() => <FoodCategoryPage/>} />
           <Route path='/personalCalculators' render={() => <CalculatorsPageContainer />} />
           <Route path='/recipeConstructor' render={() => <RecipeConstructorContainer />} />
           <Route path='/profile' render={() => <ProfileContainer/>} />

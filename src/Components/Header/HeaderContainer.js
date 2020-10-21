@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import {signOut} from './../../redux/authReducer'
 
 const HeaderContainer = (props) => {
-
   return (
     <Header {...props}/>
   )
-  
 }
 
 const mapStateToProps = (state) => ({

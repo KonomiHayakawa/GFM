@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import FeedbackPage from './FeedbackPage'
-import {addFeedbackMessage} from '../../queries/general'
 import { v4 as uuidv4 } from 'uuid'
+import {addFeedbackMessage} from '../../queries/general'
+import {setError} from './../../redux/forError'
+import FeedbackPage from './FeedbackPage'
 
 const FeedbackPageContainer = (props) => {
 
@@ -10,8 +11,12 @@ const FeedbackPageContainer = (props) => {
 
   const sendFeedbackMessage = (formData) => {
     const messageId = uuidv4()
-    addFeedbackMessage(messageId, formData)
-    setSuccessMessage(true)
+    try {
+      addFeedbackMessage(messageId, formData)
+      setSuccessMessage(true)
+    } catch (e) {
+      props.setError(e)
+    }
   }
 
   return (
@@ -21,11 +26,10 @@ const FeedbackPageContainer = (props) => {
       sendFeedbackMessage={sendFeedbackMessage}
     />
   )
-  
 }
 
 const mapStateToProps = (state) => ({
-
+  error: state.forError.error
 })
 
-export default connect(mapStateToProps, {})(FeedbackPageContainer)
+export default connect(mapStateToProps, {setError})(FeedbackPageContainer)
