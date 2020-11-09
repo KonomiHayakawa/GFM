@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './DailyCaloriesCalculator.module.css'
+import './../../../App.css'
 import DailyCaloriesForm from './DailyCaloriesForm'
 import ErrorMessage from '../../common/ErrorMessage'
 import { Statistic, Row, Col } from 'antd';
@@ -19,17 +20,22 @@ const DailyCalories = (props) => {
         )
         : (
           <div>
-            <Row gutter={16} >
-              <Col span={12}>
-                <Statistic 
+            <Row gutter={16} className={classes.results}>
+              <Col span={20}>
+                <Statistic  
                   title={
-                    <h2 className={classes.resultHeading}>Твоя дневная норма калорий</h2>
+                    <h2 className={classes.resultHeading}>
+                      Твоя дневная норма калорий
+                    </h2>
                   }
-                  value={props.dailyCalories}
+                  value={`${props.dailyCalories} ккал`}
                 />
               </Col>
             </Row>
-            <button className={classes.calculateAgainButton} onClick={() => props.toggleIsChangingData(true)}>
+            <button 
+              className='globalMainBtn'
+              onClick={() => props.toggleIsChangingData(true)}
+            >
               Посчитать заново
             </button>
           </div>

@@ -1,8 +1,8 @@
 import React from 'react'
-import classes from './DailyCaloriesCalculator.module.css'
+import './../../../App.css'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
-import {AntSelect, AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
+import {AntSelect, AntInput} from './../../common/antDesignForFormik/antDesignForFormik'
 
 const DailyCaloriesForm = (props) => {
 
@@ -96,7 +96,12 @@ const DailyCaloriesForm = (props) => {
           id='activityType'
         />
 
-        <button className={classes.calculateAgainButton} type='submit'>Узнать норму калорий</button>
+        <button 
+          className='globalMainBtn' 
+          type='submit'
+        >
+          Узнать норму калорий
+        </button>
 
       </Form>
     </Formik>

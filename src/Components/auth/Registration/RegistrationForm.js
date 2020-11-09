@@ -1,7 +1,9 @@
 import React from 'react'
 import classes from './Registration.module.css'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import {Alert} from 'antd'
+import {AntInput, AntInputPassword} from './../../common/antDesignForFormik/antDesignForFormik'
 
 const RegistrationForm = (props) => {
 
@@ -13,10 +15,11 @@ const RegistrationForm = (props) => {
       .required('Обязательное поле')
       .min(6, 'Минимальная длина - 6 символов'),
     passwordConfirmation: Yup.string()
+      .required('Обязательное поле')
       .oneOf([Yup.ref('password'), null], 'Введенные пароли должны совпадать!'),
     nickname: Yup.string()
       .required('Обязательное поле')
-      .min(3, 'Минимальная длина - 3 символа')
+      .max(10, 'Максимум - 10 символов')
   })
 
   const initialValues = {
@@ -50,26 +53,71 @@ const RegistrationForm = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(FormikProps) => (
         <Form>
-          <div>
-            <Field className={classes.input} type='text' name='email' placeholder='Еmail' />
-            <ErrorMessage component='div' className={classes.warning} name='email' />
+
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInput} 
+              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
+              type='text' 
+              name='email' 
+              placeholder='Email' 
+              bordered={false}
+            /> 
           </div>
-          <div>
-            <Field className={classes.input} type='password' name='password' placeholder='Пароль' />
-            <ErrorMessage component='div' className={classes.warning} name='password'/>
+
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInputPassword} 
+              style={{width: '100%'}}
+              className={classes.password} 
+              type='password' 
+              name='password' 
+              bordered={false}
+            />
           </div>
-          <div>
-            <Field className={classes.input} type='password' name='passwordConfirmation' placeholder='Пароль (еще раз)' />
-            <ErrorMessage component='div' className={classes.warning} name='passwordConfirmation'/>
+
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInputPassword} 
+              style={{width: '100%'}}
+              className={classes.password} 
+              type='password' 
+              name='passwordConfirmation' 
+              bordered={false}
+              placeholder='Пароль (еще раз)'
+            />
           </div>
-          <div>
-            <Field className={classes.input} type='text' name='nickname' placeholder='Никнейм' />
-            <ErrorMessage component='div' className={classes.warning} name='nickname'/>
+
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInput} 
+              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
+              type='text' 
+              name='nickname' 
+              placeholder='Никнейм' 
+              bordered={false}
+            /> 
           </div>
-          <div>
-            <button className={classes.button} type='submit' name="submit">Создать аккаунт</button>
-            <div className={classes.generalWarning}>{FormikProps.errors.general}</div>
-          </div>
+
+          <button 
+            className={classes.sendFormBtn} 
+            type='submit' 
+            name='submit'
+          >
+            Создать аккаунт
+          </button>
+
+          {FormikProps.errors.general
+            ? <div className={classes.generalErrors}>
+                <Alert 
+                  message={FormikProps.errors.general} 
+                  type="error" 
+                  showIcon
+                  banner={true}
+                />
+              </div>
+            : null
+          }
         </Form>
       )}
     </Formik>

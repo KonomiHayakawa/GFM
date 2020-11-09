@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Ripple } from 'react-preloaders'
+// import { Ripple } from 'react-preloaders'
 import MainProfileData from './MainProfileData'
 import {saveName, saveAvatar} from './../../../redux/userPersonalData'
 import {addAvatarFile, getAvatarLink, deleteAvatarFile} from './../../../queries/personalData'
@@ -8,29 +8,32 @@ import { setError } from '../../../redux/forError'
 
 
 const MainProfileDataContainer = (props) => {
-
-  const [editingName, switchEditingName] = useState(false)
+ 
   const [editingAvatar, switchEditingAvatar] = useState(false)
   const [userAvatar, setUserAvatar] = useState('')
-  // const [loadingImg, setLoadingImg] = useState(false)
+  const [editingName, switchEditingName] = useState(false)
+  const [userName, setUserName] = useState('')
 
-  const changeName = (name) => {
-    try {
-      props.saveName(name)
+  const changeName = () => {
+    if (userName.length === 0) {
       switchEditingName(false)
-    } catch (error) {
-      props.setError(error)
-    }
+    } else {
+      try {
+        props.saveName(userName)
+        switchEditingName(false)
+      } catch (error) {
+        props.setError(error)
+      }
+    }  
   }
 
   const changeAvatar = () => {
     try {
-      // setLoadingImg(true)
       addAvatarFile(props.userId, userAvatar)
       .then(() => getAvatarLink(props.userId))
       .then((avatarLink) => props.saveAvatar(avatarLink))
+      .then(() => setUserAvatar(''))
       .then(() => switchEditingAvatar(false))
-      // .then(() => (setLoadingImg(false)))
     } catch (error) {
       props.setError(error)
     }
@@ -57,9 +60,9 @@ const MainProfileDataContainer = (props) => {
         switchEditingAvatar={switchEditingAvatar}
         setUserAvatar={setUserAvatar}
         deleteAvatar={deleteAvatar}
-        // loadingImg={loadingImg}
+        setUserName={setUserName}
       />
-      <Ripple customLoading={false}/> 
+      {/* <Ripple customLoading={false}/>  */}
     </React.Fragment>
   )
 }

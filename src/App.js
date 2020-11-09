@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { Ripple } from 'react-preloaders'
-import './App.css';
+import 'antd/dist/antd.css'
+import './App.css'
 import {onAuthStateChange} from './../src/queries/auth'
 import {setUserData} from './redux/authReducer'
 import {setAllUserInfo} from './redux/userPersonalData'
-import HeaderContainer from './Components/Header/HeaderContainer';
-import Menu from './Components/Menu/Menu';
-import CalculatorsPageContainer from './Components/personalCalculators/CalculatorsPage/CalculatorsPageContainer';
-import RecipeConstructorContainer from './Components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer';
+import HeaderContainer from './Components/Header/HeaderContainer'
+import MainPage from './Components/MainPage/MainPage'
+import CalculatorsPageContainer from './Components/personalCalculators/CalculatorsPage/CalculatorsPageContainer'
+import RecipeConstructorContainer from './Components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer'
 import LoginContainer from './Components/auth/Login/LoginContainer'
-import ProfileContainer from './Components/Profile/ProfileContainer';
-import RegistrationContainer from './Components/auth/Registration/RegistrationContainer';
-import SavedRecipeContainer from './Components/Profile/SavedRecipe/SavedRecipeContainer';
-import FeedbackPageContainer from './Components/FeedbackPage/FeedbackPageContainer';
+import ProfileContainer from './Components/Profile/ProfileContainer'
+import RegistrationContainer from './Components/auth/Registration/RegistrationContainer'
+import SavedRecipeContainer from './Components/Profile/SavedRecipe/SavedRecipeContainer'
+import FeedbackPageContainer from './Components/FeedbackPage/FeedbackPageContainer'
 import FoodCategoriesPage from './Components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
 import FoodCategoryPage from './Components/foodCalories/FoodCategoryPage/FoodCategoryPage'
+
 
 const App = (props) => {
 
@@ -38,7 +40,7 @@ const App = (props) => {
           <HeaderContainer />
         </header>
         <main className='mainArea'>
-          <Route exact path='/' render={() => <Menu />} />
+          <Route exact path='/' render={() => <MainPage />} />
           <Route path='/createAccount' render={() => <RegistrationContainer />} />
           <Route path='/login' render={() => <LoginContainer />} />
           <Route path='/foodCategoriesList' render={() => <FoodCategoriesPage />} />
@@ -61,4 +63,4 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps, {setUserData, setAllUserInfo})(App);
+export default connect(mapStateToProps, {setUserData, setAllUserInfo})(App)

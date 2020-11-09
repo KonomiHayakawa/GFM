@@ -5,7 +5,6 @@ export const calcPortionParameter = (ingredientCalories, weight) => {
 }
 
 export const calculateIngredientCalories = (ingredient, weight, nutritionalValue) => {
-
   const portionCalories = calcPortionParameter(ingredient.calories, weight)
 
   const totalCalories = nutritionalValue.totalCalories + portionCalories

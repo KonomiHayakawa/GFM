@@ -1,0 +1,46 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.mainImage {
+  height: 100%;
+}
+
+.messageFieldWrapper {
+  border: 1px solid #3fa9ff9c;
+  align-self: center;
+  width: 70%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.inputWrapper {
+  transition: transform .2s;
+}
+
+.inputWrapper:hover {
+  background-color: #d9e7f39c;
+  transform: scale(1.1);
+}
+
+.sendMessageBtn {
+  padding: 15px;
+  background-color:  transparent;
+  width: 100%;
+  cursor: pointer;
+  transition: transform .2s;
+  border: none;
+  border-bottom: 1px solid  #3fa9ff9c;
+}
+
+.sendMessageBtn:hover {
+  background-color: #c0dbf19c;
+  transform: scale(1.2);
+}

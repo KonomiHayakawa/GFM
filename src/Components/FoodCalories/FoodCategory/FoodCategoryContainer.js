@@ -3,32 +3,32 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {getFoodGroup} from '../../../queries/foodCalories'
 import {setError} from './../../../redux/forError'
-import FoodCategory from './FoodCategory'
 import {setOpenFoodCategory, setFoodCategoryLink} from './../../../redux/recipeConstructorReducer'
+import FoodCategory from './FoodCategory'
+import {setFoodCategoryItems} from './../../../redux/foodCaloriesReducer'
 
 const FoodCategoryContainer = (props) => {
 
-  const [foodData, setFoodData] = useState([])
   const [searchMatches, setSearchMatches] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
+  
   useEffect(
     () => {
       try {
         getFoodGroup(props.foodCategoryLink || props.match.params.category)
-          .then((response) => setFoodData(response))
+          .then((response) => props.setFoodCategoryItems(response))
           .then(() => setIsLoading(false))
       } catch (error) {
         props.setError(error)
       }
-    },[props]
+    },[props.foodCategoryLink, props.match.params.category]
   )
 
   const searchIngredient = (event) => {
     if (event.target.value.length === 0) {
       return setSearchMatches([])
     }
-    const matches = (foodData.filter((foodItem) => {
+    const matches = (props.foodData.filter((foodItem) => {
       const requestUpperCase = event.target.value.toUpperCase()
       const requestLowerCase = event.target.value.toLowerCase()
       const titleUpperCase = foodItem.title.toUpperCase()
@@ -52,13 +52,11 @@ const FoodCategoryContainer = (props) => {
 
   return (
     <FoodCategory 
-      foodData={foodData} 
-      addedFood={props.addedFood}
+      foodData={props.foodData} 
       error={props.error}
       searchIngredient={searchIngredient}
       searchMatches={searchMatches}
       goBackToCategoriesList={goBackToCategoriesList}
-      openFoodCategory={props.openFoodCategory}
       isLoading={isLoading}
     />
   )
@@ -66,9 +64,9 @@ const FoodCategoryContainer = (props) => {
 
 const mapStateToProps = (state) => ({
   foodCategoryLink: state.recipeConstructorReducer.modal.foodCategoryLink,
-  addedFood: state.recipeConstructorReducer.addedFood,
   error: state.forError.error,
   openFoodCategory: state.recipeConstructorReducer.modal.openFoodCategory,
+  foodData: state.foodCaloriesReducer.foodCategoryItems,
 })
 
-export default withRouter(connect(mapStateToProps, {setError, setOpenFoodCategory, setFoodCategoryLink})(FoodCategoryContainer))
+export default withRouter(connect(mapStateToProps, {setFoodCategoryItems, setError, setOpenFoodCategory, setFoodCategoryLink})(FoodCategoryContainer))

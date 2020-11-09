@@ -1,23 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { notification } from 'antd';
+import {clearError} from './../../redux/forError'
 
 const ErrorMessage = (props) => {
-  const errorStyles = {
-    color: 'red',
-    fontSize: '50px',
-    position: 'absolute',
-    bottom: '0px',
+  
+  const openNotification = () => {
+    notification.error({
+      message: 'Упс!',
+      description: `${props.errorMessage}`,
+      onClose: props.clearError()
+    })
   }
 
+  useEffect(() => {
+    if (props.errorMessage) {
+      openNotification()
+    }
+  }, [props.errorMessage])
+
   return (
-    <div style={errorStyles}>
-      {props.errorMessage}
-    </div>
+    <></>
   )
 }
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.forError.errorMessage
+  errorMessage: state.forError.errorMessage,
 })
 
-export default connect(mapStateToProps, {})(ErrorMessage)
+export default connect(mapStateToProps, {clearError})(ErrorMessage)
+
+
+
+

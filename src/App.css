@@ -14,3 +14,35 @@ header {
 .mainArea {
   grid-area: mainContent;
 }
+
+.globalBtn {
+  background-color: transparent;
+  height: 50px;
+  cursor: pointer;
+  border: 1px dashed transparent;
+  border-bottom: 1px solid #3fa9ff9c;
+  color: rgb(54, 56, 122);
+  transition: transform .2s;
+  margin: 7px;
+}
+
+.globalBtn:hover {
+  background-color:  #3fa9ff9c;
+  transform: scale(1.2);
+}
+
+.globalMainBtn {
+  background-color: rgb(231, 240, 254);
+  border: none;
+  color: rgb(54, 56, 122);
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+  transition: transform .2s;
+  margin-bottom: 15px;
+}
+
+.globalMainBtn:hover {
+  background-color:  rgb(195, 214, 245);
+  transform: scale(1.2);
+}

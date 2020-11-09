@@ -2,6 +2,7 @@ import React from 'react'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import classes from './SavingRecipeForm.module.css'
+import './../../../../App.css'
 import {AntInput} from "../../../common/antDesignForFormik/antDesignForFormik";
 import AntDesignUploadFormik from '../../../common/antDesignForFormik/AntDesignUploadFormik'
 
@@ -36,7 +37,6 @@ const SavingRecipeForm = (props) => {
             name='title' 
             id='title'
             type='text' 
-            className={classes.titleInput}
           />
           
           <div className={classes.savingRecipeImg}>
@@ -48,7 +48,11 @@ const SavingRecipeForm = (props) => {
             <p>Если хочешь добавить собственную обложку рецепта, не забудь загрузить картинку</p>
           </div>
 
-          <button type='submit' name="submit" className={classes.saveButton}>
+          <button 
+            type='submit' 
+            name="submit" 
+            className={`${classes.saveButton} globalMainBtn`}
+          >
             Сохранить
           </button>
         </Form>

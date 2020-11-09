@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './DailyWaterCalculator.module.css'
+import './../../../App.css'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import {AntSelect, AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
@@ -47,7 +48,12 @@ const DailyWaterForm = (props) => {
         />
 
  
-          <button className={classes.calculateAgainButton} type='submit'>Узнать суточную норму воды</button>
+        <button 
+          className='globalMainBtn' 
+          type='submit'
+        >
+          Узнать суточную норму воды
+        </button>
       
       </Form>
     </Formik>

@@ -1,10 +1,12 @@
 import React from 'react'
+import {QuestionCircleOutlined} from '@ant-design/icons'
+import { Statistic, Row, Col } from 'antd'
 import BMIForm from './BMIForm'
 import ErrorMessage from '../../common/ErrorMessage'
 import BMIExplanation from './BMIExplanation'
-import {QuestionCircleOutlined} from '@ant-design/icons'
 import classes from './BMICalculator.module.css'
-import { Statistic, Row, Col } from 'antd';
+import './../../../App.css'
+
 
 const BMICalculator = (props) => {
  
@@ -43,7 +45,10 @@ const BMICalculator = (props) => {
               
             </div>
 
-            <button className={classes.calculateAgainButton} onClick={() => props.toggleIsChangingData(true)}>
+            <button 
+              className='globalMainBtn'
+              onClick={() => props.toggleIsChangingData(true)}
+            >
               Посчитать заново
             </button>
 

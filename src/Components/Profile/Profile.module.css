@@ -1,0 +1,19 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.profileMainImage {
+  width: 90%;
+  justify-self: end;
+}
+
+.sideNavigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navigationLink {
+  color: black;
+}

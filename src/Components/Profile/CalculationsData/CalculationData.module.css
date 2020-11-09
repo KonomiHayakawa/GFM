@@ -1,0 +1,17 @@
+.calculationsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+
+.welcomeText {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 0px 20px 0px 20px;
+  align-self: start;
+  text-align: center;
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FoodCategoryTable from './FoodCategoryTable'
- 
+
+
 const FoodCategoryTableContainer = (props) => {
 
   return (

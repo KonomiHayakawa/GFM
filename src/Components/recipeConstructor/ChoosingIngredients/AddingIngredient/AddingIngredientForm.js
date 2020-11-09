@@ -2,9 +2,11 @@ import React from 'react'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import {AntInput} from '../../../common/antDesignForFormik/antDesignForFormik'
-import classes from './AddingIngredient.module.css';
+import classes from './AddingIngredient.module.css'
+import './../../../../App.css'
 
-const AddingIngredientForm = (props) => {
+const AddingIngredientForm = React.memo((props) => {
+
   const validationSchema = Yup.object({
     weight: Yup.number()
     .typeError('Введи число')
@@ -14,48 +16,37 @@ const AddingIngredientForm = (props) => {
   
   const initialValues = {
     weight: '',
-    ingredientId: props.foodId,
   }
-
 
   const onSubmit = (formData) => {
-    props.addIngredientToRecipe({...formData, weight: Number(formData.weight) })
+    props.addIngredientToRecipe({ingredientId:props.foodId, weight: Number(formData.weight) })
   }
-  
   return (
-    
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(props) => (
         <Form>
           <Field 
             component={AntInput} 
             style={{ width: '100%'}} 
-            placeholder='вес в граммах'
+            placeholder='вес в г.'
             name='weight' 
             id={props.foodId} 
             type='number' 
-          />
-          <Field 
-            type='hidden' 
-            name='productId' 
           />
 
           {props.values.weight &&
             <button 
               type='submit' 
-              name="submit"
-              className={classes.addIngredientBtn}
+              name='submit'
+              className={`${classes.addIngredientBtn} globalBtn`}
             >
               Добавить
             </button>
           }
-           
         </Form>
       )}
     </Formik>
   )
-}
+})
 
 export default AddingIngredientForm
-
-

@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './DailyWaterCalculator.module.css'
+import './../../../App.css'
 import DailyWaterForm from './DailyWaterCalculatorForm'
 import ErrorMessage from '../../common/ErrorMessage'
 import { Statistic, Row, Col } from 'antd';
@@ -18,17 +19,20 @@ const DailyWaterCalculator = (props) => {
         )
         : (
           <div>
-            <Row gutter={16} >
+            <Row gutter={16} className={classes.results}>
               <Col span={12}>
                 <Statistic 
                   title={
                     <h2 className={classes.resultHeading}>Твоя дневная норма воды</h2>
                   }
-                  value={props.dailyWater}
+                  value={`${props.dailyWater} л.`}
                 />
               </Col>
             </Row>
-            <button className={classes.calculateAgainButton} onClick={() => props.toggleIsChangingData(true)}>
+            <button 
+              className='globalMainBtn'
+              onClick={() => props.toggleIsChangingData(true)}
+            >
               Посчитать заново
             </button>
           </div>

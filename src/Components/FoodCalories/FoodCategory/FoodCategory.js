@@ -27,7 +27,7 @@ const FoodCategory = (props) => {
           ? <div className={classes.spinner}><Spin size="large"/></div>
           : <>
             {props.searchMatches.length !== 0 && props.searchMatches !== 'none' &&
-            <FoodCategoryTableContainer foodData={props.searchMatches}/>
+              <FoodCategoryTableContainer foodData={props.searchMatches}/>
             }
 
             {props.searchMatches.length === 0 && 

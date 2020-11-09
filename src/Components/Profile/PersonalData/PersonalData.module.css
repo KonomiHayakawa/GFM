@@ -1,0 +1,44 @@
+.welcomeTextWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.welcomeText {
+  width: 60%;
+}
+
+.infoCardsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.infoCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 15px;
+}
+
+.infoCard {
+  width: 250px;
+}
+
+.activityInfoCard {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.editInfoCardIco {
+  cursor: pointer;
+}
+
+.editInfoCardIco:hover {
+  color: #3fa9ffe7;
+}
+
+.button {
+  width: 80px;
+}

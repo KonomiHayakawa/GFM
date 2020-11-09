@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'antd'
-import {ReactComponent as NoResultsImg} from './../../../img/crying.svg';
+import {ReactComponent as NoResultsImg} from './../../../img/common/NoSearchResultsImg.svg'
 import classes from './Search.module.css'
 
 export const SearchInput = (props) => {

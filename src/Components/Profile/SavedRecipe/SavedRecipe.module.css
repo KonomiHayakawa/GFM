@@ -1,7 +1,17 @@
-.recipeImg {
-  width: 100px;
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.ingredientImg {
-  width: 40px;
+
+.changingRecipeImgWrapper {
+  margin-top: 15px;
+}
+
+.editRecipeBtn {
+  cursor: pointer;
+}
+
+.editRecipeBtn:hover {
+  color: #3fa9ff9c;
 }

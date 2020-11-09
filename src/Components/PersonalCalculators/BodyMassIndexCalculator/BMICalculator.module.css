@@ -18,17 +18,3 @@
   margin: 0px;
   color: gray;
 }
-
-.calculateAgainButton {
-  background-color: rgb(251, 203, 108);
-  border: none;
-  color: rgb(44, 35, 39);
-  width: 180px;
-  height: 50px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.calculateAgainButton:hover {
-  background-color: rgb(211, 171, 90);
-}

@@ -1,56 +1,41 @@
-import React, {useState, useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { connect } from 'react-redux'
-import AddingIngredientField from './AddingIngredientField'
-import {getIngredient} from '../../../../queries/recipeConstructor'
-import {calculateIngredientCalories, calcWithoutRemovedIngredient} from '../../../common/calculations'
-import {addIngredient, deleteIngredient} from '../../../../redux/recipeConstructorReducer'
 import {setError} from '../../../../redux/forError'
+import {setSelectedIngredient} from './../../../../redux/foodCaloriesReducer'
+import AddingIngredientField from './AddingIngredientField'
 
 const AddingIngredientFieldContainer = (props) => {
-
-  const [addedId, setAddedId] = useState([])
-
-  const addIngredientToRecipe = (formData) => {
-    try {
-      getIngredient(props.foodCategoryLink, formData.ingredientId)
-        .then(foodItem => calculateIngredientCalories(foodItem, formData.weight, props.nutritionalValue))
-        .then(data => props.addIngredient(...data))
-      setAddedId(formData.ingredientId)
-    } catch (error) {
-      props.setError(error)
-    }  
-  }
-
-  const cancelAddingIngredient = (foodItemId) => {
-    const addedIngredient = props.addedFood.find(ingredient => ingredient.id === foodItemId)
-    const newTotalData = calcWithoutRemovedIngredient(addedIngredient, props.nutritionalValue)
-    props.deleteIngredient(foodItemId, ...newTotalData)
-    setAddedId(addedId.filter(id => id !== foodItemId))
-  }
+  const [addedFoodId, setAddedFoodId] = useState([])
 
   useEffect(() => {
-    setAddedId(props.addedFood.map(ingredient => ingredient.id))
-  }, [props])
+    setAddedFoodId(props.addedFood.map(item => item.id))
+  },[props.foodItem])
+
+  const addIngredientToRecipe = useCallback((formData) => {
+    props.setSelectedIngredient(formData, 'addIngredientToRecipe')
+    setAddedFoodId([...addedFoodId, formData.ingredientId])
+  },[props.setSelectedIngredient])
+
+  const cancelAddingIngredient = (ingredientId) => {
+    props.setSelectedIngredient({ingredientId}, 'cancelAddingIngredient')
+    setAddedFoodId(addedFoodId.filter(id => id !== ingredientId))
+  }
 
   return <AddingIngredientField 
     addRecipeButton={props.addRecipeButton}
     foodItem={props.foodItem}
     addIngredientToRecipe={addIngredientToRecipe}
     cancelAddingIngredient={cancelAddingIngredient}
-    addedId={addedId}
-    cancelAddingIngredient={cancelAddingIngredient}
+    addedId={addedFoodId}
   />
-
 }
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    foodCategoryLink: state.recipeConstructorReducer.modal.foodCategoryLink,
-    nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
-    addedFood: state.recipeConstructorReducer.addedFood,
     addRecipeButton: ownProps.addRecipeButton,
-    foodItem: ownProps.foodItem,
+    foodItem:ownProps.foodItem,
+    addedFood: state.recipeConstructorReducer.addedFood
   })
 }
 
-export default connect(mapStateToProps,{addIngredient, setError, deleteIngredient})(AddingIngredientFieldContainer)
+export default connect(mapStateToProps, {setSelectedIngredient, setError,})(AddingIngredientFieldContainer)

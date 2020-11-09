@@ -12,7 +12,7 @@ const SavedRecipeContainer = (props) => {
 
   const [openedRecipe, setOpenedRecipe] = useState({})
   const [editingRecipe, switchEditingRecipe] = useState(false)
-  const [updatingRecipeImg, switchUpdatingRecipeImg] = useState(false)
+  const [updatingRecipeImg, setUpdatingRecipeImg] = useState(false)
 
   useEffect(() => {
     try {
@@ -30,10 +30,10 @@ const SavedRecipeContainer = (props) => {
     }
   }, [props.savedRecipes])
 
-  const updateRecipeImg = (formData) => {
+  const updateRecipeImg = () => {
     let updatedRecipes = []
     try {
-      addRecipeImg(props.userId, formData.img, openedRecipe.id)
+      addRecipeImg(props.userId, updatingRecipeImg, openedRecipe.id)
         .then(() => getRecipeImgLink(props.userId, openedRecipe.id))
         .then((link) => {
           updatedRecipes = props.savedRecipes.map((recipe) => {
@@ -49,7 +49,7 @@ const SavedRecipeContainer = (props) => {
         })
         .then(() => props.updateRecipes(updatedRecipes)) 
         .then(() => saveUserRecipes(props.userId, updatedRecipes))
-        .then(() => switchUpdatingRecipeImg(false))
+        .then(() => setUpdatingRecipeImg(false))
     } catch (error) {
       props.setError(error)
     }
@@ -76,22 +76,23 @@ const SavedRecipeContainer = (props) => {
     } catch (error) {
       props.setError(error)
     }
+  }
 
-}
+  const goToRecipesList = () => {
+    props.history.push('/profile/myRecipes')
+  }
   
   return (
     <SavedRecipe 
       {...props}
       recipe={openedRecipe}
       updateRecipe={updateRecipe}
-      modalData={props.modalData}
-      setShowModal={props.setShowModal}
-      setOpenFoodCategory={props.setOpenFoodCategory}
       editingRecipe={editingRecipe}
       switchEditingRecipe={switchEditingRecipe}
       updatingRecipeImg={updatingRecipeImg} 
-      switchUpdatingRecipeImg={switchUpdatingRecipeImg}
+      setUpdatingRecipeImg={setUpdatingRecipeImg}
       updateRecipeImg={updateRecipeImg}
+      goToRecipesList={goToRecipesList}
     />
   )
 }

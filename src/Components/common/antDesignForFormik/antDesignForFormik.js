@@ -1,8 +1,9 @@
 import React from "react";
-import { DatePicker, Form, Input, TimePicker, Select } from "antd";
+import { DatePicker, Form, Input, TimePicker, Select, Space } from "antd";
 
 const FormItem = Form.Item;
 const { Option } = Select;
+
 
 const CreateAntField = AntComponent => ({
   field,
@@ -47,7 +48,25 @@ const CreateAntField = AntComponent => ({
   );
 };
 
+const InputPassword = (props) => {
+  return (
+    <Space direction="vertical" {...props}>
+      <Input.Password bordered={false} placeholder='Пароль' {...props} />
+    </Space>
+  )
+}
+
+const InputTextArea = (props) => {
+  const { TextArea } = Input
+  return (
+    <TextArea {...props}/>
+  )
+}
+
+
 export const AntSelect = CreateAntField(Select);
 export const AntDatePicker = CreateAntField(DatePicker);
 export const AntInput = CreateAntField(Input);
 export const AntTimePicker = CreateAntField(TimePicker);
+export const AntInputPassword = CreateAntField(InputPassword);
+export const AntInputTextArea = CreateAntField(InputTextArea);

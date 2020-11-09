@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Upload, message, Button } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import classes from './antDesignForFormik.module.css'
 
-const AntDesignUploadFormik = (props) => {
+export const AntDesignUploadFormik = (props) => {
 
   const [isBtsDisabled, toggleIsBtsDisabled] = useState(false)
 
@@ -36,10 +35,11 @@ const AntDesignUploadFormik = (props) => {
       {...formProps}
       accept='image/*'
       multiple={false}
+      listType='picture'
     >
       <Button 
         icon={<UploadOutlined />} 
-        className={`${classes.uploadInput} ${classes.input}`}
+        className={props.className}
         disabled={isBtsDisabled}
       >
         Загрузить

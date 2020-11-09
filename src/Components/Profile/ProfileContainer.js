@@ -1,21 +1,27 @@
-import React from "react";
-import Profile from "./Profile";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { useState } from "react"
+import Profile from "./Profile"
+import { connect } from "react-redux"
+import { Redirect, withRouter} from "react-router-dom"
 
 
 const ProfileContainer = (props) => {
-  
+
+  const pathParts = props.location.pathname.split('/')
+  const currentTab = pathParts[pathParts.length - 1]
+
+  const [selectedNavItem, setSelectedNavItem] = useState(currentTab)
+
   if (!props.authInfo.isAuth) {
     return <Redirect to='/login' />
   } 
 
   return (
-    <div>
-    <Profile {...props}/>
-    </div>
-  )
-   
+    <Profile 
+      {...props}
+      selectedNavItem={selectedNavItem}
+      setSelectedNavItem={setSelectedNavItem}
+    />
+  ) 
 }
   
   const mapStateToProps = (state) => ({
@@ -24,4 +30,4 @@ const ProfileContainer = (props) => {
   })
   
 
-export default connect(mapStateToProps, {})(ProfileContainer)
+export default withRouter(connect(mapStateToProps, {})(ProfileContainer))

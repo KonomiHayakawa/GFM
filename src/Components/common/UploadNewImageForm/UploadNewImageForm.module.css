@@ -1,0 +1,12 @@
+.btn {
+  width: 110px;
+}
+
+
+.uploadInput {
+  transition: transform .2s;
+}
+
+.uploadInput:hover {
+  transform: scale(1.1);
+}

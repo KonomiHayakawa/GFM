@@ -42,6 +42,8 @@ const userPersonalData = (state = initialState, action) => {
       return {...state, savedRecipes: [...state.savedRecipes, ...action.recipe]}
     case 'UPDATE_RECIPES':
       return {...state, savedRecipes: [...action.recipes]}
+    case 'SET_IS_DATA_LOADING':
+      return {...state, isDataLoading: action.isLoading}
     case 'CLEAR_USER_PERSONAL_DATA':
       return initialState
     default: return state
@@ -65,28 +67,39 @@ export const clearUserPersonalData = () => ({type: 'CLEAR_USER_PERSONAL_DATA'})
 
 // thunk
 
-export const saveName = (name) => (dispatch) => updateUserName(name).then(() => dispatch(setName(name)))
+export const saveName = (name) => (dispatch) => {
+  updateUserName(name)
+    .then(() => dispatch(setName(name)))
+}
 
-export const saveAvatar = (avatarLink) => (dispatch) => updateAvatar(avatarLink).then(() => dispatch(setAvatar(avatarLink)))
+export const saveAvatar = (avatarLink) => (dispatch) => {
+  updateAvatar(avatarLink)
+    .then(() => dispatch(setAvatar(avatarLink)))
+}
 
 export const saveUserSex = (userId, sex) => (dispatch) => {
-  return addUserParameter(userId, 'sex', sex).then(() => dispatch(setUserSex(sex)))
+  return addUserParameter(userId, 'sex', sex)
+    .then(() => dispatch(setUserSex(sex)))
 }
 
 export const saveUserWeight = (userId, weight) => (dispatch) => {
-  addUserParameter(userId, 'weight', weight).then(() => dispatch(setUserWeight(weight)))
+  addUserParameter(userId, 'weight', weight)
+    .then(() => dispatch(setUserWeight(weight)))
 }
 
 export const saveUserHeight = (userId, height) => (dispatch) => {
-  addUserParameter(userId, 'height', height).then(() => dispatch(setUserHeight(height)))
+  addUserParameter(userId, 'height', height)
+    .then(() => dispatch(setUserHeight(height)))
 }
 
 export const saveUserAge = (userId, age) => (dispatch) => {
-  addUserParameter(userId, 'age', age).then(() => dispatch(setUserAge(age)))
+  addUserParameter(userId, 'age', age)
+    .then(() => dispatch(setUserAge(age)))
 }
 
 export const saveUserActivityType = (userId, activityType) => (dispatch) => {
-  addUserParameter(userId, 'activityType', activityType).then(() => dispatch(setUserActivityType(activityType)))
+  addUserParameter(userId, 'activityType', activityType)
+    .then(() => dispatch(setUserActivityType(activityType)))
 }
 
 export const saveDailyCalories = (userId, formData, calories) => (dispatch) => {
@@ -105,11 +118,11 @@ export const saveDailyCalories = (userId, formData, calories) => (dispatch) => {
 }
 export const saveDailyWater = (userId, form, water) => (dispatch) => {
   addUserParameter(userId, 'dailyWater', water)
-  .then(() => addUserParameter(userId, 'sex', form.sex))
-  .then(() => addUserParameter(userId, 'weight', form.weight))
-  .then(() => dispatch(setUserSex(form.sex)))
-  .then(() => dispatch(setUserWeight(form.weight)))
-  .then(() => dispatch(setDailyWater(water)))
+    .then(() => addUserParameter(userId, 'sex', form.sex))
+    .then(() => addUserParameter(userId, 'weight', form.weight))
+    .then(() => dispatch(setUserSex(form.sex)))
+    .then(() => dispatch(setUserWeight(form.weight)))
+    .then(() => dispatch(setDailyWater(water)))
 }
 
 export const saveBodyMassIndex = (userId, form, bodyMassIndex) => (dispatch) => {
@@ -134,7 +147,6 @@ export const setAllUserInfo = (userId) => (dispatch) => {
         response.val().dailyWater && dispatch(setDailyWater(response.val().dailyWater))
         response.val().bodyMassIndex && dispatch(setBodyMassIndex(response.val().bodyMassIndex))
         response.val().savedRecipes && dispatch(setRecipe(response.val().savedRecipes))
-        // console.log(response.val().savedRecipes) 
       }
     }))
     .then(() => getUserData())
@@ -142,7 +154,6 @@ export const setAllUserInfo = (userId) => (dispatch) => {
       dispatch(setName(mainData.displayName))
       dispatch(setAvatar(mainData.photoURL))
     })
-
 }
 
 export default userPersonalData

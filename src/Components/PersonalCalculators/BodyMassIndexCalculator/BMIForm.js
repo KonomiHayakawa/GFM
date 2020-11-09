@@ -1,7 +1,7 @@
 import React from 'react'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
-import classes from './BMICalculator.module.css'
+import './../../../App.css'
 import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
 
 const BodyMassIndexForm = (props) => {
@@ -46,7 +46,12 @@ const BodyMassIndexForm = (props) => {
             type='text'  
           />
 
-          <button className={classes.calculateAgainButton} type='submit'>Узнать индекс массы тела</button>
+          <button 
+            className='globalMainBtn'
+            type='submit'
+          >
+            Узнать индекс массы тела
+          </button>
       </Form>
     </Formik>
   )

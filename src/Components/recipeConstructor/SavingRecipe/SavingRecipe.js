@@ -3,6 +3,7 @@ import SavingRecipeForm from './SavingRecipeForm/SavingRecipeForm'
 import { NavLink } from 'react-router-dom'
 import ErrorMessage from '../../common/ErrorMessage'
 import classes from './SavingRecipe.module.css'
+import './../../../App.css'
 import { Alert } from 'antd';
 
 const SavingRecipe = (props) => {
@@ -29,7 +30,7 @@ const SavingRecipeIfAuth = (props) => {
         description={
           <span>
             Рецепт сохранен, можешь найти его у себя 
-            в <NavLink className={classes.linkToProfile} to='/profile'>
+            в <NavLink className={classes.linkToProfile} to='/profile/myRecipes'>
               профиле
             </NavLink>
           </span>
@@ -52,7 +53,7 @@ const SavingRecipeIfAuth = (props) => {
         className={classes.savingRecipeAlert}
       />
     }
-    { props.savingRecipe === 'errorNoIngredients' &&
+    {props.savingRecipe === 'errorNoIngredients' &&
       <Alert
         message='Не получилось :('
         description='В рецепте нет ингредиентов'
@@ -64,7 +65,10 @@ const SavingRecipeIfAuth = (props) => {
       />
     }
      {!props.savingRecipe && 
-      <button className={classes.saveButton} onClick={() => props.switchSavingRecipe(true)}>
+      <button 
+        className={'globalMainBtn'} 
+        onClick={() => props.switchSavingRecipe(true)}
+      >
         Сохранить рецепт
       </button> 
     }

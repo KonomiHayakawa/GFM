@@ -1,7 +1,9 @@
 import React from 'react'
 import classes from './Login.module.css'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import {AntInput, AntInputPassword} from './../../common/antDesignForFormik/antDesignForFormik'
+import {Alert} from 'antd'
 
 const LoginForm = (props) => {
 
@@ -35,18 +37,48 @@ const LoginForm = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(FormikProps) => (
         <Form>
-          <div>
-            <Field className={classes.input} type='text' name='email' placeholder='Введи свой email' />
-            <ErrorMessage component='div' className={classes.warning} name='email' />
+
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInput} 
+              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
+              type='text' 
+              name='email' 
+              placeholder='Email' 
+              bordered={false}
+            /> 
           </div>
-          <div>
-            <Field className={classes.input} type='password' name='password' placeholder='Введи пароль' />
-            <ErrorMessage component='div' className={classes.warning} name='password'/>
+  
+          <div className={classes.inputWrapper}>
+            <Field 
+              component={AntInputPassword} 
+              style={{width: '100%'}}
+              className={classes.password} 
+              type='password' 
+              name='password' 
+            />
           </div>
-          <div>
-            <button className={classes.button} type='submit' name="submit">Войти</button>
-            <div className={classes.generalWarning}>{FormikProps.errors.general}</div>
-          </div>
+        
+          <button 
+            className={classes.sendFormBtn} 
+            type='submit' 
+            name='submit'
+          >
+            Войти
+          </button>
+
+          {FormikProps.errors.general
+            ? <div className={classes.generalErrors}>
+                <Alert 
+                  message={FormikProps.errors.general} 
+                  type="error" 
+                  showIcon
+                  banner={true}
+                />
+              </div>
+            : null
+          }
+     
         </Form>
       )}
     </Formik>

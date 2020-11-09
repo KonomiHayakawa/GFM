@@ -3,8 +3,8 @@ import classes from './RecipeConstructor.module.css'
 import IngredientsContainer from '../Ingredients/IngredientsContainer';
 import RecipeCalculationsContainer from '../RecipeCalculations/RecipeCalculationsContainer';
 import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer';
-import {ReactComponent as PageMainImage} from './../../../img/recipeConstructor/mainImage.svg';
-import {QuestionCircleOutlined} from '@ant-design/icons'
+import {ReactComponent as PageMainImage} from './../../../img/recipeConstructor/mainImage2.svg';
+import {QuestionCircleOutlined, InfoCircleOutlined} from '@ant-design/icons'
 import { Alert } from 'antd';
 import ChoosingIngredients from '../ChoosingIngredients/ChoosingIngredients';
 
@@ -32,13 +32,13 @@ const RecipeConstructor = (props) => {
               Не забудь разделить итоговые показатели на количество порций, ведь так ты точно будешь знать, 
               какой % от твоей дневной нормы займёт такая вкуснятина.' 
             type="info" 
-            showIcon 
+            icon={
+              <InfoCircleOutlined />
+            }
+            showIcon={true}
             style={{
               width: '80%',
-              backgroundColor: 'rgba(221, 205, 254, 0.342)',
-              border: '1px solid rgb(175, 154, 219)',
             }}
-            className={classes.infoAlert}
           />
         }
 

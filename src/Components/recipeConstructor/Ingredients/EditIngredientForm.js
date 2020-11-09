@@ -2,6 +2,7 @@ import React from 'react'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import classes from './Ingredients.module.css'
+import './../../../App.css'
 import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
 
 const EditIngredientForm = (props) => {
@@ -32,19 +33,22 @@ const EditIngredientForm = (props) => {
               name='newWeight' 
               id={props.ingredient.id} 
               type='number' 
-              className={`${classes.editingWeightInput} ${classes.input}`}
             />
-            <Field type='hidden' name="ingredient" />
+            <Field 
+              type='hidden' 
+              name="ingredient" 
+            />
+            
           <div>
             <button 
-              className={classes.editingBtn} 
+              className={`${classes.editingBtn} globalBtn` }
               type='submit' 
               name="submit"
             >
               Изменить
             </button>
             <button 
-              className={`${classes.editingBtn}`} 
+              className={`${classes.editingBtn} globalBtn` }
               type='reset' 
               name="cancel" 
               onClick={() => {props.cancelEditing()}}
