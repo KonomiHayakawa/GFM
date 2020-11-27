@@ -1,16 +1,11 @@
 import React from 'react'
+import { Table, Popconfirm, message } from 'antd'
+import {isMobile} from 'react-device-detect'
 import classes from './../Ingredients.module.css'
 import './../../../../App.css'
-import { Table } from 'antd'
 import EditIngredientForm from './../EditIngredientForm'
-import { Popconfirm, message } from 'antd'
 
 const IngredientsTable = (props) => {
-
-  const confirmDeletingIngredient = (ingredient) => {
-    props.deleteIngredientAndCalculate(ingredient)
-    message.success('Удалено! :)');
-  }
   
   const editingField = props.showEditingField
     ? { key: 'action',
@@ -25,23 +20,16 @@ const IngredientsTable = (props) => {
                 Изменить
               </button>
             }
-            {!props.showModal && !props.editingWeight &&
-              <Popconfirm
-                title='Точно удалить?'
-                onConfirm={() => confirmDeletingIngredient(ingredient)}
-                onCancel={() => null}
-                okText='Да'
-                cancelText='Нет'
-              >
-                <button 
-                  className={`${classes.deleteBtn} globalBtn`}
-                > 
-                  Удалить
-                </button>
-              </Popconfirm>
+            {!props.showIngredientsArea && !props.editingWeight &&
+              <DeleteIngredientMobile 
+                {...props} 
+                ingredient={ingredient}
+              />
+ 
             }
             {props.editingWeight === ingredient.id && 
-              <EditIngredientForm ingredient={ingredient}
+              <EditIngredientForm 
+                ingredient={ingredient}
                 editIngredientAndCalculate={props.editIngredientAndCalculate}
                 cancelEditing={props.switchEditingWeight}
               />
@@ -55,19 +43,21 @@ const IngredientsTable = (props) => {
     {
       dataIndex: 'img',
       key: 'img',
-      render: link => <img src={link} alt='ingredient' />,
+      render: link => <img src={link} alt='ingredient' className={classes.ingredientImg} />,
       width: '5%',
     },
     {
       title: 'Ингредиент',
       dataIndex: 'title',
       key: 'title',
+      className:classes.tableCol,
       width: '40%',
     },
     {
       title: 'Вес г.',
       dataIndex: 'weight',
       key: 'weight',
+      className:classes.tableCol,
       width: '10%',
     },
     {
@@ -78,13 +68,44 @@ const IngredientsTable = (props) => {
   return (
     <Table 
       columns={columns} 
-      pagination={false} 
-      dataSource={props.addedFood}
-      rowKey={ingredient => ingredient.id}
       className={classes.ingredientsTable}
+      dataSource={props.addedFood}
       ellipsis={true}
+      pagination={false} 
+      rowKey={ingredient => ingredient.id}
     />
   )
 }
 
 export default IngredientsTable
+
+const DeleteIngredientMobile = (props) => {
+
+ const confirmDeletingIngredient = (ingredient) => {
+  props.deleteIngredientAndCalculate(ingredient)
+  message.success('Удалено! :)');
+}
+
+  return (
+    isMobile
+      ? <button 
+          className={`${classes.deleteBtn} globalBtn`}
+          onClick={() => confirmDeletingIngredient(props.ingredient)}
+        > 
+          Удалить
+        </button>
+      : <Popconfirm
+          cancelText='Нет'
+          title='Точно удалить?'
+          onConfirm={() => confirmDeletingIngredient(props.ingredient)}
+          onCancel={() => null}
+          okText='Да'
+        >
+          <button 
+            className={`${classes.deleteBtn} globalBtn`}
+          > 
+            Удалить
+          </button>
+        </Popconfirm>
+  )
+}

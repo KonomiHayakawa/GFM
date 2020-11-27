@@ -4,19 +4,50 @@
 }
 
 .ingredientsTable {
-  width: 93%;
   margin-top: 15px;
   margin-bottom: 15px;
+  width: 93%;
 }
 
 .addIngredientBtn, 
 .deleteBtn,
 .editBtn,
 .editingBtn {
+  margin: 0px;  
   width: 90px;
-  margin: 0px;
 }
 
 .addIngredientBtn {
   font-size: larger;
+}
+
+@media screen and (max-width:1100px) {
+
+  .addIngredientBtn {
+    font-size: 2.5rem;
+    height: 130px;
+    width: 240px;
+  }
+
+  .ingredientsTable {
+    margin-right: 50px;
+  }
+ 
+  .deleteBtn,
+  .editBtn,
+  .editingBtn {
+    font-size: 2rem;
+    height: 90px;
+    margin: 0px;
+    width: 220px;
+  }
+
+  .ingredientImg {
+    width: 100px;
+  }
+
+  .tableCol {
+    font-size: 2rem;
+  }
+
 }

@@ -1,6 +1,6 @@
 const initialState = {
-  modal: {
-    showModal: false,
+  ingredientsArea: {
+    showIngredientsArea: false,
     openFoodCategory: false,
     foodCategoryLink: null,
   },
@@ -14,13 +14,13 @@ const initialState = {
 const recipeConstructorReducer = (state = initialState, action) => {
   switch (action.type) {
 
-  // modal
-    case 'SET_SHOW_MODAL': 
-      return {...state, modal: {...state.modal, showModal: action.modalState}}
-    case 'SET_OPEN_FOOD_CATEGORY':
-      return {...state, modal: {...state.modal, openFoodCategory: action.openCategory}}
-    case 'SET_FOOD_CATEGORY_LINK':
-      return {...state, modal: {...state.modal, foodCategoryLink: action.categoryLink}}
+  // ingredientsArea
+  case 'SET_SHOW_INGREDIENTS_AREA': 
+    return {...state, ingredientsArea: {...state.ingredientsArea, showIngredientsArea: action.isIngredientsAreaOpen}}
+  case 'SET_OPEN_FOOD_CATEGORY':
+    return {...state, ingredientsArea: {...state.ingredientsArea, openFoodCategory: action.openCategory}}
+  case 'SET_FOOD_CATEGORY_LINK':
+    return {...state, ingredientsArea: {...state.ingredientsArea, foodCategoryLink: action.categoryLink}}
 
   // ingredients
     case 'SET_NEW_INGREDIENT':
@@ -48,8 +48,8 @@ const recipeConstructorReducer = (state = initialState, action) => {
   }
 }
 
-// modal
-export const setShowModal = (modalState) => ({type: 'SET_SHOW_MODAL', modalState})
+// ingredientsArea
+export const setShowIngredientsArea = (isIngredientsAreaOpen) => ({type: 'SET_SHOW_INGREDIENTS_AREA', isIngredientsAreaOpen})
 export const setOpenFoodCategory = (openCategory) => ({type: 'SET_OPEN_FOOD_CATEGORY', openCategory})
 export const setFoodCategoryLink = (categoryLink) => ({type: 'SET_FOOD_CATEGORY_LINK', categoryLink})
 
@@ -64,7 +64,7 @@ export const removeIngredient = (id) => ({type: 'REMOVE_INGREDIENT', id})
 export const removeAllIngredients = () => ({type: 'REMOVE_ALL_INGREDIENTS'})
 
 
-export const openFoodCategoryInModal = (openCategory, categoryLink) => (dispatch) => {
+export const openFoodCategoryInIngredientsArea = (openCategory, categoryLink) => (dispatch) => {
   dispatch(setOpenFoodCategory(openCategory))
   dispatch(setFoodCategoryLink(categoryLink))
 }
@@ -100,8 +100,8 @@ export const clearRecipe = () => (dispatch) => {
   dispatch(setTotalWeight(0))
 }
 
-export const closeModal = () => (dispatch) => {
-  dispatch(setShowModal(false))
+export const closeIngredientsArea = () => (dispatch) => {
+  dispatch(setShowIngredientsArea(false))
   dispatch(setOpenFoodCategory(false))
   dispatch(setFoodCategoryLink(null))
 }

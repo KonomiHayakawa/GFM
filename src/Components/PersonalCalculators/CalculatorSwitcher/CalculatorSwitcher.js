@@ -9,8 +9,16 @@ const CalculatorSwitcher = (props) => {
         to={props.option.link}
         className={classes.link}
       >
-        <img className={classes.calculatorOptionImg} src={props.option.img} alt={props.option.link}/>
-        <span className={classes.calculatorOptionTitle}>{props.option.title}</span>
+        <img 
+          className={classes.calculatorOptionImg} 
+          src={props.option.img} 
+          alt={props.option.link}
+        />
+        <span 
+          className={classes.calculatorOptionTitle}
+        >
+          {props.option.title}
+        </span>
       </NavLink>
     </div>
   )

@@ -1,11 +1,10 @@
 import React from 'react'
-import ErrorMessage from '../../common/ErrorMessage'
-import FoodCategoryTableContainer from '../FoodCategoryTable/FoodCategoryTableContainer'
+import { Spin } from 'antd'
 import classes from './FoodCategory.module.css'
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
+import FoodCategoryTableContainer from '../FoodCategoryTable/FoodCategoryTableContainer'
 import {SearchInput, NoSearchResults} from '../../common/Search/Search'
 import BackArrow from './../../common/BackArrow/BackArrow'
-import { Spin } from 'antd';
-
 
 const FoodCategory = (props) => {
 
@@ -13,30 +12,32 @@ const FoodCategory = (props) => {
     <div className={classes.wrapper}>
 
       <div className={classes.backAndSearchField}>
-        <BackArrow clickAction={props.goBackToCategoriesList}/>
+        <BackArrow 
+          clickAction={props.goBackToCategoriesList}
+        />
  
         <SearchInput 
           placeholder='Введи название продукта' 
           onChange={(e) => props.searchIngredient(e)} 
-          className={classes.searchInput}
         />
       </div>
 
       <div className={classes.foodDataWrapper}>
         {props.isLoading 
-          ? <div className={classes.spinner}><Spin size="large"/></div>
+          ? <div className={classes.spinner}>
+              <Spin size='large'/>
+            </div>
           : <>
-            {props.searchMatches.length !== 0 && props.searchMatches !== 'none' &&
-              <FoodCategoryTableContainer foodData={props.searchMatches}/>
-            }
-
-            {props.searchMatches.length === 0 && 
-              <FoodCategoryTableContainer foodData={props.foodData}/>
-            }
-            {props.searchMatches === 'none' && 
-              <NoSearchResults />
-            }
-          </>
+              {props.searchMatches.length !== 0 && props.searchMatches !== 'none' &&
+                <FoodCategoryTableContainer foodData={props.searchMatches}/>
+              }
+              {props.searchMatches.length === 0 && 
+                <FoodCategoryTableContainer foodData={props.foodData}/>
+              }
+              {props.searchMatches === 'none' && 
+                <NoSearchResults/>
+              }
+            </>
         }
       </div>
     

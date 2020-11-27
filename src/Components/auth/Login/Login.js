@@ -6,10 +6,20 @@ import {ReactComponent as LoginMainImage} from './../../../img/auth/loginMainIma
 const Login = (props) => {
   return (
     <div className={classes.wrapper}>
-      <LoginMainImage className={classes.mainImage} />
-      <div className={classes.loginFormWrapper}>
-        <LoginForm login={props.login} className={classes.loginForm} />
+
+      <div className={classes.mainImageWrapper}>
+        <LoginMainImage 
+          className={classes.mainImage} 
+        />
       </div>
+
+      <div className={classes.loginFormWrapper}>
+        <LoginForm 
+          login={props.login} 
+          className={classes.loginForm} 
+        />
+      </div>
+      
     </div>
   )
 }

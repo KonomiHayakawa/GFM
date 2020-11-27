@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalData'
-import {calcBodyMassIndex} from '../../common/calculations'
 import BMICalculator from './BMICalculator'
+import {calcBodyMassIndex} from '../../common/calculations'
+import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalData'
 import {setError} from './../../../redux/forError'
 
 const BMICalculatorContainer = (props) => {
@@ -26,13 +26,13 @@ const BMICalculatorContainer = (props) => {
 
   return (
     <BMICalculator 
-      updateBMI={updateBMI} 
-      bodyMassIndex={props.bodyMassIndex} 
-      isChangingData={isChangingData}
-      toggleIsChangingData={toggleIsChangingData}
-      showExplanation={showExplanation}
-      toggleShowExplanation={toggleShowExplanation}
+      bodyMassIndex={props.bodyMassIndex}
       error={props.error}
+      isChangingData={isChangingData}
+      showExplanation={showExplanation}
+      toggleIsChangingData={toggleIsChangingData}
+      toggleShowExplanation={toggleShowExplanation}
+      updateBMI={updateBMI} 
     />
   )
 }

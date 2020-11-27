@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import {calcDailyCalories, calcDailyWater, calcBodyMassIndex} from './../../common/calculations'
+import PersonalData from './PersonalData'
 import {saveDailyCalories, saveDailyWater, saveBodyMassIndex} from './../../../redux/userPersonalData'
 import {setError} from './../../../redux/forError'
-import PersonalData from './PersonalData'
 
 const PersonalDataContainer = (props) => {
 
   const [editingFieldName, setEditingFieldName] = useState(false)
-
 
   const editPersonalData = (form) => {
     const dailyCalories = Math.round(calcDailyCalories(form))
@@ -25,13 +24,15 @@ const PersonalDataContainer = (props) => {
     }
   }
 
-  return <PersonalData 
-    userData={props.userData} 
-    editingFieldName={editingFieldName} 
-    setEditingFieldName={setEditingFieldName}
-    editPersonalData={editPersonalData}
-    error={props.error} 
-  />
+  return (
+    <PersonalData 
+      editPersonalData={editPersonalData}
+      editingFieldName={editingFieldName} 
+      error={props.error} 
+      setEditingFieldName={setEditingFieldName}
+      userData={props.userData} 
+    />
+  )
 }
 
 const mapStateToProps = (state) => {

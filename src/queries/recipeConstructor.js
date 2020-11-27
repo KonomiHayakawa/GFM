@@ -6,7 +6,7 @@ const storageRef = storage.ref()
 export const getIngredient = (foodGroup, foodId) => {
   const ref = firebase.database().ref(`/ProductsCalories/productsGroups/${foodGroup}`)
   const promise = new Promise(function(resolve, reject) {
-    ref.orderByChild("id").equalTo(foodId).on("child_added", function(snapshot) {
+    ref.orderByChild('id').equalTo(foodId).on('child_added', function(snapshot) {
       resolve(snapshot.val())
     })
   })
@@ -16,7 +16,7 @@ export const getIngredient = (foodGroup, foodId) => {
 export const getRecipe = (userId, recipeId) => {
   const ref = firebase.database().ref(`UsersData/${userId}/savedRecipes`)
   const promise = new Promise(function(resolve, reject) {
-    ref.orderByChild("id").equalTo(recipeId).on("child_added", function(snapshot) {
+    ref.orderByChild('id').equalTo(recipeId).on('child_added', function(snapshot) {
       resolve(snapshot.val())
     })
   })
@@ -41,8 +41,7 @@ export const getDefaultImgLink = () => {
 }
 
 export const deleteRecipeImg = (userId, recipeId) => {
-  const imgToDelete = storageRef.child(`/${userId}/recipes/${recipeId}.jpg`);
+  const imgToDelete = storageRef.child(`/${userId}/recipes/${recipeId}.jpg`)
   return imgToDelete.delete().then(function() {
-  }).catch(function(error) {
-  });
+  })
 }

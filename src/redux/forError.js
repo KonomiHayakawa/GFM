@@ -1,6 +1,6 @@
 const initialState = {
   error: false,
-  errorMessage: ''
+  errorMessage: '',
 }
 
 const forError = (state = initialState, action) => {
@@ -23,9 +23,6 @@ const forError = (state = initialState, action) => {
         break
       case 'storage/cannot-slice-blob': 
         message = 'Возникла проблема загрузки, попробуй еще раз'
-        break
-      case 'storage/retry-limit-exceeded': 
-        message = 'Операция выполняется слишком долго. Попробуй еще раз'
         break
       case 'storage/invalid-argument':
         message= 'Файл не выбран'

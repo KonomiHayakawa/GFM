@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+import {saveName} from './../../../redux/userPersonalData'
 import {signUp} from '../../../redux/authReducer'
-import Registration from './Registration';
-import {saveName, saveAvatar} from './../../../redux/userPersonalData'
-// import defaultAvatar from './../../../img/default/avatar.svg'
+import Registration from './Registration'
 
 
 const RegistrationContainer = (props) => {
@@ -18,7 +17,10 @@ const RegistrationContainer = (props) => {
   }
 
   return (
-    <Registration {...props} addNewUserMainData={addNewUserMainData}/>
+    <Registration 
+      addNewUserMainData={addNewUserMainData}
+      signUp={props.signUp}
+    />
   )
 }
 
@@ -26,4 +28,4 @@ const mapStateToProps = (state) => ({
   authData: state.authReducer
 })
 
-export default connect(mapStateToProps, {saveName, saveAvatar, signUp})(RegistrationContainer)
+export default connect(mapStateToProps, {saveName, signUp})(RegistrationContainer)

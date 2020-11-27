@@ -6,3 +6,19 @@
   color: rgb(55, 106, 216);
   font-weight: bolder;
 }
+
+
+@media screen and (max-width:1100px) {
+  .wrapper {
+    margin-right: 50px;
+  }
+
+  .alertMessageTitle {
+    font-size: 3rem;
+  }
+
+  .alertMessageDescription,
+  .alertCloseIco {
+    font-size: 2rem;
+  }
+}

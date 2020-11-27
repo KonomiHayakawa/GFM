@@ -7,7 +7,7 @@ const FoodCategoryPage = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <FoodCategoryContainer className={classes.foodCategoryContainer}/>
+      <FoodCategoryContainer className={classes.foodCategory}/>
       <PageMainImage className={classes.mainImage}/>
     </div>
   )

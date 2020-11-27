@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Ingredients from './Ingredients'
-import {setShowModal, closeModal} from '../../../redux/recipeConstructorReducer'
+import {setShowIngredientsArea, closeIngredientsArea} from '../../../redux/recipeConstructorReducer'
 
 const IngredientsContainer = (props) => {
 
@@ -15,8 +15,8 @@ const IngredientsContainer = (props) => {
 const mapStateToProps = (state) => {
   return ({
     addedFood: state.recipeConstructorReducer.addedFood,
-    showModal: state.recipeConstructorReducer.modal.showModal,
+    showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
   })
 }
 
-export default connect(mapStateToProps, {setShowModal, closeModal})(IngredientsContainer)
+export default connect(mapStateToProps, {setShowIngredientsArea, closeIngredientsArea})(IngredientsContainer)

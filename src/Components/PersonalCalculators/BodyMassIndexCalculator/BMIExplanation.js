@@ -1,6 +1,7 @@
 import React from 'react'
 import { Alert } from 'antd'
 import {InfoCircleOutlined} from '@ant-design/icons'
+import classes from './BMICalculator.module.css'
 
 const BMIExplanation = (props) => {
 
@@ -17,7 +18,7 @@ const BMIExplanation = (props) => {
     <div>
       <Alert 
         message={<AlertTable data={data}/>}
-        type="info" 
+        type='info' 
         icon={
           <InfoCircleOutlined/>
         }
@@ -32,7 +33,7 @@ const AlertTable = (props) => {
   return (
     <div>   
       <table>
-        <tbody>
+        <tbody className={classes.infoAlert}>
           {props.data.map(item => {
             return <React.Fragment key={item.id}>
               <tr>

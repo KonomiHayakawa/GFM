@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import {setRecipe} from '../../../redux/userPersonalData'
+import { v4 as uuidv4 } from 'uuid'
 import {clearRecipe} from '../../../redux/recipeConstructorReducer'
+import {setRecipe} from '../../../redux/userPersonalData'
 import {setError} from './../../../redux/forError'
 import {saveUserRecipes, addRecipeImg, getRecipeImgLink} from '../../../queries/recipeConstructor'
 import SavingRecipe from './SavingRecipe'
-import { v4 as uuidv4 } from 'uuid'
 
 const SavingRecipeContainer = (props) => {
 
@@ -58,12 +58,12 @@ const SavingRecipeContainer = (props) => {
 const mapStateToProps = (state) => {
   return ({
     addedFood: state.recipeConstructorReducer.addedFood,
+    error: state.forError.error,
+    isAuth: state.authReducer.isAuth,
     stateTotalCalories: state.recipeConstructorReducer.nutritionalValue.totalCalories,
     stateTotalWeight: state.recipeConstructorReducer.nutritionalValue.totalWeight,
-    userId: state.authReducer.userId,
     savedRecipes: state.userPersonalData.savedRecipes,
-    isAuth: state.authReducer.isAuth,
-    error: state.forError.error
+    userId: state.authReducer.userId,
   })
 }
 

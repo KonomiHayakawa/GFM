@@ -1,8 +1,7 @@
-import React, { useState } from "react"
-import Profile from "./Profile"
-import { connect } from "react-redux"
-import { Redirect, withRouter} from "react-router-dom"
-
+import React, { useState } from 'react'
+import Profile from './Profile'
+import { connect } from 'react-redux'
+import { Redirect, withRouter} from 'react-router-dom'
 
 const ProfileContainer = (props) => {
 
@@ -17,17 +16,17 @@ const ProfileContainer = (props) => {
 
   return (
     <Profile 
-      {...props}
       selectedNavItem={selectedNavItem}
       setSelectedNavItem={setSelectedNavItem}
+      userData={props.userData}
     />
   ) 
 }
   
-  const mapStateToProps = (state) => ({
-    authInfo: state.authReducer,
-    userData: state.userPersonalData,
-  })
+const mapStateToProps = (state) => ({
+  authInfo: state.authReducer,
+  userData: state.userPersonalData,
+})
   
 
 export default withRouter(connect(mapStateToProps, {})(ProfileContainer))

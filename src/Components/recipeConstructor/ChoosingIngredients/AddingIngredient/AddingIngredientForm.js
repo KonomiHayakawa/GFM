@@ -1,44 +1,39 @@
 import React from 'react'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {AntInput} from '../../../common/antDesignForFormik/antDesignForFormik'
 import classes from './AddingIngredient.module.css'
+import {IngredientWeightInput} from './../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
 
 const AddingIngredientForm = React.memo((props) => {
 
   const validationSchema = Yup.object({
-    weight: Yup.number()
-    .typeError('Введи число')
-    .positive('Ты точно добавишь больше нуля грамм:)')
-    .required('Обязательное поле'),
+    ingredientWeight: Yup.number()
+      .typeError('Введи число')
+      .positive('Ты точно добавишь больше нуля грамм:)')
+      .required('Обязательное поле'),
   })
   
   const initialValues = {
-    weight: '',
+    ingredientWeight: '',
   }
 
   const onSubmit = (formData) => {
-    props.addIngredientToRecipe({ingredientId:props.foodId, weight: Number(formData.weight) })
+    props.addIngredientToRecipe({ingredientId:props.foodId, weight: Number(formData.ingredientWeight) })
+    return props.setMobileModalOpened ? props.setMobileModalOpened(false) : null
   }
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(props) => (
-        <Form>
-          <Field 
-            component={AntInput} 
-            style={{ width: '100%'}} 
-            placeholder='вес в г.'
-            name='weight' 
-            id={props.foodId} 
-            type='number' 
-          />
+        <Form className={classes.form}>
 
-          {props.values.weight &&
+          <IngredientWeightInput />
+
+          {props.values.ingredientWeight && 
             <button 
               type='submit' 
               name='submit'
-              className={`${classes.addIngredientBtn} globalBtn`}
+              className='globalBtn'
             >
               Добавить
             </button>

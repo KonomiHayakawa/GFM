@@ -1,13 +1,19 @@
 .wrapper {
-  cursor: pointer;
-  display: inline-flex;
   align-items: center;
-  font-size: large;
-  transition: transform .2s;
-  margin: 0px 15px 0px 15px;
+  cursor: pointer;
   color:#3fa9ff;
+  display: inline-flex;
+  font-size: large;
+  margin: 0px 15px 0px 15px;
+  transition: transform .2s;
 }
 
 .wrapper:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width:1100px) {
+  .wrapper {
+    font-size: 3rem;
+  }
 }

@@ -19,19 +19,19 @@ const Ingredients = (props) => {
         } 
       </div>
 
-      {!props.showModal && 
+      {!props.showIngredientsArea && 
         <button 
           className={`${classes.addIngredientBtn} globalBtn`} 
-          onClick={() => props.setShowModal(true)}
+          onClick={() => props.setShowIngredientsArea(true)}
         > 
           Добавить
         </button>
       }
 
-      {props.showModal && 
+      {props.showIngredientsArea && 
         <button 
           className={`${classes.addIngredientBtn} globalBtn`} 
-          onClick={() => props.closeModal()}
+          onClick={() => props.closeIngredientsArea()}
         > 
           Готово
         </button>

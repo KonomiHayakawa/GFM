@@ -8,10 +8,10 @@ export const AntDesignUploadFormik = (props) => {
 
   const customRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
-      onSuccess("ok")
-    }, 0);
+      onSuccess('ok')
+    }, 0)
     props.setImgData(file)
-  };
+  }
 
   const formProps = {
     onChange(info) {
@@ -19,9 +19,9 @@ export const AntDesignUploadFormik = (props) => {
         toggleIsBtsDisabled(true)
       }
       if (info.file.status === 'done') {
-        message.success('Файл успешно загружен :)');
+        message.success('Файл успешно загружен :)')
       } else if (info.file.status === 'error') {
-        message.error(`Загрузка файла не удалась :()`);
+        message.error(`Загрузка файла не удалась :()`)
       }
     },
     onRemove() {

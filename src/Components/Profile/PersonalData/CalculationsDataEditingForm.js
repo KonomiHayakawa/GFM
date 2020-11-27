@@ -1,8 +1,7 @@
 import React from 'react'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {AntSelect, AntInput} from './../../common/antDesignForFormik/antDesignForFormik'
-import classes from './PersonalData.module.css'
+import {SexInput, HeightInput, WeightInput, AgeInput, ActivityTypeInput} from './../../common/ForForms/FormikInputs'
 import './../../../App.css'
 
 const CalculationsDataEditingForm = (props) => {
@@ -35,76 +34,48 @@ const CalculationsDataEditingForm = (props) => {
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
+
         {props.editingField === 'sex' &&
-          <Field 
-            component={AntSelect}
-            selectOptions={[
-              {name:'Мужской', value: 'male'},
-              {name:'Женский', value:'female'},
-            ]}
-            style={{ width: 200}}
-            name='sex'
-            id='sex'
+          <SexInput 
+            style={{width: '100%'}} 
           />
         }
         
         {props.editingField === 'height' &&
-          <Field 
-            component={AntInput} 
-            style={{ width: 200}} 
-            name='height' 
-            id='height' 
-            type='text' 
+          <HeightInput 
+            style={{width: '100%'}} 
           />
         }
 
         {props.editingField === 'weight' &&
-          <Field
-            component={AntInput} 
-            style={{ width: 200}}  
-            name='weight' 
-            id='weight' 
-            type='text'  
+          <WeightInput 
+            style={{width: '100%'}} 
           />
         }
 
         {props.editingField === 'age' &&
-          <Field 
-            component={AntInput} 
-            style={{ width: 200}} 
-            name='age' 
-            id='age' 
-            type='text' 
+          <AgeInput 
+            style={{width: '100%'}} 
           />
         }
 
         {props.editingField === 'activityType' &&
-          <Field 
-            component={AntSelect}
-            selectOptions={[
-              {name:'Минимальный уровень активности', value: '1.2'},
-              {name:'Низкий уровень активности', value: '1.375'},
-              {name:'Средний уровень активности', value:'1.55'},
-              {name:'Высокий уровень', value:'1.725'},
-              {name:'Очень высокий', value:'1.9'}
-            ]}
-            style={{ width: 300}}
-            name='activityType'
-            id='activityType'
+          <ActivityTypeInput 
+            style={{width: '100%'}} 
           />
         }
 
         <div>
           <button 
             type='submit'
-            className={`${classes.button} globalBtn`}
+            className='globalBtn'
           >
             Изменить
           </button>
           <button 
             type='reset' 
             onClick={() => props.cancelEditing(false)}
-            className={`${classes.button} globalBtn`}
+            className='globalBtn'
           >
             Отменить
           </button>

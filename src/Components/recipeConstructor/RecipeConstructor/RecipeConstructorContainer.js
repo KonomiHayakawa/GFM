@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import {closeIngredientsArea, clearRecipe} from '../../../redux/recipeConstructorReducer'
 import RecipeConstructor from './RecipeConstructor'
-import {closeModal, clearRecipe} from '../../../redux/recipeConstructorReducer'
 
 const RecipeConstructorContainer = (props) => {
 
   const [showInfo, switchShowInfo] = useState(false)
 
+  const { clearRecipe } = props
+  const { closeIngredientsArea } = props
+
   useEffect(() => {
-    return () => {props.clearRecipe(); props.closeModal()}
-  }, [])
+    return () => {
+      clearRecipe()
+      closeIngredientsArea()
+    }
+}, [clearRecipe, closeIngredientsArea])
+
 
   return (
     <RecipeConstructor 
@@ -22,8 +29,8 @@ const RecipeConstructorContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return ({
-    modalData: state.recipeConstructorReducer.modal,
+    ingredientsArea: state.recipeConstructorReducer.ingredientsArea
   })
 }
 
-export default connect(mapStateToProps, {closeModal, clearRecipe})(RecipeConstructorContainer)
+export default connect(mapStateToProps, {closeIngredientsArea, clearRecipe})(RecipeConstructorContainer)

@@ -1,56 +1,45 @@
 import React from 'react'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import classes from './Ingredients.module.css'
 import './../../../App.css'
-import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
+import {IngredientWeightInput} from './../../common/ForForms/FormikInputs'
 
 const EditIngredientForm = (props) => {
   const validationSchema = Yup.object({
-    newWeight: Yup.number()
+    ingredientWeight: Yup.number()
     .typeError('Введи число')
     .positive('Ты точно добавишь больше нуля грамм:)')
     .required('Обязательное поле'),
   })
   
   const initialValues = {
-    newWeight: '',
-    ingredient: props.ingredient
+    ingredientWeight: '',
   }
 
   const onSubmit = (formData) => {
-    props.editIngredientAndCalculate(formData.ingredient, Number(formData.newWeight))
+    props.editIngredientAndCalculate(props.ingredient, Number(formData.ingredientWeight))
   }
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {() => (
         <Form>
-            <Field 
-              component={AntInput} 
-              style={{width: '100%'}} 
-              placeholder='вес в граммах'
-              name='newWeight' 
-              id={props.ingredient.id} 
-              type='number' 
-            />
-            <Field 
-              type='hidden' 
-              name="ingredient" 
-            />
+        
+          <IngredientWeightInput/>
             
           <div>
             <button 
               className={`${classes.editingBtn} globalBtn` }
               type='submit' 
-              name="submit"
+              name='submit'
             >
               Изменить
             </button>
             <button 
               className={`${classes.editingBtn} globalBtn` }
               type='reset' 
-              name="cancel" 
+              name='cancel' 
               onClick={() => {props.cancelEditing()}}
             >
               Отмена

@@ -1,19 +1,19 @@
 import React from 'react'
-import classes from './RecipeConstructor.module.css'
-import IngredientsContainer from '../Ingredients/IngredientsContainer';
-import RecipeCalculationsContainer from '../RecipeCalculations/RecipeCalculationsContainer';
-import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer';
-import {ReactComponent as PageMainImage} from './../../../img/recipeConstructor/mainImage2.svg';
+import { Alert } from 'antd'
 import {QuestionCircleOutlined, InfoCircleOutlined} from '@ant-design/icons'
-import { Alert } from 'antd';
-import ChoosingIngredients from '../ChoosingIngredients/ChoosingIngredients';
+import classes from './RecipeConstructor.module.css'
+import IngredientsContainer from '../Ingredients/IngredientsContainer'
+import IngredientsArea from '../choosingIngredients/IngredientsArea'
+import RecipeCalculationsContainer from '../RecipeCalculations/RecipeCalculationsContainer'
+import {ReactComponent as PageMainImage} from './../../../img/recipeConstructor/mainImage2.svg'
+import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer'
 
 const RecipeConstructor = (props) => {
 
   return (
     <div className={classes.wrapper}>
 
-      <div className={classes.recipeConstructor}>
+      <div className={classes.recipeConstructor} >
 
         <div className={classes.titleWrapper}>
           <h1>
@@ -24,21 +24,18 @@ const RecipeConstructor = (props) => {
             onClick={() => props.switchShowInfo(!props.showInfo)}
           />
         </div>
-
+        
         {props.showInfo &&
           <Alert 
+            className={classes.infoAlert}
+            icon={<InfoCircleOutlined />}
             message='Добавляй ингредиенты и узнаешь итоговый вес сырой заготовки (в процессе приготовления продукты
               могут терять или впитывать влагу), а также - общую калорийность блюда. 
               Не забудь разделить итоговые показатели на количество порций, ведь так ты точно будешь знать, 
               какой % от твоей дневной нормы займёт такая вкуснятина.' 
-            type="info" 
-            icon={
-              <InfoCircleOutlined />
-            }
+            type='info'
             showIcon={true}
-            style={{
-              width: '80%',
-            }}
+            style={{width: '80%'}}
           />
         }
 
@@ -48,10 +45,11 @@ const RecipeConstructor = (props) => {
       </div>
 
       <div>
-        {props.modalData.showModal &&
-          <ChoosingIngredients {...props.modalData}/>
+        {props.ingredientsArea.showIngredientsArea &&
+          <IngredientsArea {...props.ingredientsArea}/>
         }
-        {!props.modalData.showModal && 
+
+        {!props.ingredientsArea.showIngredientsArea && 
           <div className={classes.pageMainImage}>
             <PageMainImage />
           </div>
@@ -62,4 +60,3 @@ const RecipeConstructor = (props) => {
   )
 }
 export default RecipeConstructor
-

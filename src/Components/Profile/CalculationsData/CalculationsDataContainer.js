@@ -4,9 +4,11 @@ import CalculationsData from './CalculationsData'
 
 const CalculationsDataContainer = (props) => {
 
-  return <CalculationsData 
-    userData={props.userData} 
-  />
+  return (
+    <CalculationsData 
+      userData={props.userData} 
+    />
+  )
 }
 
 const mapStateToProps = (state) => {

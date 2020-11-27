@@ -1,15 +1,14 @@
 import React from 'react'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import classes from './CalculatorsPage.module.css'
+import BMICalculatorContainer from '../BodyMassIndexCalculator/BMICalculatorContainer'
+import CalculatorSwitcher from './../CalculatorSwitcher/CalculatorSwitcher'
 import DailyCaloriesContainer from '../DailyCaloriesCalculator/DailyCaloriesCalculatorContainer'
 import DailyWaterCalculatorContainer from '../DailyWaterCalculator/DailyWaterCalculatorContainer'
-import BMICalculatorContainer from '../BodyMassIndexCalculator/BMICalculatorContainer';
+import {ReactComponent as PageMainImage} from './../../../img/personalCalculations/mainImage.svg'
+import bodyMassIndexImg from './../../../img/personalCalculations/bodyMassIndex.svg'
 import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.svg'
 import dailyWaterImg from './../../../img/personalCalculations/dailyWater.svg'
-import bodyMassIndexImg from './../../../img/personalCalculations/bodyMassIndex.svg'
-import {ReactComponent as PageMainImage} from './../../../img/personalCalculations/mainImage.svg';
-import CalculatorSwitcher from './../CalculatorSwitcher/CalculatorSwitcher'
-
 
 const CalculatorsPage = (props) => {
 
@@ -22,7 +21,7 @@ const CalculatorsPage = (props) => {
     <div className={classes.calculatorsPageWrapper}>
 
       <div className={classes.pageMainImage}>
-        <PageMainImage />
+        <PageMainImage/>
       </div>
       
       <div className={classes.calculatorsAreaWrapper}>

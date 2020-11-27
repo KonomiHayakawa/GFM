@@ -1,15 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import { connect } from 'react-redux'
-import {setError} from '../../../../redux/forError'
-import {setSelectedIngredient} from './../../../../redux/foodCaloriesReducer'
 import AddingIngredientField from './AddingIngredientField'
+import {setError} from '../../../../redux/forError'
+import {setSelectedIngredient} from '../../../../redux/foodCaloriesReducer'
 
 const AddingIngredientFieldContainer = (props) => {
+
   const [addedFoodId, setAddedFoodId] = useState([])
+  const [isMobileModalOpened, setMobileModalOpened] = useState(false)
 
   useEffect(() => {
     setAddedFoodId(props.addedFood.map(item => item.id))
-  },[props.foodItem])
+  },[props.foodItem, props.addedFood])
 
   const addIngredientToRecipe = useCallback((formData) => {
     props.setSelectedIngredient(formData, 'addIngredientToRecipe')
@@ -23,10 +25,12 @@ const AddingIngredientFieldContainer = (props) => {
 
   return <AddingIngredientField 
     addRecipeButton={props.addRecipeButton}
-    foodItem={props.foodItem}
     addIngredientToRecipe={addIngredientToRecipe}
-    cancelAddingIngredient={cancelAddingIngredient}
     addedId={addedFoodId}
+    cancelAddingIngredient={cancelAddingIngredient}
+    foodItem={props.foodItem}
+    isMobileModalOpened={isMobileModalOpened}
+    setMobileModalOpened={setMobileModalOpened}
   />
 }
 

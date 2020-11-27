@@ -1,11 +1,10 @@
 import React from 'react'
+import { Statistic, Row, Col } from 'antd'
 import classes from './DailyCaloriesCalculator.module.css'
-import './../../../App.css'
 import DailyCaloriesForm from './DailyCaloriesForm'
-import ErrorMessage from '../../common/ErrorMessage'
-import { Statistic, Row, Col } from 'antd';
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
+import './../../../App.css'
       
-
 const DailyCalories = (props) => {
   return (
     <div>
@@ -20,7 +19,7 @@ const DailyCalories = (props) => {
         )
         : (
           <div>
-            <Row gutter={16} className={classes.results}>
+            <Row gutter={16} className={`globalAntStyle ${classes.results}`}>
               <Col span={20}>
                 <Statistic  
                   title={

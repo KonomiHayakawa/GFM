@@ -1,12 +1,11 @@
 import React from 'react'
 import {QuestionCircleOutlined} from '@ant-design/icons'
 import { Statistic, Row, Col } from 'antd'
-import BMIForm from './BMIForm'
-import ErrorMessage from '../../common/ErrorMessage'
 import BMIExplanation from './BMIExplanation'
+import BMIForm from './BMIForm'
 import classes from './BMICalculator.module.css'
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 import './../../../App.css'
-
 
 const BMICalculator = (props) => {
  
@@ -15,14 +14,14 @@ const BMICalculator = (props) => {
       {!props.bodyMassIndex || props.isChangingData
         ? (
           <div>
-            <h2>Узнать индекс массы тела:</h2>
+            <h2>Узнать индекс массы тела</h2>
             <BMIForm updateBMI={props.updateBMI}/>
           </div>
         )
         : (
           <div className={classes.resultWrapper}>
             <div>
-              <Row gutter={16} >
+              <Row gutter={16} className='globalAntStyle'>
                 <Col span={12}>
                   <Statistic 
                     title={

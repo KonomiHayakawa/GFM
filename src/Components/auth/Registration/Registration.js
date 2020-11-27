@@ -7,7 +7,9 @@ const Registration = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <RegistrationMainImage className={classes.mainImage} />
+      <div className={classes.mainImageWrapper} >
+        <RegistrationMainImage className={classes.mainImage}/>
+      </div>
       <div className={classes.registrationFormWrapper}>
         <RegistrationForm 
           signUp={props.signUp} 

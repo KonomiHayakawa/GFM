@@ -19,13 +19,11 @@ const IngredientsTableContainer = (props) => {
     props.deleteIngredient(ingredient.id, ...newTotalData)
   }
 
-
-
   return (
    <IngredientsTable
       addedFood={props.addedFood}
       nutritionalValue={props.nutritionalValue}
-      showModal={props.showModal}
+      showIngredientsArea={props.showIngredientsArea}
       editingWeight={editingWeight}
       switchEditingWeight={switchEditingWeight}
       editIngredientAndCalculate={editIngredientAndCalculate}
@@ -39,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     addedFood: state.recipeConstructorReducer.addedFood,
     nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
-    showModal: state.recipeConstructorReducer.modal.showModal,
+    showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
     showEditingField: ownProps.showEditingField,
   })
 }

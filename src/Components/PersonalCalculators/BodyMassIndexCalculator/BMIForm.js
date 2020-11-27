@@ -1,8 +1,8 @@
 import React from 'react'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import './../../../App.css'
-import {AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
+import {HeightInput, WeightInput} from './../../common/ForForms/FormikInputs'
 
 const BodyMassIndexForm = (props) => {
 
@@ -28,22 +28,14 @@ const BodyMassIndexForm = (props) => {
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
-        <label htmlFor="height">Рост (см)</label>
-          <Field 
-            component={AntInput} 
-            style={{ width: 300}} 
-            name='height' 
-            id='height' 
-            type='text' 
-          />
+        <label htmlFor='height'>Рост (см)</label>
+        <HeightInput
+          placeholder=''
+        />
           
-          <label htmlFor="weight">Вес(кг)</label>
-          <Field
-            component={AntInput} 
-            style={{ width: 300}}  
-            name='weight' 
-            id='weight' 
-            type='text'  
+          <label htmlFor='weight'>Вес(кг)</label>
+          <WeightInput
+            placeholder=''
           />
 
           <button 

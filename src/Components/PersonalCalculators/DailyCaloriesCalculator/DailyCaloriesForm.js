@@ -1,8 +1,8 @@
 import React from 'react'
 import './../../../App.css'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {AntSelect, AntInput} from './../../common/antDesignForFormik/antDesignForFormik'
+import {SexInput, HeightInput, WeightInput, AgeInput, ActivityTypeInput} from './../../common/ForForms/FormikInputs'
 
 const DailyCaloriesForm = (props) => {
 
@@ -41,63 +41,29 @@ const DailyCaloriesForm = (props) => {
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
 
-        <label htmlFor="sex">Пол:</label>
-        <Field 
-          component={AntSelect}
-          selectOptions={[
-            {name:'Мужской', value: 'male'},
-            {name:'Женский', value:'female'},
-          ]}
-          style={{ width: 300}}
-          name='sex'
-          id='sex'
-        />
+        <label htmlFor='sex'>Пол:</label>
+        <SexInput/>
 
-        <label htmlFor="height">Рост (см)</label>
-        <Field 
-          component={AntInput} 
-          style={{ width: 300}} 
-          name='height' 
-          id='height' 
-          type='text' 
+        <label htmlFor='height'>Рост (см)</label>
+        <HeightInput   
+          placeholder=''
         />
          
-        <label htmlFor="weight">Вес(кг)</label>
-        <Field
-          component={AntInput} 
-          style={{ width: 300}}  
-          name='weight' 
-          id='weight' 
-          type='text'  
+        <label htmlFor='weight'>Вес (кг)</label>
+        <WeightInput
+          placeholder=''
         />
   
-    
-        <label htmlFor="age">Возвраст</label>
-        <Field 
-          component={AntInput} 
-          style={{ width: 300}} 
-          name='age' 
-          id='age' 
-          type='text' 
+        <label htmlFor='age'>Возраст</label>
+        <AgeInput 
+          placeholder=''
         />
 
-        <label htmlFor="activityType">Уровень ежедневной активности:</label>
-        <Field 
-          component={AntSelect}
-          selectOptions={[
-            {name:'Минимальный уровень активности', value: '1.2'},
-            {name:'Низкий уровень активности', value: '1.375'},
-            {name:'Средний уровень активности', value:'1.55'},
-            {name:'Высокий уровень', value:'1.725'},
-            {name:'Очень высокий', value:'1.9'}
-          ]}
-          style={{ width: 300}}
-          name='activityType'
-          id='activityType'
-        />
+        <label htmlFor='activityType'>Уровень ежедневной активности:</label>
+        <ActivityTypeInput />
 
         <button 
-          className='globalMainBtn' 
+          className='globalMainBtn'
           type='submit'
         >
           Узнать норму калорий

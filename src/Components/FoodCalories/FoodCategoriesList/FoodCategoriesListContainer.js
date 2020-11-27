@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import {getFoodGroupsData} from '../../../queries/foodCalories'
-import {openFoodCategoryInModal} from '../../../redux/recipeConstructorReducer'
 import FoodCategoriesList from './FoodCategoriesList'
+import {getFoodGroupsData} from '../../../queries/foodCalories'
+import {openFoodCategoryInIngredientsArea} from '../../../redux/recipeConstructorReducer'
 import {setError} from './../../../redux/forError'
 
 const FoodCategoriesListContainer = (props) => {
@@ -19,15 +19,18 @@ const FoodCategoriesListContainer = (props) => {
   }, [props])
 
   return (
-    <FoodCategoriesList categories={categories} {...props}/>
+    <FoodCategoriesList 
+      categories={categories} 
+      {...props}
+    />
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    addToRecipe: ownProps.addToRecipe,
+    isForRecipeConstructor: ownProps.isForRecipeConstructor,
     error: state.forError.error
   })
 }
 
-export default connect(mapStateToProps, {openFoodCategoryInModal, setError})(FoodCategoriesListContainer)
+export default connect(mapStateToProps, {openFoodCategoryInIngredientsArea, setError})(FoodCategoriesListContainer)

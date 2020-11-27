@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import FoodCategoryTable from './FoodCategoryTable'
 
-
 const FoodCategoryTableContainer = (props) => {
 
   return (
@@ -14,7 +13,7 @@ const FoodCategoryTableContainer = (props) => {
 
 const mapStateToProps = (state, ownProps) => ({
   foodData: ownProps.foodData,
-  addRecipeButton: state.recipeConstructorReducer.modal.openFoodCategory,
+  addRecipeButton: state.recipeConstructorReducer.ingredientsArea.openFoodCategory,
 })
 
 export default connect(mapStateToProps, {})(FoodCategoryTableContainer)

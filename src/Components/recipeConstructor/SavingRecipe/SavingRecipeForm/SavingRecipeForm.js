@@ -1,10 +1,10 @@
 import React from 'react'
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
+import AntDesignUploadFormik from '../../../common/ForForms/antDesignForFormik/AntDesignUploadFormik'
 import classes from './SavingRecipeForm.module.css'
+import {IngredientTitleInput} from './../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
-import {AntInput} from "../../../common/antDesignForFormik/antDesignForFormik";
-import AntDesignUploadFormik from '../../../common/antDesignForFormik/AntDesignUploadFormik'
 
 const SavingRecipeForm = (props) => {
   
@@ -29,20 +29,16 @@ const SavingRecipeForm = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} enableReinitialize={true} >
       {(form) => (     
         <Form>
-      
-          <Field 
-            component={AntInput} 
-            style={{ width: '30%'}} 
-            placeholder='Название блюда'
-            name='title' 
-            id='title'
-            type='text' 
-          />
           
+          <IngredientTitleInput
+            className={classes.input}
+          />
+
           <div className={classes.savingRecipeImg}>
             <Field 
               as={AntDesignUploadFormik} 
-              name="img" 
+              className={classes.uploadRecipeCover}
+              name='img' 
               setImgData={(file) => form.setFieldValue('img', file)}
             />
             <p>Если хочешь добавить собственную обложку рецепта, не забудь загрузить картинку</p>
@@ -50,7 +46,7 @@ const SavingRecipeForm = (props) => {
 
           <button 
             type='submit' 
-            name="submit" 
+            name='submit' 
             className={`${classes.saveButton} globalMainBtn`}
           >
             Сохранить

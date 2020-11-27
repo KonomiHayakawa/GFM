@@ -21,7 +21,7 @@ const FeedbackPageContainer = (props) => {
 
   return (
     <FeedbackPage 
-      {...props} 
+      error={props.error}
       successMessage={successMessage} 
       sendFeedbackMessage={sendFeedbackMessage}
     />

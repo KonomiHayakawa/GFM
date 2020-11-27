@@ -1,10 +1,11 @@
 import React from 'react'
+import { Alert } from 'antd'
+import {CloseOutlined} from '@ant-design/icons'
 import SavingRecipeForm from './SavingRecipeForm/SavingRecipeForm'
 import { NavLink } from 'react-router-dom'
-import ErrorMessage from '../../common/ErrorMessage'
 import classes from './SavingRecipe.module.css'
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 import './../../../App.css'
-import { Alert } from 'antd';
 
 const SavingRecipe = (props) => {
   return (
@@ -24,66 +25,92 @@ const SavingRecipe = (props) => {
 const SavingRecipeIfAuth = (props) => {
   return (
     <div>
-    {props.savingRecipe === 'done' && 
-      <Alert
-        message='Готово :)'
-        description={
-          <span>
-            Рецепт сохранен, можешь найти его у себя 
-            в <NavLink className={classes.linkToProfile} to='/profile/myRecipes'>
-              профиле
-            </NavLink>
-          </span>
-        }
-        type='success'
-        showIcon
-        closable
-        onClose={() => props.switchSavingRecipe(false)}
-        className={classes.savingRecipeAlert}
-      />
-    }
-    {props.savingRecipe === 'errorSameTitle' &&
-      <Alert
-        message='Не получилось :('
-        description='Ты уже сохранял рецепт с таким названием! Нужно придумать что-то другое :)'
-        type='error'
-        showIcon
-        closable
-        onClose={() => props.switchSavingRecipe(true)}
-        className={classes.savingRecipeAlert}
-      />
-    }
-    {props.savingRecipe === 'errorNoIngredients' &&
-      <Alert
-        message='Не получилось :('
-        description='В рецепте нет ингредиентов'
-        type='error'
-        showIcon
-        closable
-        onClose={() => props.switchSavingRecipe(false)}
-        className={classes.savingRecipeAlert}
-      />
-    }
-     {!props.savingRecipe && 
-      <button 
-        className={'globalMainBtn'} 
-        onClick={() => props.switchSavingRecipe(true)}
-      >
-        Сохранить рецепт
-      </button> 
-    }
-    {props.savingRecipe === true && 
-      <SavingRecipeForm 
-        ingredients={props.addedFood} 
-        calories={props.stateTotalCalories} 
-        weight={props.stateTotalWeight}
-        saveRecipe={props.saveRecipe}
-      />
-    }
-    {props.error && <ErrorMessage />
+      {props.savingRecipe === 'done' && 
+        <Alert
+          closeText={<CloseOutlined className={classes.alertCloseIco}/>}
+          closable
+          className={classes.savingRecipeAlert}
+          description={
+            <span className={classes.alertMessageDescription}>
+              Рецепт сохранен, можешь найти его у себя 
+              в <NavLink className={classes.linkToProfile} to='/profile/myRecipes'>
+                профиле
+              </NavLink>
+            </span>
+          }
+          message={
+            <span className={classes.alertMessageTitle}>
+              Готово :)
+            </span>
+          }
+          onClose={() => props.switchSavingRecipe(false)}
+          showIcon
+          type='success'
+        />
+      }
 
-    }
-  </div>
+      {props.savingRecipe === 'errorSameTitle' &&
+        <Alert
+          closable
+          closeText={<CloseOutlined className={classes.alertCloseIco}/>}
+          className={classes.savingRecipeAlert}
+          description={
+            <span className={classes.alertMessageDescription}>
+              Ты уже сохранял рецепт с таким названием! Нужно придумать что-то другое :)
+            </span>
+          }
+          message={
+            <span className={classes.alertMessageTitle}>
+              Не получилось :(
+            </span>
+          }
+          onClose={() => props.switchSavingRecipe(true)}
+          showIcon
+          type='error'
+        />
+      }
+
+      {props.savingRecipe === 'errorNoIngredients' &&
+        <Alert
+          message={
+            <span className={classes.alertMessageTitle}>
+              Не получилось :(
+            </span>
+          }
+          description={
+            <span className={classes.alertMessageDescription}>
+              В рецепте нет ингредиентов
+            </span>
+          }
+          type='error'
+          showIcon
+          closeText={<CloseOutlined className={classes.alertCloseIco}/>}
+          closable
+          onClose={() => props.switchSavingRecipe(false)}
+          className={classes.savingRecipeAlert}
+        />
+      }
+
+      {!props.savingRecipe && 
+        <button 
+          className={'globalMainBtn'} 
+          onClick={() => props.switchSavingRecipe(true)}
+        >
+          Сохранить рецепт
+        </button> 
+      }
+
+      {props.savingRecipe === true && 
+        <SavingRecipeForm 
+          ingredients={props.addedFood} 
+          calories={props.stateTotalCalories} 
+          weight={props.stateTotalWeight}
+          saveRecipe={props.saveRecipe}
+        />
+      }
+
+      {props.error && <ErrorMessage />}
+    </div>
   )
 }
 export default SavingRecipe

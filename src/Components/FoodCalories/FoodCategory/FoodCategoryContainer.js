@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {getFoodGroup} from '../../../queries/foodCalories'
-import {setError} from './../../../redux/forError'
-import {setOpenFoodCategory, setFoodCategoryLink} from './../../../redux/recipeConstructorReducer'
 import FoodCategory from './FoodCategory'
+import {getFoodGroup} from '../../../queries/foodCalories'
 import {setFoodCategoryItems} from './../../../redux/foodCaloriesReducer'
+import {setOpenFoodCategory, setFoodCategoryLink} from './../../../redux/recipeConstructorReducer'
+import {setError} from './../../../redux/forError'
 
 const FoodCategoryContainer = (props) => {
 
@@ -21,7 +21,7 @@ const FoodCategoryContainer = (props) => {
       } catch (error) {
         props.setError(error)
       }
-    },[props.foodCategoryLink, props.match.params.category]
+    },[props.foodCategoryLink, props.match.params.category, props.setFoodCategoryItems,  props.setError]
   )
 
   const searchIngredient = (event) => {
@@ -46,27 +46,27 @@ const FoodCategoryContainer = (props) => {
       props.setOpenFoodCategory(false)
       props.setFoodCategoryLink(null)
     } else {
-      props.history.push('/foodCategoriesList');
+      props.history.push('/foodCategoriesList')
     }
   }
 
   return (
-    <FoodCategory 
+    <FoodCategory
+      error={props.error} 
       foodData={props.foodData} 
-      error={props.error}
-      searchIngredient={searchIngredient}
-      searchMatches={searchMatches}
       goBackToCategoriesList={goBackToCategoriesList}
       isLoading={isLoading}
+      searchIngredient={searchIngredient}
+      searchMatches={searchMatches}
     />
   )
 }
 
 const mapStateToProps = (state) => ({
-  foodCategoryLink: state.recipeConstructorReducer.modal.foodCategoryLink,
-  error: state.forError.error,
-  openFoodCategory: state.recipeConstructorReducer.modal.openFoodCategory,
+  foodCategoryLink: state.recipeConstructorReducer.ingredientsArea.foodCategoryLink,
+  openFoodCategory: state.recipeConstructorReducer.ingredientsArea.openFoodCategory,
   foodData: state.foodCaloriesReducer.foodCategoryItems,
+  error: state.forError.error,
 })
 
 export default withRouter(connect(mapStateToProps, {setFoodCategoryItems, setError, setOpenFoodCategory, setFoodCategoryLink})(FoodCategoryContainer))

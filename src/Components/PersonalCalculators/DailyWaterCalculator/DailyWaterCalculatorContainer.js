@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import DailyWaterCalculator from './DailyWaterCalculator'
 import { connect } from 'react-redux'
-import {setDailyWater, saveDailyWater} from '../../../redux/userPersonalData'
 import {calcDailyWater} from '../../common/calculations'
 import {setError} from './../../../redux/forError'
+import {setDailyWater, saveDailyWater} from '../../../redux/userPersonalData'
 
 const DailyWaterCalculatorContainer = (props) => {
 
@@ -26,10 +26,10 @@ const DailyWaterCalculatorContainer = (props) => {
   return (
     <DailyWaterCalculator 
       dailyWater={props.dailyWater} 
-      updateDailyWater={updateDailyWater}
+      error={props.error}
       isChangingData={isChangingData}
       toggleIsChangingData={toggleIsChangingData}
-      error={props.error}
+      updateDailyWater={updateDailyWater}
     />
   )
   
@@ -37,9 +37,9 @@ const DailyWaterCalculatorContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return ({
-    userData: state.authReducer,
     dailyWater: state.userPersonalData.dailyWater,
-    error: state.forError.error
+    error: state.forError.error,
+    userData: state.authReducer,
   })
 }
 

@@ -1,10 +1,11 @@
 .appWrapper {
   display: grid;
-  grid-template-rows: 15vh 85vh;
+  grid-template-rows: 15% 85%;
   grid-template-areas: 
   'header'
   'mainContent';
   height: 100vh;
+  width: 100vw;
 }
 
 header {
@@ -17,13 +18,13 @@ header {
 
 .globalBtn {
   background-color: transparent;
-  height: 50px;
-  cursor: pointer;
   border: 1px dashed transparent;
   border-bottom: 1px solid #3fa9ff9c;
+  cursor: pointer;
   color: rgb(54, 56, 122);
-  transition: transform .2s;
+  height: 50px;
   margin: 7px;
+  transition: transform .2s;
 }
 
 .globalBtn:hover {
@@ -35,14 +36,115 @@ header {
   background-color: rgb(231, 240, 254);
   border: none;
   color: rgb(54, 56, 122);
-  width: 180px;
-  height: 50px;
   cursor: pointer;
-  transition: transform .2s;
+  height: 50px;
   margin-bottom: 15px;
+  transition: transform .2s;
+  width: 180px;
 }
 
 .globalMainBtn:hover {
   background-color:  rgb(195, 214, 245);
   transform: scale(1.2);
+}
+
+.globalInput {
+  transition: transform .2s;
+}
+
+.globalInput:hover {
+  background-color: #d9e7f39c;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width:1000px) {
+  .appWrapper {
+    font-size: 1.8rem;
+  }
+
+  .appWrapper h1 {
+    font-size: 4rem;
+  }
+
+  .appWrapper h2 {
+    font-size: 3.1rem;
+  }
+
+  .appWrapper h3 {
+    font-size: 2.8rem;
+  }
+
+  .globalMainBtn {
+    font-size: 2.6rem;
+    height: 160px;
+    width: 400px;
+  }
+
+  .globalBtn {
+    font-size: 2.7rem;
+    height: 10vh;
+  }
+
+  .globalInput {
+    font-size: 3rem;
+    height: 10vh;
+  }
+
+  .globalInput:hover {
+    transform: scale(1);
+  }
+
+  .ant-input  {
+    font-size: 3rem;
+  }
+  
+  .globalAntStyle .ant-input::placeholder  {
+    font-size: 3rem;
+  }
+
+  .globalAntStyle .ant-statistic-title {
+    font-size: 2.5rem;
+  }
+  
+  .globalAntStyle .ant-statistic-content {
+    font-size: 3rem;
+  }
+  
+  .ant-select-item {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+
+  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    font-size: 3rem;
+    height: 4vh;
+    padding-top: 20px;
+  }
+
+  /* upload file-list preview  */
+  .ant-upload-list-picture .ant-upload-list-item-image {
+    max-width: 100vw;
+  }
+  
+  .ant-upload-list-picture .ant-upload-list-item-thumbnail img {
+    height: 150px;
+    width: 150px;
+  }
+  
+  .ant-upload-list-item {
+    font-size: 3rem;
+  }
+  
+  .ant-upload-list-picture .ant-upload-list-item {
+    height: 170px;
+  }
+  
+  .ant-btn-icon-only.ant-btn-sm > * {
+    font-size: 1.7rem;
+  }
+
+  .ant-upload-list-picture .ant-upload-list-item-name {
+    line-height: 150px;
+  }
+
 }

@@ -1,9 +1,11 @@
 import React from 'react'
-import classes from './Registration.module.css'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import {Alert} from 'antd'
-import {AntInput, AntInputPassword} from './../../common/antDesignForFormik/antDesignForFormik'
+import classes from './Registration.module.css'
+import './../../../App.css'
+import {EmailInput, PasswordInput, NickNameInput} from '../../common/ForForms/FormikInputs'
+
 
 const RegistrationForm = (props) => {
 
@@ -13,13 +15,13 @@ const RegistrationForm = (props) => {
       .email('Некорректный адрес'),
     password: Yup.string()
       .required('Обязательное поле')
-      .min(6, 'Минимальная длина - 6 символов'),
+      .min(6, 'Минимум 6 символов'),
     passwordConfirmation: Yup.string()
       .required('Обязательное поле')
-      .oneOf([Yup.ref('password'), null], 'Введенные пароли должны совпадать!'),
+      .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать!'),
     nickname: Yup.string()
       .required('Обязательное поле')
-      .max(10, 'Максимум - 10 символов')
+      .max(10, 'Максимум 10 символов')
   })
 
   const initialValues = {
@@ -52,70 +54,35 @@ const RegistrationForm = (props) => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(FormikProps) => (
-        <Form>
+        <Form className={classes.form}>
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInput} 
-              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
-              type='text' 
-              name='email' 
-              placeholder='Email' 
-              bordered={false}
-            /> 
-          </div>
+          <EmailInput />
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInputPassword} 
-              style={{width: '100%'}}
-              className={classes.password} 
-              type='password' 
-              name='password' 
-              bordered={false}
-            />
-          </div>
+          <PasswordInput />
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInputPassword} 
-              style={{width: '100%'}}
-              className={classes.password} 
-              type='password' 
-              name='passwordConfirmation' 
-              bordered={false}
-              placeholder='Пароль (еще раз)'
-            />
-          </div>
+          <PasswordInput 
+            name='passwordConfirmation' 
+            placeholder='Пароль (еще раз)' 
+          />
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInput} 
-              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
-              type='text' 
-              name='nickname' 
-              placeholder='Никнейм' 
-              bordered={false}
-            /> 
-          </div>
+          <NickNameInput />
 
           <button 
-            className={classes.sendFormBtn} 
-            type='submit' 
+            className={`${classes.sendFormBtn} globalBtn` } 
             name='submit'
+            type='submit' 
           >
             Создать аккаунт
           </button>
 
           {FormikProps.errors.general
-            ? <div className={classes.generalErrors}>
-                <Alert 
-                  message={FormikProps.errors.general} 
-                  type="error" 
-                  showIcon
-                  banner={true}
-                />
-              </div>
+            ? <Alert 
+                banner={true}
+                type="error" 
+                message={FormikProps.errors.general} 
+                showIcon
+                className={classes.generalErrors}
+              />
             : null
           }
         </Form>

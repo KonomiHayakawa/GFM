@@ -1,25 +1,25 @@
 .categoriesWrapper {
+  align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
-  margin: 10px;
   justify-items: center;
-  align-items: center;
+  margin: 10px;
 }
 
 .categoryWrapper {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   border-bottom: 2px solid rgb(145, 213, 255);
   border-top: 2px solid transparent;
   color: rgb(10, 69, 109);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  justify-content: center;
+  padding: 7px;
   text-align: center;
   width: 150px;
-  padding: 7px;
-  height: 140px;
 }
 
 .categoryWrapper:hover {
@@ -27,6 +27,25 @@
 }
 
 .categoryImg {
-  width: 60px;
   margin-bottom: 10px;
+  width: 60px;
+}
+
+@media screen and (max-width:1100px) {
+
+  .categoriesWrapper {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  } 
+
+  .categoryWrapper {
+    height: 280px;
+    padding: 30px;
+    width: 300px;
+  }
+
+  .categoryImg {
+    margin-bottom: 10px;
+    width: 80%;
+  }
+  
 }

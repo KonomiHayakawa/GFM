@@ -1,9 +1,11 @@
-.resultHeading{
+.resultHeading {
+  color: gray;
   font-weight: normal;
   margin: 0px;
-  color: gray;
 }
 
 .results {
   margin-bottom: 15px;
 }
+
+

@@ -1,18 +1,23 @@
 import React from 'react'
-import ErrorMessage from '../common/ErrorMessage'
-import FeedbackForm from './FeedbackForm'
-import {ReactComponent as FeedbackMainImage} from './../../img/feedbackPage/pageMainImage.svg'
-import classes from './FeedbackPage.module.css'
 import { Result } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
+import classes from './FeedbackPage.module.css'
+import ErrorMessage from '../common/ErrorMessage/ErrorMessage'
+import FeedbackForm from './FeedbackForm'
+import {ReactComponent as FeedbackMainImage} from './../../img/feedbackPage/pageMainImage.svg'
 
 const FeedbackPage = (props) => {
   return (
     <div className={classes.wrapper}>
-      <FeedbackMainImage className={classes.mainImage} />
+
+      <div className={classes.mainImageWrapper}>
+        <FeedbackMainImage className={classes.mainImage} />
+      </div>
+
       <div className={classes.messageFieldWrapper}>
         <MessageField {...props} />
       </div>
+
     </div>
   )
 }
@@ -28,9 +33,17 @@ const MessageField = (props) => {
       {props.successMessage &&
         <Result
         icon={<SmileOutlined />}
-        title='Сообщение отправлено!'
-        subTitle='Мы ознакомимся с ним в ближайшее время и, в случае необходимости, 
-        отправим ответ на указанный имеил :)'
+        title={
+          <span className={classes.resultMessageTitle}>
+            Сообщение отправлено!
+          </span>
+        }
+        subTitle={
+          <span className={classes.resultMessageDescription}>
+            Мы ознакомимся с ним в ближайшее время и, в случае необходимости, 
+            отправим ответ на указанный имеил :)
+          </span>
+        }
       />
       }
       {props.error && <ErrorMessage />}

@@ -1,48 +1,51 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Card, Popover, Alert } from 'antd'
-import {SyncOutlined, QuestionCircleOutlined} from '@ant-design/icons'
+import {CalculatorOutlined, QuestionCircleOutlined} from '@ant-design/icons'
 import BMIExplanation from './../../personalCalculators/BodyMassIndexCalculator/BMIExplanation'
-import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.png'
-import dailyWaterImg from './../../../img/personalCalculations/dailyWater.png'
 import bodyMassIndex from './../../../img/personalCalculations/bodyMassIndex.png'
 import classes from './CalculationData.module.css'
+import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.png'
+import dailyWaterImg from './../../../img/personalCalculations/dailyWater.png'
+
 
 const CalculationsData = (props) => {
 
   const calculationsDataArr = [
     {
-      title:'Дневная норма калорий', 
-      calcResult: props.userData.dailyCalories ? `${props.userData.dailyCalories} ккал` : 'Пока не знаю :(', 
-      img:dailyCaloriesImg,
+      title: 'Дневная норма калорий', 
+      calcResult: props.userData.dailyCalories && `${props.userData.dailyCalories} ккал`, 
+      img: dailyCaloriesImg,
       actions: [],
       calcAgainLink: '/personalCalculators/dailyCalories',
-      id:1
+      id: 1,
     },
     {
-      title:'Дневная норма воды', 
-      calcResult: props.userData.dailyWater ? `${props.userData.dailyWater} л.` : 'Пока не знаю :(', 
-      img:dailyWaterImg, 
+      title: 'Дневная норма воды', 
+      calcResult: props.userData.dailyWater && `${props.userData.dailyWater} л.`, 
+      img: dailyWaterImg, 
       actions: [],
       calcAgainLink: '/personalCalculators/dailyWater',
-      id:2
+      id: 2,
     },
     {
-      title:'Индекс массы тела', 
-      calcResult:props.userData.bodyMassIndex || 'Пока не знаю :(', 
-      img:bodyMassIndex, 
+      title: 'Индекс массы тела', 
+      calcResult: props.userData.bodyMassIndex, 
+      img: bodyMassIndex, 
       actions: [
-        <Popover content={
-          <BMIExplanation  
-            style={{ width: 360 }} 
-          />} 
-          trigger="click"
+        <Popover 
+          content={
+            <BMIExplanation className={classes.bmiExplanationAlert}/>
+          } 
+          trigger='click'
         >
-          <QuestionCircleOutlined /> Как это?
+          <span className={classes.cardFooterItem}>
+            <QuestionCircleOutlined /> Как это?
+          </span>
         </Popover>
       ],
       calcAgainLink: '/personalCalculators/bodyMassIndex',
-      id:3
+      id: 3,
     },
   ]
 
@@ -61,13 +64,14 @@ const CalculationsData = (props) => {
         <div className={classes.welcomeText}>
           <Alert 
             message={
-              <span>Здесь будут храниться результаты твоих индивидуальных рассчетов. 
+              <span>
+                Здесь будут храниться результаты твоих индивидуальных рассчетов. 
                 Пока что здесь пусто, но чтобы это исправить, переходи
                 к <NavLink to='/personalCalculators'>калькуляторам</NavLink> и 
                 узнай свои показатели :)
               </span>
             } 
-            type="info" 
+            type='info' 
             showIcon
           />
         </div>
@@ -83,23 +87,29 @@ const CalculationItem = (props) => {
 
   return (
     <Card
-      style={{ width: 300 }}
       actions={[
-        <NavLink to={props.data.calcAgainLink}>
-          <SyncOutlined /> Посчитать
-        </NavLink>,
+        <span className={classes.cardFooterItem}>
+          <NavLink to={props.data.calcAgainLink}>
+            <CalculatorOutlined /> Посчитать
+          </NavLink>
+        </span>,
         ...props.data.actions
       ]}
+      className={classes.card}
       cover={
         <img
           alt={props.data.title}
           src={props.data.img}
-          style={{height: '150px', width: 'auto', margin: '0 auto'}}
+          className={classes.cardCover}
         />
       }
     >
       <Meta
-        title={props.data.calcResult}
+        title={
+          <span className={classes.calcResult}>
+            {props.data.calcResult || 'Пока не знаю :('}
+          </span>
+        }
         description={props.data.title} 
       />
     </Card>

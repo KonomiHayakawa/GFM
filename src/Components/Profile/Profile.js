@@ -1,18 +1,17 @@
 import React from 'react'
 import { Switch, Route, NavLink, Redirect } from "react-router-dom"
 import { Menu } from 'antd'
+import {isMobile} from 'react-device-detect'
 import classes from './Profile.module.css'
-import MyRecipesContainer from './MyRecipes/MyRecipesContainer'
 import CalculationsDataContainer from './CalculationsData/CalculationsDataContainer'
+import MyRecipesContainer from './MyRecipes/MyRecipesContainer'
 import MainProfileDataContainer from './MainProfileData/MainProfileDataContainer'
 import PersonalDataContainer from './PersonalData/PersonalDataContainer'
-// import {ReactComponent as ProfileMainImage} from './../../img/test.svg'
-import {ReactComponent as ProfileMainImage} from './../../img/testKek.svg'
-
+import {ReactComponent as ProfileMainImage} from './../../img/profile/profileMainImage.svg'
 
 const Profile = (props) => {
  
-  const arr = [
+  const profileTabs = [
     {link: '/profile/mainInfo', title: 'Основное', component: MainProfileDataContainer, key: 'mainInfo'},
     {link: '/profile/personalInfo', title: 'Личная информация', component: PersonalDataContainer, key: 'personalInfo'},
     {link: '/profile/calculations', title: 'Рассчёты', component: CalculationsDataContainer, key: 'calculations'},
@@ -28,10 +27,10 @@ const Profile = (props) => {
       <div className={classes.sideNavigation}>
         <Menu 
           onClick={(e) => handleClick(e)}  
-          mode="vertical" 
+          mode= {isMobile ? 'horizontal' : 'vertical' }
           selectedKeys={[`${props.selectedNavItem}`]}
         >
-          {arr.map((navItem) => {
+          {profileTabs.map((navItem) => {
             return (
               <Menu.Item key={navItem.key}>
                 <NavLink 
@@ -55,7 +54,9 @@ const Profile = (props) => {
           <Redirect from='/profile' to='/profile/mainInfo' />
         </Switch>
       </div>
-      <ProfileMainImage className={classes.profileMainImage}/>
+      {!isMobile &&
+        <ProfileMainImage className={classes.profileMainImage}/>
+      }
     </div>
   )
 }

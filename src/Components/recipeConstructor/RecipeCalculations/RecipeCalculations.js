@@ -1,6 +1,6 @@
 import React from 'react'
-import { Statistic, Row, Col } from 'antd';
-
+import { Statistic, Row, Col } from 'antd'
+import './../../../App.css'
 
 const RecipeCalculations = (props) => {
   const weight = props.nutritionalValue.totalWeight >= 1000
@@ -14,7 +14,7 @@ const RecipeCalculations = (props) => {
   return (
     <div>
       <h2>Итого</h2>
-      <Row gutter={16}>
+      <Row gutter={16} className='globalAntStyle'>
         <Col span={12}>
           <Statistic 
             title='Калорийность блюда (ккал)' 

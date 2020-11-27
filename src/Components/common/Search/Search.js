@@ -1,32 +1,39 @@
 import React from 'react'
 import { Input } from 'antd'
-import {ReactComponent as NoResultsImg} from './../../../img/common/NoSearchResultsImg.svg'
+import {SearchOutlined} from '@ant-design/icons'
+import './../../../App.css'
 import classes from './Search.module.css'
+import {ReactComponent as NoResultsImg} from './../../../img/common/NoSearchResultsImg.svg'
 
 export const SearchInput = (props) => {
 
-  const { Search } = Input;
-
   return (
     <>
-      <Search 
-        style={{width:'40%', margin: '15px 0px 15px 0px'}} 
+      <Input
+        suffix={
+          <SearchOutlined 
+            className={classes.searchIcon}
+          />
+        }
         placeholder={props.placeholder}
         onChange={props.onChange} 
-        enterButton
+        className={`globalAntStyle ${classes.searchInput}`}
+        type='text'
       />
     </>
   )
 }
 
-
-
 export const NoSearchResults = (props) => {
 
   return (
     <div className={classes.noResultsWrapper}>
-      <NoResultsImg/>
-      <div className={classes.sorryMessage}>Прости, я ничего не нашел :(</div>
+      <div className={classes.noResultsImg}>
+        <NoResultsImg/>
+      </div>
+      <div className={classes.sorryMessage}>
+        Прости, я ничего не нашел :(
+      </div>
     </div>
   )
 }

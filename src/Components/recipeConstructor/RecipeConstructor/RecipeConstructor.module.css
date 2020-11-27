@@ -1,29 +1,56 @@
-.wrapper{
+.wrapper {
   display: grid;
   grid-template-columns: 45% 55%;
 }
 
-.recipeConstructor{
+.recipeConstructor {
   display: flex;
   flex-direction: column;
-  margin-left: 10%;
   height: 80%;
+  margin-left: 10%;
   margin-top: 10%;
 }
 
-.pageMainImage{
-  width: 80%;
-  margin-right: 10%;
+.pageMainImage {
   align-self: center;
   justify-self: center;
+  margin-right: 10%;
+  width: 80%;
 }
 
-.titleWrapper{
+.titleWrapper {
   display: inline-flex;
 }
 
 .showInfo {
-  vertical-align: super;
-  font-size: smaller;
   cursor: pointer;
+  font-size: smaller;
+  vertical-align: super;
+}
+
+@media screen and (max-width:1100px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .titleWrapper {
+    margin-bottom: 100px;
+  }
+
+  .pageMainImage {
+    width: 100%;
+  }
+
+  .showInfo {
+    font-size: normal;
+  }
+
+  .infoAlertWrapper{
+    position: relative;
+  }
+
+  .infoAlert {
+    font-size: 1.9rem;
+    height: 600px;
+  }
 }

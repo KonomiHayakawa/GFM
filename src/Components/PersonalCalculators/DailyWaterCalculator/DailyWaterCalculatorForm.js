@@ -1,9 +1,8 @@
 import React from 'react'
-import classes from './DailyWaterCalculator.module.css'
 import './../../../App.css'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {AntSelect, AntInput} from "./../../common/antDesignForFormik/antDesignForFormik";
+import {SexInput, WeightInput} from './../../common/ForForms/FormikInputs'
 
 const DailyWaterForm = (props) => {
 
@@ -26,28 +25,12 @@ const DailyWaterForm = (props) => {
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
-      <label htmlFor="sex">Пол:</label>
-        <Field 
-          component={AntSelect}
-          selectOptions={[
-            {name:'Мужской', value: 'male'},
-            {name:'Женский', value:'female'},
-          ]}
-          style={{ width: 300}}
-          name='sex'
-          id='sex'
-        />
+        <label htmlFor='sex'>Пол:</label>
+        <SexInput/>
 
-        <label htmlFor="weight">Вес(кг)</label>
-        <Field
-          component={AntInput} 
-          style={{ width: 300}}  
-          name='weight' 
-          id='weight' 
-          type='text'  
-        />
+        <label htmlFor='weight'>Вес(кг)</label>
+        <WeightInput/>
 
- 
         <button 
           className='globalMainBtn' 
           type='submit'

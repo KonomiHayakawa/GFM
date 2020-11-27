@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import DailyCaloriesCalculator from './DailyCaloriesCalculator'
-import {setDailyCalories, saveDailyCalories} from '../../../redux/userPersonalData'
 import { connect } from 'react-redux'
 import {calcDailyCalories} from '../../common/calculations'
+import DailyCaloriesCalculator from './DailyCaloriesCalculator'
 import {setError} from './../../../redux/forError'
+import {setDailyCalories, saveDailyCalories} from '../../../redux/userPersonalData'
 
 const DailyCaloriesContainer = (props) => {
 
@@ -24,22 +24,22 @@ const DailyCaloriesContainer = (props) => {
     toggleIsChangingData(false)
   }
 
-    return (
-      <DailyCaloriesCalculator 
-        dailyCalories={props.dailyCalories}
-        updateCalories={updateCalories}
-        isChangingData={isChangingData}
-        toggleIsChangingData={toggleIsChangingData}
-        error={props.error}
-      />
-    )
+  return (
+    <DailyCaloriesCalculator 
+      dailyCalories={props.dailyCalories}
+      error={props.error}
+      isChangingData={isChangingData}
+      toggleIsChangingData={toggleIsChangingData}
+      updateCalories={updateCalories}
+    />
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.authReducer,
     dailyCalories: state.userPersonalData.dailyCalories,
     error: state.forError.error,
+    userData: state.authReducer,
   }
 }
 

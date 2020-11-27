@@ -1,6 +1,7 @@
 import React from 'react'
-import { Table } from 'antd';
-import AddingIngredientFieldContainer from '../../recipeConstructor/ChoosingIngredients/AddingIngredient/AddingIngredientFieldContainer'
+import { Table } from 'antd'
+import AddingIngredientFieldContainer from '../../recipeConstructor/choosingIngredients/AddingIngredient/AddingIngredientFieldContainer'
+import classes from './FoodCategoryTable.module.css'
 
 const FoodCategoryTable = (props) => {
 
@@ -8,47 +9,59 @@ const FoodCategoryTable = (props) => {
     {
       dataIndex: 'img',
       key: 'img',
-      render: link => <img src={link} alt='foodItem' />,
+      render: link => {
+        return <img 
+          src={link} 
+          alt='foodItem' 
+          className={classes.foodItemImg} 
+        />
+      },
     },
     {
       dataIndex: 'title',
       width: '30%',
       key: 'title',
+      className:classes.foodCategoryTableCol,
     },
     {
       title: 'Белки',
       dataIndex: 'proteins',
       key: 'proteins',
+      className:classes.foodCategoryTableCol,
     },
     {
       title: 'Жиры',
       dataIndex: 'fats',
       key: 'fats',
+      className:classes.foodCategoryTableCol,
     },
     {
       title: 'Углеводы',
       dataIndex: 'carbohydrates',
       key: 'carbohydrates',
+      className:classes.foodCategoryTableCol,
     },
     {
       
       title: 'Ккал',
       dataIndex: 'calories',
       key: 'calories',
-      
+      className:classes.foodCategoryTableCol
     },
     {
       key: 'button',
-      shouldCellUpdate: (a,b) => false,
+      shouldCellUpdate: () => false,
+      className:`${classes.foodCategoryTableCol}`,
       render: (foodItem) => {
-        return (
-          <AddingIngredientFieldContainer 
-            addRecipeButton={props.addRecipeButton} 
-            foodItem={foodItem}
-          />
-        )
+        if (props.addRecipeButton) {
+          return (
+            <AddingIngredientFieldContainer 
+              foodItem={foodItem}
+            />
+          )
+        }
       }
-    }
+    },
   ]
   
   return (

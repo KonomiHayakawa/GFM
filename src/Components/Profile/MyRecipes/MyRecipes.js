@@ -1,10 +1,11 @@
 import React from 'react'
-import classes from './MyRecipes.module.css'
+import {isMobile} from 'react-device-detect'
 import { NavLink } from 'react-router-dom'
-import ErrorMessage from './../../common/ErrorMessage'
+import { Card, Avatar, Alert, Popconfirm, message } from 'antd'
+import {DeleteOutlined, SettingOutlined} from '@ant-design/icons'
+import classes from './MyRecipes.module.css'
 import defaultRecipeImg from './../../../img/default/recipe.svg'
-import { Card, Avatar, Alert, Popconfirm, message } from 'antd';
-import {DeleteOutlined, SettingOutlined} from '@ant-design/icons';
+import ErrorMessage from './../../common/ErrorMessage/ErrorMessage'
 
 const MyRecipes = (props) => {
 
@@ -22,7 +23,7 @@ const MyRecipes = (props) => {
           <Alert
             message='Здесь пока пусто :('
             description={welcomeText}
-            type="info"
+            type='info'
             showIcon
             className={classes.welcomeText}
           />
@@ -55,22 +56,50 @@ const RecipeItem = (props) => {
     ? 'кг'
     : 'г'
 
-  const { Meta } = Card;
+  const { Meta } = Card
+
   return (
     <Card
-      style={{ width: 300 }}
+      className={classes.recipeCard}
       actions={[
-        <NavLink to={`/savedRecipe/${props.recipe.id}`}><SettingOutlined /> Подробнее</NavLink>,
-        <DeleteRecipeWithConfirm deleteRecipe={props.deleteRecipe} recipe={props.recipe}/>
+        <span className={classes.cardFooterItem}>
+          <NavLink to={`/savedRecipe/${props.recipe.id}`}>
+            <SettingOutlined /> Подробнее
+          </NavLink>
+        </span>,
+        <span className={classes.cardFooterItem}>
+          {isMobile
+            ? <span onClick={() => props.deleteRecipe(props.recipe)}>
+                <DeleteOutlined /> Удалить
+              </span>
+            : <DeleteRecipeWithConfirm 
+                deleteRecipe={props.deleteRecipe} 
+                recipe={props.recipe}
+              />
+          }
+        </span>
       ]}
     >
       <Meta
-        avatar={<Avatar size={64} shape='square' src={props.recipe.img || defaultRecipeImg} />}
-        title={props.recipe.title}
+        avatar={
+          <Avatar 
+            className={classes.recipeCover}
+            shape='square' 
+            src={props.recipe.img || defaultRecipeImg} 
+          />
+        }
+        title={
+          <span className={classes.recipeTitle}>
+            {props.recipe.title}
+          </span>}
         description={
           <>
-            <div>Итоговый вес: {weight} {units}</div>
-            <div>Калорийность: {props.recipe.calories} ккал</div>
+            <div className={classes.totalWeight}>
+              Итоговый вес: {weight} {units}
+            </div>
+            <div className={classes.totalCalories}>
+              Калорийность: {props.recipe.calories} ккал
+            </div>
           </>
         }
       />
@@ -91,6 +120,7 @@ const DeleteRecipeWithConfirm = (props) => {
       onConfirm={confirm}
       okText='Да'
       cancelText='Нет'
+      
     >
       <DeleteOutlined /> Удалить
     </Popconfirm>

@@ -19,12 +19,16 @@ export const setUserData = (isAuth, userId, userEmail) => ({type: 'SET_USER_DATA
 
 export const login = (email, password) => (dispatch) => {
   return authentication(email, password)
-    .then(response => dispatch(setUserData(true, response.user.uid, email)))
+    .then(response => {
+      dispatch(setUserData(true, response.user.uid, email))
+    })
 }
 
 export const signUp = (email, password) => (dispatch) => {
   return registration(email, password)
-    .then(response => dispatch(setUserData(true, response.user.uid, email)))
+    .then(response => {
+      dispatch(setUserData(true, response.user.uid, email))
+    })
 }
 
 export const signOut = () => (dispatch) => {

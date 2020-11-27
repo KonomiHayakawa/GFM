@@ -50,9 +50,7 @@ export const updateAvatar = (avatarLink) => {
 export const deleteAvatarFile = (userId) => {
   const desertRef = storageRef.child(`${userId}/avatar.jpg`)
   return desertRef.delete().then(function() {
-  }).catch(function(error) {
-
-  });
+  })
 }
 
 export const getDefaultAvatarLink = () => {

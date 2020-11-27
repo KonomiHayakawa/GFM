@@ -1,19 +1,20 @@
 import React from 'react'
-import {Formik, Form, Field} from 'formik'
+import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import classes from './FeedbackPage.module.css'
-import {AntInput, AntInputTextArea} from './../common/antDesignForFormik/antDesignForFormik'
+import './../../App.css'
+import {NickNameInput, EmailInput, MessageInput} from './../common/ForForms/FormikInputs'
 
 const FeedbackForm = (props) => {
 
   const validationSchema = Yup.object({
     name: Yup.string()
       .required('Не пропускай это поле!')
-      .min(3, 'Минимальная длина - 3 символов'),
+      .min(3, 'Минимум 3 символа'),
     email: Yup.string()
       .required('Не пропускай это поле!')
       .email('Некорректный адрес'),
-    feedbackDescription: Yup.string()
+    message: Yup.string()
       .required('Не пропускай это поле!')
       .max(150, 'Максимум 150 символов'),
   })
@@ -21,7 +22,7 @@ const FeedbackForm = (props) => {
   const initialValues = {
     name: '',
     email: '',
-    feedbackDescription: '',
+    message: '',
   }
 
   const onSubmit = (formData) => {
@@ -31,48 +32,23 @@ const FeedbackForm = (props) => {
   return ( 
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {() => (
-        <Form>
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInput} 
-              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
-              type='text' 
-              name='name' 
-              placeholder='Имя' 
-              bordered={false}
-            /> 
-          </div>
+        <Form className={classes.form}>
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInput} 
-              style={{width: '100%', borderBottom: '1px solid  #3fa9ff9c'}}
-              type='email' 
-              name='email' 
-              placeholder='Email' 
-              bordered={false}
-            /> 
-          </div>
+          <NickNameInput
+            name='name' 
+          />
 
-          <div className={classes.inputWrapper}>
-            <Field 
-              component={AntInputTextArea}
-              bordered={false}
-              type='text'
-              name='feedbackDescription'
-              id='feedbackDescription'
-              placeholder='Твое сообщение...' 
-              autoSize={{ minRows: 4, maxRows: 5 }}
-              style={{width: '100%', border: '1px solid  #3fa9ff9c'}}
-            >
-            </Field>
-          </div>
+          <EmailInput />
+
+          <MessageInput
+            autoSize={{ minRows: 4, maxRows: 5 }}
+          />
 
           <div>
             <button 
-              className={classes.sendMessageBtn} 
+              className={`${classes.sendMessageBtn} globalBtn`} 
               type='submit' 
-              name="submit"
+              name='submit'
             >
               Отправить
             </button>
@@ -84,5 +60,3 @@ const FeedbackForm = (props) => {
 }
 
 export default FeedbackForm
-
-
