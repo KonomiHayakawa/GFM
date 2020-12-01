@@ -10,7 +10,6 @@ import PersonalDataContainer from './PersonalData/PersonalDataContainer'
 import {ReactComponent as ProfileMainImage} from './../../img/profile/profileMainImage.svg'
 
 const Profile = (props) => {
- 
   const profileTabs = [
     {link: '/profile/mainInfo', title: 'Основное', component: MainProfileDataContainer, key: 'mainInfo'},
     {link: '/profile/personalInfo', title: 'Личная информация', component: PersonalDataContainer, key: 'personalInfo'},
@@ -30,7 +29,7 @@ const Profile = (props) => {
           mode= {isMobile ? 'horizontal' : 'vertical' }
           selectedKeys={[`${props.selectedNavItem}`]}
         >
-          {profileTabs.map((navItem) => {
+          {profileTabs.map(navItem => {
             return (
               <Menu.Item key={navItem.key}>
                 <NavLink 

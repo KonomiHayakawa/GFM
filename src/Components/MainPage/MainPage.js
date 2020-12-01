@@ -7,7 +7,6 @@ import recipeConstructor from './../../img/mainPage/recipeConstructor.svg'
 import personalCalculations from './../../img/mainPage/personalCalculations.svg'
 
 const MainPage = (props) => {
-
   const menuItems = [
     {
       id: 1, 
@@ -31,16 +30,14 @@ const MainPage = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      {menuItems.map(
-        item => {
-          return (
-            <MenuItem 
-              item={item} 
-              key={item.id}
-            />
-          )
-        }
-      )}
+      {menuItems.map(item => {
+        return (
+          <MenuItem 
+            item={item} 
+            key={item.id}
+          />
+        )
+      })}
     </div>
   )
 }

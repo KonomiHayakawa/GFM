@@ -9,7 +9,6 @@ import {ReactComponent as PageMainImage} from './../../../img/recipeConstructor/
 import SavingRecipeContainer from '../SavingRecipe/SavingRecipeContainer'
 
 const RecipeConstructor = (props) => {
-
   return (
     <div className={classes.wrapper}>
 

@@ -6,7 +6,6 @@ import classes from './Search.module.css'
 import {ReactComponent as NoResultsImg} from './../../../img/common/NoSearchResultsImg.svg'
 
 export const SearchInput = (props) => {
-
   return (
     <>
       <Input
@@ -25,7 +24,6 @@ export const SearchInput = (props) => {
 }
 
 export const NoSearchResults = (props) => {
-
   return (
     <div className={classes.noResultsWrapper}>
       <div className={classes.noResultsImg}>

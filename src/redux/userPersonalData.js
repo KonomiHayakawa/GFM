@@ -69,7 +69,7 @@ export const clearUserPersonalData = () => ({type: 'CLEAR_USER_PERSONAL_DATA'})
 
 export const saveName = (name) => (dispatch) => {
   updateUserName(name)
-    .then(() => dispatch(setName(name)))
+    .then(dispatch(setName(name)))
 }
 
 export const saveAvatar = (avatarLink) => (dispatch) => {

@@ -4,7 +4,6 @@ import Ingredients from './Ingredients'
 import {setShowIngredientsArea, closeIngredientsArea} from '../../../redux/recipeConstructorReducer'
 
 const IngredientsContainer = (props) => {
-
   return (
     <Ingredients 
       {...props}
@@ -12,11 +11,9 @@ const IngredientsContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    addedFood: state.recipeConstructorReducer.addedFood,
-    showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
-  })
-}
+const mapStateToProps = (state) => ({
+  addedFood: state.recipeConstructorReducer.addedFood,
+  showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
+})
 
 export default connect(mapStateToProps, {setShowIngredientsArea, closeIngredientsArea})(IngredientsContainer)

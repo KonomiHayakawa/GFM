@@ -6,7 +6,6 @@ import {IngredientWeightInput} from './../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
 
 const AddingIngredientForm = React.memo((props) => {
-
   const validationSchema = Yup.object({
     ingredientWeight: Yup.number()
       .typeError('Введи число')

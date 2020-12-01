@@ -4,7 +4,6 @@ import {closeIngredientsArea, clearRecipe} from '../../../redux/recipeConstructo
 import RecipeConstructor from './RecipeConstructor'
 
 const RecipeConstructorContainer = (props) => {
-
   const [showInfo, switchShowInfo] = useState(false)
 
   const { clearRecipe } = props
@@ -27,10 +26,8 @@ const RecipeConstructorContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    ingredientsArea: state.recipeConstructorReducer.ingredientsArea
-  })
-}
+const mapStateToProps = (state) => ({
+  ingredientsArea: state.recipeConstructorReducer.ingredientsArea
+})
 
 export default connect(mapStateToProps, {closeIngredientsArea, clearRecipe})(RecipeConstructorContainer)

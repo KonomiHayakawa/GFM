@@ -5,7 +5,6 @@ import {SexInput, HeightInput, WeightInput, AgeInput, ActivityTypeInput} from '.
 import './../../../App.css'
 
 const CalculationsDataEditingForm = (props) => {
-
   const validationSchema = Yup.object({
     height: Yup.number()
       .typeError('Введи число')

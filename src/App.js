@@ -4,24 +4,22 @@ import { connect } from 'react-redux'
 import { Ripple } from 'react-preloaders'
 import 'antd/dist/antd.css'
 import './App.css'
-import CalculatorsPageContainer from './Components/personalCalculators/CalculatorsPage/CalculatorsPageContainer'
-import FeedbackPageContainer from './Components/FeedbackPage/FeedbackPageContainer'
-import FoodCategoriesPage from './Components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
-import FoodCategoryPage from './Components/foodCalories/FoodCategoryPage/FoodCategoryPage'
-import HeaderContainer from './Components/Header/HeaderContainer'
-import LoginContainer from './Components/auth/Login/LoginContainer'
-import MainPage from './Components/MainPage/MainPage'
+import CalculatorsPageContainer from './components/personalCalculators/CalculatorsPage/CalculatorsPageContainer'
+import FeedbackPageContainer from './components/FeedbackPage/FeedbackPageContainer'
+import FoodCategoriesPage from './components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
+import FoodCategoryPage from './components/foodCalories/FoodCategoryPage/FoodCategoryPage'
+import HeaderContainer from './components/Header/HeaderContainer'
+import LoginContainer from './components/auth/Login/LoginContainer'
+import MainPage from './components/MainPage/MainPage'
 import {onAuthStateChange} from './../src/queries/auth'
-import ProfileContainer from './Components/Profile/ProfileContainer'
-import RecipeConstructorContainer from './Components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer'
-import RegistrationContainer from './Components/auth/Registration/RegistrationContainer'
-import SavedRecipeContainer from './Components/Profile/SavedRecipe/SavedRecipeContainer'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import RecipeConstructorContainer from './components/recipeConstructor/RecipeConstructor/RecipeConstructorContainer'
+import RegistrationContainer from './components/auth/Registration/RegistrationContainer'
+import SavedRecipeContainer from './components/Profile/SavedRecipe/SavedRecipeContainer'
 import {setUserData} from './redux/authReducer'
 import {setAllUserInfo} from './redux/userPersonalData'
 
-
 const App = (props) => {
-
   useEffect(() => {
     props.onAuthStateChange((user) => {
       if (user) {
@@ -57,10 +55,8 @@ const App = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    onAuthStateChange,
-  })
-}
+const mapStateToProps = (state) => ({
+  onAuthStateChange,
+})
 
 export default connect(mapStateToProps, {setUserData, setAllUserInfo})(App)

@@ -6,9 +6,7 @@ import classes from './Registration.module.css'
 import './../../../App.css'
 import {EmailInput, PasswordInput, NickNameInput} from '../../common/ForForms/FormikInputs'
 
-
 const RegistrationForm = (props) => {
-
   const validationSchema = Yup.object({
     email: Yup.string()
       .required('Обязательное поле')
@@ -22,6 +20,7 @@ const RegistrationForm = (props) => {
     nickname: Yup.string()
       .required('Обязательное поле')
       .max(10, 'Максимум 10 символов')
+      .min(3, 'Минимум 3 символa'),
   })
 
   const initialValues = {
@@ -31,24 +30,18 @@ const RegistrationForm = (props) => {
     nickname: '',
   }
 
-  const onSubmit = (formValue, actions) => {
-    props.signUp(formValue.email, formValue.password)
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          actions.setFieldError('general', 'Указанный адрес уже используется для другого аккаунта');
-        } else if (error.code === 'auth/user-not-found') {
-          actions.setFieldError('general', 'Неверный адрес электронной почты');
-        } else if (error.code === 'auth/wrong-password') {
-          actions.setFieldError('general', 'Неверный пароль');
-        } else {
-          actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!');
-        }
-      })
-      .then((response) => {
-        if (response) {
-          props.addNewUserMainData(formValue.nickname)
-        }
-      })
+  const onSubmit = (formData, actions) => {
+    props.createNewAccount(formData).catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        actions.setFieldError('general', 'Указанный адрес уже используется для другого аккаунта')
+      } else if (error.code === 'auth/user-not-found') {
+        actions.setFieldError('general', 'Неверный адрес электронной почты')
+      } else if (error.code === 'auth/wrong-password') {
+        actions.setFieldError('general', 'Неверный пароль')
+      } else {
+        actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!')
+      }
+    })
   }
 
   return (
@@ -75,15 +68,17 @@ const RegistrationForm = (props) => {
             Создать аккаунт
           </button>
 
-          {FormikProps.errors.general
-            ? <Alert 
+          {FormikProps.errors.general ? 
+            ( <Alert 
                 banner={true}
-                type="error" 
+                type='error' 
                 message={FormikProps.errors.general} 
                 showIcon
                 className={classes.generalErrors}
               />
-            : null
+            ) : (
+              null
+            )
           }
         </Form>
       )}

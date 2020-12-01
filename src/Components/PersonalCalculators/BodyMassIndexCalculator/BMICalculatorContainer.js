@@ -6,13 +6,12 @@ import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalDa
 import {setError} from './../../../redux/forError'
 
 const BMICalculatorContainer = (props) => {
-
   const [isChangingData, toggleIsChangingData] = useState(false)
   const [showExplanation, toggleShowExplanation] = useState(false)
 
   const updateBMI = (form) => {
     const BodyMassIndex = calcBodyMassIndex(form)
-    if (props.userData.isAuth) {
+    if (props.userData.isSignedIn) {
       try {
         props.saveBodyMassIndex(props.userData.userId, form, BodyMassIndex)
       } catch (error) {

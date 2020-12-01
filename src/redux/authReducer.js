@@ -2,7 +2,7 @@ import {authentication, registration, logout} from './../queries/auth'
 import {clearUserPersonalData} from './userPersonalData'
 
 const initialState = {
-  isAuth: false,
+  isSignedIn: false,
   userId: null,
   userEmail: null,
 }
@@ -10,12 +10,12 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_USER_DATA':
-      return {...state, isAuth: action.isAuth, userId: action.userId, userEmail: action.userEmail}
+      return {...state, isSignedIn: action.isSignedIn, userId: action.userId, userEmail: action.userEmail}
     default: return state
   }
 }
 
-export const setUserData = (isAuth, userId, userEmail) => ({type: 'SET_USER_DATA', isAuth, userId, userEmail})
+export const setUserData = (isSignedIn, userId, userEmail) => ({type: 'SET_USER_DATA', isSignedIn, userId, userEmail})
 
 export const login = (email, password) => (dispatch) => {
   return authentication(email, password)

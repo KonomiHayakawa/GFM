@@ -4,7 +4,6 @@ import AddingIngredientFieldContainer from '../../recipeConstructor/choosingIngr
 import classes from './FoodCategoryTable.module.css'
 
 const FoodCategoryTable = (props) => {
-
   const columns = [
     {
       dataIndex: 'img',
@@ -67,9 +66,9 @@ const FoodCategoryTable = (props) => {
   return (
     <Table 
       columns={columns} 
-      pagination={false} 
       dataSource={props.foodData}
       rowKey={foodItem => foodItem.id}
+      pagination={false} 
     />
   )
 }

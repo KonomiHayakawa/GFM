@@ -5,7 +5,6 @@ import logo from './../../img/common/logo.svg'
 import HeaderMenu from './HeaderMenu'
 
 const Header = (props) => {
-
   return (
     <div className={classes.header}>
 
@@ -23,7 +22,7 @@ const Header = (props) => {
 
       <div>
         <HeaderMenu
-          isAuth={props.userData.isAuth} 
+          isSignedIn={props.userData.isSignedIn} 
           signOut={props.signOut}
         />
       </div>

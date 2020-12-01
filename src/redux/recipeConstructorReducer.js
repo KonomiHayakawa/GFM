@@ -34,12 +34,12 @@ const recipeConstructorReducer = (state = initialState, action) => {
     case 'CHANGE_INGREDIENT': 
       const newAddedFood = state.addedFood.map(ingredient => {
         if (ingredient.title === action.ingredient.title) {
-            return {...ingredient, weight: action.ingredient.weight, portionCalories: action.ingredient.portionCalories}
-          } else {
-            return ingredient
-          }
-        })
-        return {...state, addedFood: newAddedFood}
+          return {...ingredient, weight: action.ingredient.weight, portionCalories: action.ingredient.portionCalories}
+        } else {
+          return ingredient
+        }
+      })
+      return {...state, addedFood: newAddedFood}
     case 'REMOVE_INGREDIENT':
       return {...state, addedFood: state.addedFood.filter(ingredient => ingredient.id !== action.id)}
     case 'REMOVE_ALL_INGREDIENTS':
@@ -53,7 +53,6 @@ export const setShowIngredientsArea = (isIngredientsAreaOpen) => ({type: 'SET_SH
 export const setOpenFoodCategory = (openCategory) => ({type: 'SET_OPEN_FOOD_CATEGORY', openCategory})
 export const setFoodCategoryLink = (categoryLink) => ({type: 'SET_FOOD_CATEGORY_LINK', categoryLink})
 
-
 // ingredients
 export const setNewIngredient = (ingredient) => ({type: 'SET_NEW_INGREDIENT', ingredient})
 export const setAllIngredients = (ingredients) => ({type: 'SET_ALL_INGREDIENTS', ingredients})
@@ -62,7 +61,6 @@ export const setTotalWeight = (weight) => ({type: 'SET_TOTAL_WEIGHT', weight})
 export const changeIngredient = (ingredient) => ({type: 'CHANGE_INGREDIENT', ingredient})
 export const removeIngredient = (id) => ({type: 'REMOVE_INGREDIENT', id})
 export const removeAllIngredients = () => ({type: 'REMOVE_ALL_INGREDIENTS'})
-
 
 export const openFoodCategoryInIngredientsArea = (openCategory, categoryLink) => (dispatch) => {
   dispatch(setOpenFoodCategory(openCategory))
@@ -105,6 +103,5 @@ export const closeIngredientsArea = () => (dispatch) => {
   dispatch(setOpenFoodCategory(false))
   dispatch(setFoodCategoryLink(null))
 }
-
 
 export default recipeConstructorReducer

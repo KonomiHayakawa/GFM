@@ -6,12 +6,11 @@ import {setError} from './../../../redux/forError'
 import {setDailyCalories, saveDailyCalories} from '../../../redux/userPersonalData'
 
 const DailyCaloriesContainer = (props) => {
-
   const [isChangingData, toggleIsChangingData] = useState(false)
 
   const updateCalories = (form) => {
     const calories = calcDailyCalories(form)
-    if (props.userData.isAuth) {
+    if (props.userData.isSignedIn) {
       try {
         props.saveDailyCalories(props.userData.userId, form, Math.round(calories))
       } catch (error) {
@@ -35,12 +34,10 @@ const DailyCaloriesContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    dailyCalories: state.userPersonalData.dailyCalories,
-    error: state.forError.error,
-    userData: state.authReducer,
-  }
-}
+const mapStateToProps = (state) => ({
+  dailyCalories: state.userPersonalData.dailyCalories,
+  error: state.forError.error,
+  userData: state.authReducer,
+})
 
 export default connect(mapStateToProps, {saveDailyCalories, setDailyCalories, setError})(DailyCaloriesContainer)

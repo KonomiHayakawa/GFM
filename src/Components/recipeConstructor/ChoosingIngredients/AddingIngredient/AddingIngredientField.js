@@ -6,50 +6,54 @@ import classes from './AddingIngredient.module.css'
 import './../../../../App.css'
 
 const AddingIngredientField =(props) => {
-  return isMobile 
-    ? <ForMobile {...props} />
-    : <ForDesktop {...props}/>
+  return isMobile ? <ForMobile {...props} /> : <ForDesktop {...props}/>
 } 
 
 export default AddingIngredientField
 
 const ForDesktop = (props) => {
-  return props.addedId.includes(props.foodItem.id)
-    ? <button 
-        onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
+  return props.addedId.includes(props.foodItem.id) ? 
+    ( <button 
         className={`${classes.cancelAddingBtn} globalBtn`}
+        onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
       >
         Отмена
       </button>
-    : <span>
+    ) : (
+      <span>
         <AddingIngredientForm
-          foodId={props.foodItem.id} 
           addIngredientToRecipe={props.addIngredientToRecipe}
+          foodId={props.foodItem.id} 
         />
       </span> 
+    )
 }
 
 const ForMobile = (props) => {
   return (
     <>
       {props.isMobileModalOpened && <ModalForMobile {...props}/>}
-      {props.addedId.includes(props.foodItem.id)
-        ? <button 
-            onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
+      {props.addedId.includes(props.foodItem.id) ? 
+        ( <button 
             className={`${classes.cancelAddingBtn} globalBtn`}
+            onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
           >
             Отмена
           </button>
-        : <button onClick={() => props.setMobileModalOpened(true)} className={`${classes.cancelAddingBtn} globalBtn`}>
+        ) : (
+          <button 
+            className={`${classes.cancelAddingBtn} globalBtn`}
+            onClick={() => props.setMobileModalOpened(true)} 
+          >
             Добавить
           </button> 
+        )
       }
     </>
   )
 }
 
 const ModalForMobile = (props) => {
-
   return (
     <>
       <Modal

@@ -5,7 +5,6 @@ import './../../../App.css'
 import {HeightInput, WeightInput} from './../../common/ForForms/FormikInputs'
 
 const BodyMassIndexForm = (props) => {
-
   const validationSchema = Yup.object({
     height: Yup.number()
       .typeError('Введи число')

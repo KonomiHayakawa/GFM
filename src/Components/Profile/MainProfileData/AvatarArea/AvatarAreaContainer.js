@@ -6,7 +6,6 @@ import {saveAvatar} from './../../../../redux/userPersonalData'
 import { setError } from '../../../../redux/forError'
 
 const AvatarAreaContainer = (props) => {
- 
   const [editingAvatar, switchEditingAvatar] = useState(false)
   const [userAvatar, setUserAvatar] = useState('')
 

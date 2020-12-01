@@ -7,7 +7,6 @@ import './../../../App.css'
 import {EmailInput, PasswordInput} from '../../common/ForForms/FormikInputs'
 
 const LoginForm = (props) => {
-
   const validationSchema = Yup.object({
     email: Yup.string()
       .required('Обязательное поле')
@@ -22,16 +21,18 @@ const LoginForm = (props) => {
   }
 
   const onSubmit = (formValue, actions) => {
+    try {
     props.login(formValue.email, formValue.password)
-      .catch(error => {
-        if (error.code === 'auth/user-not-found') {
-          actions.setFieldError('general', 'Неверный адрес электронной почты');
-        } else if (error.code === 'auth/wrong-password') {
-          actions.setFieldError('general', 'Неверный пароль');
-        } else {
-          actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!');
-        }
-      })
+    } 
+    catch(error) { 
+      if (error.code === 'auth/user-not-found') {
+        actions.setFieldError('general', 'Неверный адрес электронной почты');
+      } else if (error.code === 'auth/wrong-password') {
+        actions.setFieldError('general', 'Неверный пароль');
+      } else {
+        actions.setFieldError('general', 'Произошла неизвестная ошибка. Попробуй еще раз!');
+      }
+    }
   }
 
   return (
@@ -51,15 +52,17 @@ const LoginForm = (props) => {
             Войти
           </button>
 
-          {FormikProps.errors.general
-            ? <Alert 
+          {FormikProps.errors.general ? 
+            ( <Alert 
                 banner={true}
-                type="error" 
+                className={classes.generalErrors}
                 message={FormikProps.errors.general} 
                 showIcon
-                className={classes.generalErrors}
+                type="error" 
               />
-            : null
+            ) : (
+              null
+            )
           }
      
         </Form>

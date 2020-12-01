@@ -8,17 +8,15 @@ import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 import './../../../App.css'
 
 const BMICalculator = (props) => {
- 
   return (
     <div>
-      {!props.bodyMassIndex || props.isChangingData
-        ? (
+      {!props.bodyMassIndex || props.isChangingData ? 
+        (
           <div>
             <h2>Узнать индекс массы тела</h2>
             <BMIForm updateBMI={props.updateBMI}/>
           </div>
-        )
-        : (
+        ) : (
           <div className={classes.resultWrapper}>
             <div>
               <Row gutter={16} className='globalAntStyle'>

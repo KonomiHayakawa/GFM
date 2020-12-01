@@ -5,8 +5,7 @@ import {login} from './../../../redux/authReducer'
 import Login from './Login'
 
 const LoginContainer = (props) => {
-
-  if (props.loginData.isAuth === true) {
+  if (props.loginData.isSignedIn === true) {
     return <Redirect to={'/profile'}/>
   }
   
@@ -14,8 +13,7 @@ const LoginContainer = (props) => {
     <Login 
       login={props.login}
     />
-  )
-  
+  ) 
 }
 
 const mapStateToProps = (state) => ({

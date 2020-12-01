@@ -8,7 +8,6 @@ import defaultRecipeImg from './../../../img/default/recipe.svg'
 import ErrorMessage from './../../common/ErrorMessage/ErrorMessage'
 
 const MyRecipes = (props) => {
-
   const welcomeText = 
     <div>
       У тебя пока нет ни одного сохраненного рецепта. 
@@ -18,19 +17,19 @@ const MyRecipes = (props) => {
 
   return (
     <>  
-      {props.savedRecipes.length === 0
-       ? <div className={classes.welcomeTextWrapper}>
-          <Alert
-            message='Здесь пока пусто :('
-            description={welcomeText}
-            type='info'
-            showIcon
-            className={classes.welcomeText}
-          />
-        </div>
-      : <div className={classes.recipeItemsWrapper}>
-          {props.savedRecipes.map(
-            recipe => {
+      {props.savedRecipes.length === 0 ? 
+        ( <div className={classes.welcomeTextWrapper}>
+            <Alert
+              message='Здесь пока пусто :('
+              description={welcomeText}
+              type='info'
+              showIcon
+              className={classes.welcomeText}
+            />
+          </div>
+        ) : (
+          <div className={classes.recipeItemsWrapper}>
+            {props.savedRecipes.map(recipe => {
               return (
                 <RecipeItem 
                   {...props} 
@@ -38,9 +37,9 @@ const MyRecipes = (props) => {
                   key={recipe.id}
                 />
               )
-            }
-          )}
-        </div>
+            })}
+          </div>
+        )
       }
       {props.error && <ErrorMessage />}
     </>
@@ -48,13 +47,8 @@ const MyRecipes = (props) => {
 }
 
 const RecipeItem = (props) => {
-  const weight = props.recipe.weight >= 1000
-    ? (props.recipe.weight / 1000).toFixed(2)
-    : props.recipe.weight
-
-  const units = props.recipe.weight >= 1000
-    ? 'кг'
-    : 'г'
+  const weight = props.recipe.weight >= 1000 ? (props.recipe.weight / 1000).toFixed(2) : props.recipe.weight
+  const units = props.recipe.weight >= 1000 ? 'кг' : 'г'
 
   const { Meta } = Card
 
@@ -68,14 +62,16 @@ const RecipeItem = (props) => {
           </NavLink>
         </span>,
         <span className={classes.cardFooterItem}>
-          {isMobile
-            ? <span onClick={() => props.deleteRecipe(props.recipe)}>
+          {isMobile ? 
+            ( <span onClick={() => props.deleteRecipe(props.recipe)}>
                 <DeleteOutlined /> Удалить
               </span>
-            : <DeleteRecipeWithConfirm 
+            ) : (
+              <DeleteRecipeWithConfirm 
                 deleteRecipe={props.deleteRecipe} 
                 recipe={props.recipe}
               />
+            )
           }
         </span>
       ]}
@@ -108,7 +104,6 @@ const RecipeItem = (props) => {
 }
 
 const DeleteRecipeWithConfirm = (props) => {
-
   function confirm(e) {
     props.deleteRecipe(props.recipe)
     message.success('Успешно удалено')

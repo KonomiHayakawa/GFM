@@ -11,7 +11,6 @@ import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.
 import dailyWaterImg from './../../../img/personalCalculations/dailyWater.svg'
 
 const CalculatorsPage = (props) => {
-
   const calculatorOptions = [
     {link:'/personalCalculators/dailyCalories', title:'Дневная норма калорий', img: dailyCaloriesImg, id: 1},
     {link:'/personalCalculators/dailyWater', title:'Дневная норма воды', img: dailyWaterImg, id: 2},
@@ -37,16 +36,14 @@ const CalculatorsPage = (props) => {
         </div>
 
         <div className={classes.calculatorsSwitchers}>
-          {calculatorOptions.map(
-            option => {
-              return (
-                <CalculatorSwitcher 
-                  option={option} 
-                  key={option.id}  
-                />
-              )
-            })
-          }
+          {calculatorOptions.map(option => {
+            return (
+              <CalculatorSwitcher 
+                option={option} 
+                key={option.id}  
+              />
+            )
+          })}
         </div>
 
       </div>    
@@ -63,7 +60,7 @@ const WelcomeText = (props) => {
         водный баланс, ты помогаешь обмену веществ работать быстрее. И это надо не только для похудения!
         Проверь свой индекс массы тела, возможно, тебе даже необходимы несколько допольнительных кг.
       </p>
-      {!props.isAuth &&
+      {!props.isSignedIn &&
         <div>
           Если ты <NavLink to={'/login'}>зарегистрируешься</NavLink> на этом сайте, сможешь сохранить все 
           свои показатели и отслеживать их изменения. А если у тебя уже есть аккаунт, не забудь 

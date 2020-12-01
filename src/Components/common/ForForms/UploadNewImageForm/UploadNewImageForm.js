@@ -1,5 +1,5 @@
 import React from 'react'
-import {AntDesignUploadFormik} from './../antDesignForFormik/AntDesignUploadFormik'
+import {AntDesignUploadFormik} from '../antDesignForFormik/AntDesignUploadFormik'
 import './../../../../App.css'
 import classes from './UploadNewImageForm.module.css'
 

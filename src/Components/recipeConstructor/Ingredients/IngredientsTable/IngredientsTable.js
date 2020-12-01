@@ -1,43 +1,43 @@
 import React from 'react'
 import { Table, Popconfirm, message } from 'antd'
 import {isMobile} from 'react-device-detect'
-import classes from './../Ingredients.module.css'
+import classes from '../Ingredients.module.css'
 import './../../../../App.css'
-import EditIngredientForm from './../EditIngredientForm'
+import EditIngredientForm from '../EditIngredientForm'
 
 const IngredientsTable = (props) => {
-  
-  const editingField = props.showEditingField
-    ? { key: 'action',
-        width: '45%',
-        render: (text, ingredient) => (
-          <>
-            {props.editingWeight !==  ingredient.id && 
-              <button 
-                onClick={() => {props.switchEditingWeight(ingredient.id)}} 
-                className={`${classes.editBtn} globalBtn`}
-              >
-                Изменить
-              </button>
-            }
-            {!props.showIngredientsArea && !props.editingWeight &&
-              <DeleteIngredientMobile 
-                {...props} 
-                ingredient={ingredient}
-              />
- 
-            }
-            {props.editingWeight === ingredient.id && 
-              <EditIngredientForm 
-                ingredient={ingredient}
-                editIngredientAndCalculate={props.editIngredientAndCalculate}
-                cancelEditing={props.switchEditingWeight}
-              />
-            }
-          </>
-        )
-      }
-    : {}
+  const editingField = props.showEditingField ? 
+    ({
+      key: 'action',
+      width: '45%',
+      render: (text, ingredient) => (
+        <>
+          {props.editingWeight !==  ingredient.id && 
+            <button 
+              onClick={() => {props.switchEditingWeight(ingredient.id)}} 
+              className={`${classes.editBtn} globalBtn`}
+            >
+              Изменить
+            </button>
+          }
+          {!props.showIngredientsArea && !props.editingWeight &&
+            <DeleteIngredientMobile 
+              {...props} 
+              ingredient={ingredient}
+            />
+
+          }
+          {props.editingWeight === ingredient.id && 
+            <EditIngredientForm 
+              ingredient={ingredient}
+              editIngredientAndCalculate={props.editIngredientAndCalculate}
+              cancelEditing={props.switchEditingWeight}
+            />
+          }
+        </>
+      )
+    }
+    ) : ({})
 
   const columns = [
     {
@@ -80,21 +80,21 @@ const IngredientsTable = (props) => {
 export default IngredientsTable
 
 const DeleteIngredientMobile = (props) => {
-
- const confirmDeletingIngredient = (ingredient) => {
-  props.deleteIngredientAndCalculate(ingredient)
-  message.success('Удалено! :)');
-}
+  const confirmDeletingIngredient = (ingredient) => {
+    props.deleteIngredientAndCalculate(ingredient)
+    message.success('Удалено! :)');
+  }
 
   return (
-    isMobile
-      ? <button 
+    isMobile ? 
+      ( <button 
           className={`${classes.deleteBtn} globalBtn`}
           onClick={() => confirmDeletingIngredient(props.ingredient)}
         > 
           Удалить
         </button>
-      : <Popconfirm
+      ) : (
+        <Popconfirm
           cancelText='Нет'
           title='Точно удалить?'
           onConfirm={() => confirmDeletingIngredient(props.ingredient)}
@@ -107,5 +107,6 @@ const DeleteIngredientMobile = (props) => {
             Удалить
           </button>
         </Popconfirm>
+      )
   )
 }

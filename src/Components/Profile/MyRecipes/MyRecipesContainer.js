@@ -6,7 +6,6 @@ import {setError} from './../../../redux/forError'
 import {updateRecipes} from './../../../redux/userPersonalData'
 
 const MyRecipesContainer = (props) => {
-
   const deleteRecipe = (recipe) => {
     const updatedRecipes = props.savedRecipes.filter(savedRecipe => savedRecipe.id !== recipe.id)
     props.updateRecipes(updatedRecipes)
@@ -32,9 +31,9 @@ const MyRecipesContainer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  savedRecipes: state.userPersonalData.savedRecipes,
+  error: state.forError.error,
   userId: state.authReducer.userId,
-  error: state.forError.error
+  savedRecipes: state.userPersonalData.savedRecipes,
 })
 
 export default connect(mapStateToProps, {updateRecipes, setError})(MyRecipesContainer)

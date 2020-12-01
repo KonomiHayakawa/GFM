@@ -5,7 +5,6 @@ import {setError} from '../../../../redux/forError'
 import {setSelectedIngredient} from '../../../../redux/foodCaloriesReducer'
 
 const AddingIngredientFieldContainer = (props) => {
-
   const [addedFoodId, setAddedFoodId] = useState([])
   const [isMobileModalOpened, setMobileModalOpened] = useState(false)
 
@@ -34,12 +33,11 @@ const AddingIngredientFieldContainer = (props) => {
   />
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return ({
-    addRecipeButton: ownProps.addRecipeButton,
-    foodItem:ownProps.foodItem,
-    addedFood: state.recipeConstructorReducer.addedFood
-  })
-}
+const mapStateToProps = (state, ownProps) => ({
+  addRecipeButton: ownProps.addRecipeButton,
+  addedFood: state.recipeConstructorReducer.addedFood,
+  foodItem:ownProps.foodItem,
+})
+
 
 export default connect(mapStateToProps, {setSelectedIngredient, setError,})(AddingIngredientFieldContainer)

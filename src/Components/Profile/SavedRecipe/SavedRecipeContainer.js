@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getRecipe } from './../../../queries/recipeConstructor'
 import SavedRecipe from './SavedRecipe'
-import { setRecipeData, clearRecipe, setShowIngredientsArea } from './../../../redux/recipeConstructorReducer'
+import { setRecipeData, clearRecipe, setShowIngredientsArea, closeIngredientsArea } from './../../../redux/recipeConstructorReducer'
 import { saveUserRecipes, addRecipeImg, getRecipeImgLink } from '../../../queries/recipeConstructor'
 import { setError } from './../../../redux/forError'
 import { updateRecipes } from './../../../redux/userPersonalData'
 import { withRouter } from 'react-router-dom'
 
 const SavedRecipeContainer = (props) => {
-
   const [openedRecipe, setOpenedRecipe] = useState({})
   const [editingRecipe, switchEditingRecipe] = useState(false)
   const [updatingRecipeImg, setUpdatingRecipeImg] = useState(false)
@@ -27,6 +26,7 @@ const SavedRecipeContainer = (props) => {
     return function cleanup() {
       setOpenedRecipe({})
       props.clearRecipe()
+      props.closeIngredientsArea()
     }
   }, [props.savedRecipes, props.setRecipeData, props.setError, props.clearRecipe])
 
@@ -36,7 +36,7 @@ const SavedRecipeContainer = (props) => {
       addRecipeImg(props.userId, updatingRecipeImg, openedRecipe.id)
         .then(() => getRecipeImgLink(props.userId, openedRecipe.id))
         .then((link) => {
-          updatedRecipes = props.savedRecipes.map((recipe) => {
+          updatedRecipes = props.savedRecipes.map(recipe => {
             if(recipe.id === openedRecipe.id) {
               return ({
                 ...recipe,
@@ -57,8 +57,8 @@ const SavedRecipeContainer = (props) => {
   }
 
   const updateRecipe = () => {
-    const updatedRecipes = props.savedRecipes.map((recipe) => {
-      if(recipe.id === openedRecipe.id) {
+    const updatedRecipes = props.savedRecipes.map(recipe => {
+      if (recipe.id === openedRecipe.id) {
         return ({
           ...recipe,
           ingredients: props.addedFood,
@@ -100,17 +100,18 @@ const SavedRecipeContainer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  userId: state.authReducer.userId,
-  savedRecipes: state.userPersonalData.savedRecipes,
   addedFood: state.recipeConstructorReducer.addedFood,
-  nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
-  ingredientsArea: state.recipeConstructorReducer.ingredientsArea,
   error: state.forError.error,
+  ingredientsArea: state.recipeConstructorReducer.ingredientsArea,
+  nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
+  savedRecipes: state.userPersonalData.savedRecipes,
+  userId: state.authReducer.userId,
 })
 
 export default withRouter(connect(mapStateToProps, 
   { setRecipeData, 
     clearRecipe, 
+    closeIngredientsArea,
     updateRecipes, 
     setShowIngredientsArea,
     setError,

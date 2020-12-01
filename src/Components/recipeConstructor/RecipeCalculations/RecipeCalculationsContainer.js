@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 import {addIngredient, deleteIngredient} from '../../../redux/recipeConstructorReducer'
 import {calculateIngredientCalories, calcWithoutRemovedIngredient} from '../../common/calculations'
 import RecipeCalculations from './RecipeCalculations'
-import {setSelectedIngredient} from './../../../redux/foodCaloriesReducer'
+import {setSelectedIngredient} from '../../../redux/foodCaloriesReducer'
 
 const RecipeCalculationsContainer = (props) => {
-
   useEffect(() => {
-
     const addIngredientToRecipe = () => {
       const ingredient = props.foodCategoryItems.find(foodItem => foodItem.id === props.selectedIngredientData.ingredientId)
       const calculatedIngredientData = calculateIngredientCalories(ingredient, props.selectedIngredientData.weight, props.nutritionalValue)
@@ -30,17 +28,19 @@ const RecipeCalculationsContainer = (props) => {
     } 
   }, [props])
 
-  return <RecipeCalculations {...props} />
+  return (
+    <RecipeCalculations 
+      {...props} 
+    />
+  )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    addedFood: state.recipeConstructorReducer.addedFood,
-    foodCategoryItems: state.foodCaloriesReducer.foodCategoryItems,
-    nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
-    selectedIngredientData: state.foodCaloriesReducer.selectedIngredient.ingredientData,
-    selectedIngredientHandler: state.foodCaloriesReducer.selectedIngredient.handlerType,
-  })
-}
+const mapStateToProps = (state) => ({
+  addedFood: state.recipeConstructorReducer.addedFood,
+  foodCategoryItems: state.foodCaloriesReducer.foodCategoryItems,
+  nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
+  selectedIngredientData: state.foodCaloriesReducer.selectedIngredient.ingredientData,
+  selectedIngredientHandler: state.foodCaloriesReducer.selectedIngredient.handlerType,
+})
 
 export default connect(mapStateToProps, {addIngredient, deleteIngredient, setSelectedIngredient})(RecipeCalculationsContainer)

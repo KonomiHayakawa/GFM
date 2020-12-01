@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import MainProfileData from './MainProfileData'
 
 const MainProfileDataContainer = (props) => {
-
   return (
     <MainProfileData 
       {...props} 

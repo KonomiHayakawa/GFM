@@ -3,7 +3,7 @@ import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import classes from './Ingredients.module.css'
 import './../../../App.css'
-import {IngredientWeightInput} from './../../common/ForForms/FormikInputs'
+import {IngredientWeightInput} from '../../common/ForForms/FormikInputs'
 
 const EditIngredientForm = (props) => {
   const validationSchema = Yup.object({

@@ -3,7 +3,6 @@ import { Upload, message, Button } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
 export const AntDesignUploadFormik = (props) => {
-
   const [isBtsDisabled, toggleIsBtsDisabled] = useState(false)
 
   const customRequest = ({ file, onSuccess }) => {
@@ -46,7 +45,6 @@ export const AntDesignUploadFormik = (props) => {
       </Button>
     </Upload>
   )
-
 }
 
 export default AntDesignUploadFormik

@@ -3,13 +3,14 @@ import { Statistic, Row, Col } from 'antd'
 import './../../../App.css'
 
 const RecipeCalculations = (props) => {
-  const weight = props.nutritionalValue.totalWeight >= 1000
-    ? (props.nutritionalValue.totalWeight / 1000).toFixed(2)
-    : props.nutritionalValue.totalWeight
+  const weight = props.nutritionalValue.totalWeight >= 1000 ? 
+    (
+      (props.nutritionalValue.totalWeight / 1000).toFixed(2)
+    ): (
+      props.nutritionalValue.totalWeight
+    )
 
-  const units = props.nutritionalValue.totalWeight >= 1000
-    ? 'кг'
-    : 'грамм'
+  const units = props.nutritionalValue.totalWeight >= 1000 ? 'кг' : 'грамм'
 
   return (
     <div>

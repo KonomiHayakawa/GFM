@@ -24,7 +24,7 @@ export const getUserData = () => {
 
 export const updateUserName = (name) => {
   const user = firebase.auth().currentUser
-    return user.updateProfile({
+  return user.updateProfile({
     displayName: name,
   })
 }

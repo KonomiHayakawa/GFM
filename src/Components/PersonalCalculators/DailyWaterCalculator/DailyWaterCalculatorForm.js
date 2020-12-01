@@ -5,7 +5,6 @@ import * as Yup from 'yup'
 import {SexInput, WeightInput} from './../../common/ForForms/FormikInputs'
 
 const DailyWaterForm = (props) => {
-
   const validationSchema = Yup.object({
     sex: Yup.string()
       .required('Обязательное поле'),

@@ -8,16 +8,15 @@ import './../../../App.css'
 const DailyWaterCalculator = (props) => {
   return (
     <div>
-      { !props.dailyWater || props.isChangingData
-        ? (
+      { !props.dailyWater || props.isChangingData ? 
+        (
           <div>
             <h2 className={classes.title}>
               Рассчитать дневную норму воды
             </h2>
             <DailyWaterForm forSubmit={props.updateDailyWater}/>
           </div>
-        )
-        : (
+        ) : (
           <div>
             <Row gutter={16} className={`globalAntStyle ${classes.results}`}>
               <Col span={12}>

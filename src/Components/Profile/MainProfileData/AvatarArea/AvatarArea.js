@@ -5,7 +5,6 @@ import defaultAvatar from './../../../../img/default/avatar.svg'
 import UploadNewImageForm from './../../../common/ForForms/UploadNewImageForm/UploadNewImageForm'
 
 const AvatarArea = (props) => {
-
   return (
     <div className={classes.avatarAreaWrapper}>
       <img 
@@ -13,13 +12,13 @@ const AvatarArea = (props) => {
         src={props.mainData.avatar || defaultAvatar}
         alt='avatar'
       />
-      {props.editingAvatar
-        ? <UploadNewImageForm     
+      {props.editingAvatar ? 
+        ( <UploadNewImageForm     
             setImgData={props.setUserAvatar}
             forLoading={props.changeAvatar}
             forCancel={() => props.switchEditingAvatar(false)}
           />
-        : <div>
+        ) : (<div>
             <button 
               className={`${classes.btn} globalBtn`}
               onClick={() => props.switchEditingAvatar(true)}
@@ -36,6 +35,7 @@ const AvatarArea = (props) => {
               </button>
             }
           </div>
+        )
       }
     </div>
   )

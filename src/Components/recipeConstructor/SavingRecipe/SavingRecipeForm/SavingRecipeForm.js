@@ -7,7 +7,6 @@ import {IngredientTitleInput} from './../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
 
 const SavingRecipeForm = (props) => {
-  
   const validationSchema = Yup.object({
     title: Yup.string()
       .required('Обязательное поле').max(20),

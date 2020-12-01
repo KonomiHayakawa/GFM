@@ -8,7 +8,6 @@ import {saveUserRecipes, addRecipeImg, getRecipeImgLink} from '../../../queries/
 import SavingRecipe from './SavingRecipe'
 
 const SavingRecipeContainer = (props) => {
-
   const [savingRecipe, switchSavingRecipe] = useState(false)
 
   const titles = props.savedRecipes.map(recipe => recipe.title)
@@ -46,7 +45,7 @@ const SavingRecipeContainer = (props) => {
   }
 
   return (
-   <SavingRecipe 
+    <SavingRecipe 
       {...props} 
       savingRecipe={savingRecipe}
       switchSavingRecipe={switchSavingRecipe}
@@ -55,16 +54,14 @@ const SavingRecipeContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    addedFood: state.recipeConstructorReducer.addedFood,
-    error: state.forError.error,
-    isAuth: state.authReducer.isAuth,
-    stateTotalCalories: state.recipeConstructorReducer.nutritionalValue.totalCalories,
-    stateTotalWeight: state.recipeConstructorReducer.nutritionalValue.totalWeight,
-    savedRecipes: state.userPersonalData.savedRecipes,
-    userId: state.authReducer.userId,
-  })
-}
+const mapStateToProps = (state) => ({
+  addedFood: state.recipeConstructorReducer.addedFood,
+  error: state.forError.error,
+  isSignedIn: state.authReducer.isSignedIn,
+  stateTotalCalories: state.recipeConstructorReducer.nutritionalValue.totalCalories,
+  stateTotalWeight: state.recipeConstructorReducer.nutritionalValue.totalWeight,
+  savedRecipes: state.userPersonalData.savedRecipes,
+  userId: state.authReducer.userId,
+})
 
 export default connect(mapStateToProps, {setRecipe, clearRecipe, setError})(SavingRecipeContainer)

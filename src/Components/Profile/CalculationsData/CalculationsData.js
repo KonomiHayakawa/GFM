@@ -8,9 +8,7 @@ import classes from './CalculationData.module.css'
 import dailyCaloriesImg from './../../../img/personalCalculations/dailyCalories.png'
 import dailyWaterImg from './../../../img/personalCalculations/dailyWater.png'
 
-
 const CalculationsData = (props) => {
-
   const calculationsDataArr = [
     {
       title: 'Дневная норма калорий', 
@@ -52,12 +50,14 @@ const CalculationsData = (props) => {
   return (
     <div className={classes.calculationsWrapper}>
 
-      {calculationsDataArr.map((data) => {
-        return <CalculationItem
-          data={data} 
-          key={data.id}
-          {...props}
-        />
+      {calculationsDataArr.map(data => {
+        return (
+          <CalculationItem
+            data={data} 
+            key={data.id}
+            {...props}
+          />
+        )
       })}
 
       {!props.userData.bodyMassIndex && !props.userData.dailyWater && !props.userData.bodyMassIndex &&
@@ -82,7 +82,6 @@ const CalculationsData = (props) => {
 }
 
 const CalculationItem = (props) => {
-
   const { Meta } = Card
 
   return (

@@ -5,9 +5,7 @@ import {clearError} from '../../../redux/forError'
 import classes from './ErrorMessage.module.css'
 
 const ErrorMessage = (props) => {
-
   useEffect(() => {
-
     const openNotification = () => {
       notification.error({
         message: <span className={classes.messageTitle}>Упс!</span>,
@@ -17,7 +15,6 @@ const ErrorMessage = (props) => {
         closeIcon: <span className={classes.closeIcon}>X</span>,
       })
     }
-
     if (props.errorMessage) {
       openNotification()
     }

@@ -5,7 +5,6 @@ import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 import NickNameAreaContainer from './NickNameArea/NickNameAreaContainer'
 
 const MainProfileData = (props) => {
-
   return (
     <div className={classes.wrapper}>
 

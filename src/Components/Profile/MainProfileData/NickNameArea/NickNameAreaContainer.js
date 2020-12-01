@@ -5,7 +5,6 @@ import {saveName} from './../../../../redux/userPersonalData'
 import { setError } from '../../../../redux/forError'
 
 const NickNameAreaContainer = (props) => {
- 
   const [editingName, switchEditingName] = useState(false)
   const [userName, setUserName] = useState('')
 
@@ -35,9 +34,9 @@ const NickNameAreaContainer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  mainData: state.userPersonalData.mainData,
+  error: state.forError.error,
   userId: state.authReducer.userId,
-  error: state.forError.error
+  mainData: state.userPersonalData.mainData,
 })
 
 export default connect(mapStateToProps, {saveName, setError})(NickNameAreaContainer)

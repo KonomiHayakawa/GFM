@@ -8,7 +8,6 @@ import {ReactComponent as PageMainImage} from './../../../img/profile/savedRecip
 import RecipeCard from './RecipeCard/RecipeCard'
 
 const SavedRecipe = (props) => {
-
   return (
     <div>
       <BackArrow clickAction={props.goToRecipesList}/> 
@@ -16,9 +15,12 @@ const SavedRecipe = (props) => {
       <div className={classes.wrapper}>
         <RecipeCard {...props}/>
       
-        {props.ingredientsArea.showIngredientsArea && props.editingRecipe
-          ? <IngredientsArea {...props.ingredientsArea}/>
-          : <PageMainImage/>
+        {props.ingredientsArea.showIngredientsArea && props.editingRecipe ? 
+          (
+            <IngredientsArea {...props.ingredientsArea}/>
+          ) : (
+            <PageMainImage/>
+          )
         }
       </div>
 

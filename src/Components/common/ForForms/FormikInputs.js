@@ -4,7 +4,6 @@ import {AntInput, AntInputPassword, AntInputTextArea, AntSelect} from './antDesi
 import './../../../App.css'
 
 // auth 
-
 export const EmailInput = (props) => {
   return (   
     <Field 
@@ -49,7 +48,6 @@ export const NickNameInput = (props) => {
 }
 
 // feedback
-
 export const MessageInput = (props) => {
   return (   
     <Field 
@@ -66,7 +64,6 @@ export const MessageInput = (props) => {
 }
 
 // personalData
-
 export const SexInput = (props) => {
   return (   
     <Field 
@@ -145,7 +142,6 @@ export const ActivityTypeInput = (props) => {
 }
 
 // recipeConstructor
-
 export const IngredientWeightInput = (props) => {
   return (   
     <Field 

@@ -1,5 +1,4 @@
 //recipe constructor calculations
-
 export const calcPortionParameter = (ingredientCalories, weight) => {
   return Math.round((ingredientCalories * weight) / 100)
 }
@@ -33,7 +32,6 @@ export const calcWithoutRemovedIngredient = (ingredient, nutritionalValue) => {
 }
 
 // personal calculators
-
 export const calcDailyCalories = (form) => {
   return form.sex === 'male' 
     ? (88.36 + (13.4 * form.weight) + (4.8 * form.height) - (5.7 * form.age)) * form.activityType

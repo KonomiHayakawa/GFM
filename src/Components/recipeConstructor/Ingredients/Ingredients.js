@@ -4,7 +4,6 @@ import IngredientsTableContainer from './IngredientsTable/IngredientsTableContai
 import './../../../App.css'
 
 const Ingredients = (props) => {
-
   return (
     <div className={classes.ingredientsWrapper}>
       <h2>Ингредиенты</h2>

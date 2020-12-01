@@ -8,16 +8,15 @@ import './../../../App.css'
 const DailyCalories = (props) => {
   return (
     <div>
-      {!props.dailyCalories || props.isChangingData
-        ? (
+      {!props.dailyCalories || props.isChangingData ? 
+        (
           <div>
             <h2 className={classes.title}>
               Рассчитать дневную норму калорий
             </h2>
             <DailyCaloriesForm updateCalories={props.updateCalories}/>
           </div>
-        )
-        : (
+        ) : (
           <div>
             <Row gutter={16} className={`globalAntStyle ${classes.results}`}>
               <Col span={20}>

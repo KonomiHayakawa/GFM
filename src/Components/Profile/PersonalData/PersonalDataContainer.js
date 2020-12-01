@@ -6,7 +6,6 @@ import {saveDailyCalories, saveDailyWater, saveBodyMassIndex} from './../../../r
 import {setError} from './../../../redux/forError'
 
 const PersonalDataContainer = (props) => {
-
   const [editingFieldName, setEditingFieldName] = useState(false)
 
   const editPersonalData = (form) => {
@@ -35,12 +34,10 @@ const PersonalDataContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    userData: state.userPersonalData,
-    userId: state.authReducer.userId,
-    error: state.forError.error,
-  })
-}
+const mapStateToProps = (state) => ({
+  error: state.forError.error,
+  userData: state.userPersonalData,
+  userId: state.authReducer.userId,
+})
 
 export default connect(mapStateToProps, {saveDailyCalories, saveDailyWater, saveBodyMassIndex, setError})(PersonalDataContainer)

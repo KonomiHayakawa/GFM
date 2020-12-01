@@ -10,7 +10,6 @@ import RecipeCalculationsContainer from '../../../recipeConstructor/RecipeCalcul
 import UploadNewImageForm from '../../../common/ForForms/UploadNewImageForm/UploadNewImageForm'
 
 const RecipeCard = (props) => {
-
   const { Meta } = Card
 
   return (
@@ -31,28 +30,30 @@ const RecipeCard = (props) => {
         description={
           <>
             <RecipeCalculationsContainer />
-            {props.editingRecipe 
-            ? <>
-                <IngredientsContainer />
-                <button 
-                  onClick={() => props.updateRecipe()}
-                  className='globalMainBtn'
-                >
-                  Сохранить изменения
-                </button>
-              </>
-            : <>
-                <h2>Ингредиенты</h2>
-                <IngredientsTableContainer 
-                  showEditingField={false}
-                />
-                <button 
-                  onClick={() => props.switchEditingRecipe(true)}
-                  className='globalMainBtn'
-                >
-                  Редактировать рецепт
-                </button>
-              </>
+            {props.editingRecipe ?
+              ( <>
+                  <IngredientsContainer />
+                  <button 
+                    onClick={() => props.updateRecipe()}
+                    className='globalMainBtn'
+                  >
+                    Сохранить изменения
+                  </button>
+                </>
+              ) : ( 
+                <>
+                  <h2>Ингредиенты</h2>
+                  <IngredientsTableContainer 
+                    showEditingField={false}
+                  />
+                  <button 
+                    onClick={() => props.switchEditingRecipe(true)}
+                    className='globalMainBtn'
+                  >
+                    Редактировать рецепт
+                  </button>
+                </>
+              )
             }
           </>
         }
@@ -70,18 +71,20 @@ const RecipeCover = (props) => {
       className={classes.cardCover}
     />
     <div className={classes.changingRecipeImgWrapper}>
-      {!props.updatingRecipeImg 
-        ? <span 
+      {!props.updatingRecipeImg ? 
+        ( <span 
             onClick={() => props.setUpdatingRecipeImg(!props.updatingRecipeImg)}
             className={classes.editRecipeBtn}
           >
             <EditOutlined /> Изменить обложку
           </span>
-        : <UploadNewImageForm     
+        ) : (
+          <UploadNewImageForm     
             setImgData={props.setUpdatingRecipeImg}
             forLoading={props.updateRecipeImg}
             forCancel={() => props.setUpdatingRecipeImg(!props.updatingRecipeImg)}
           />
+        )
       }
     </div>
   </>

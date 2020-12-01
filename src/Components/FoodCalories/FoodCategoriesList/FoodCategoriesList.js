@@ -6,11 +6,9 @@ import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 const FoodCategoriesList = (props) => {
   return (
     <div className={classes.categoriesWrapper}>
-      {props.categories.map(
-        category => {
-          return <FoodCategoryItem key={category.id} {...props} category={category}/>
-        })
-      }
+      {props.categories.map(category => {
+        return <FoodCategoryItem key={category.id} {...props} category={category}/>
+      })}
       {props.error && <ErrorMessage />}
     </div>
   )
@@ -19,8 +17,8 @@ const FoodCategoriesList = (props) => {
 const FoodCategoryItem = (props) => {
   return (
     <React.Fragment>
-      {props.isForRecipeConstructor
-        ? <div 
+      {props.isForRecipeConstructor ? 
+        ( <div 
             className={classes.categoryWrapper} 
             onClick={() => props.openFoodCategoryInIngredientsArea(true, `${props.category.linkTo}`)}
           >          
@@ -31,7 +29,8 @@ const FoodCategoryItem = (props) => {
             />
             {props.category.name}
           </div>
-        : <NavLink to={`foodGroup/${props.category.linkTo}`}>
+        ) : (
+          <NavLink to={`foodGroup/${props.category.linkTo}`}>
             <div className={classes.categoryWrapper}>
               <img 
                 className={classes.categoryImg} 
@@ -41,6 +40,7 @@ const FoodCategoryItem = (props) => {
               {props.category.name}
             </div>
           </NavLink>
+        )
       }
     </React.Fragment>
   )

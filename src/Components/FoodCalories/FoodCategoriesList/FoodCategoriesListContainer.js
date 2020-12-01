@@ -6,7 +6,6 @@ import {openFoodCategoryInIngredientsArea} from '../../../redux/recipeConstructo
 import {setError} from './../../../redux/forError'
 
 const FoodCategoriesListContainer = (props) => {
-
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
@@ -26,11 +25,9 @@ const FoodCategoriesListContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return ({
-    isForRecipeConstructor: ownProps.isForRecipeConstructor,
-    error: state.forError.error
-  })
-}
+const mapStateToProps = (state, ownProps) => ({
+  isForRecipeConstructor: ownProps.isForRecipeConstructor,
+  error: state.forError.error
+})
 
 export default connect(mapStateToProps, {openFoodCategoryInIngredientsArea, setError})(FoodCategoriesListContainer)

@@ -6,12 +6,11 @@ import {setError} from './../../../redux/forError'
 import {setDailyWater, saveDailyWater} from '../../../redux/userPersonalData'
 
 const DailyWaterCalculatorContainer = (props) => {
-
   const [isChangingData, toggleIsChangingData] = useState(false)
 
   const updateDailyWater = (form) => {
     const dailyWater = calcDailyWater(form)
-    if (props.userData.isAuth) {
+    if (props.userData.isSignedIn) {
       try {
         props.saveDailyWater(props.userData.userId, form, dailyWater)
       } catch (error) {
@@ -32,15 +31,12 @@ const DailyWaterCalculatorContainer = (props) => {
       updateDailyWater={updateDailyWater}
     />
   )
-  
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    dailyWater: state.userPersonalData.dailyWater,
-    error: state.forError.error,
-    userData: state.authReducer,
-  })
-}
+const mapStateToProps = (state) => ({
+  dailyWater: state.userPersonalData.dailyWater,
+  error: state.forError.error,
+  userData: state.authReducer,
+})
 
 export default connect(mapStateToProps, {setDailyWater, saveDailyWater, setError})(DailyWaterCalculatorContainer)

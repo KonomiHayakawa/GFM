@@ -7,17 +7,19 @@ import './../../../../App.css'
 import ErrorMessage from './../../../common/ErrorMessage/ErrorMessage'
 
 const NickNameArea = (props) => {
-
   return (
     <>
-      {props.editingName
-        ? <div>
-            {isMobile
-              ? <MobileNameChanging {...props}/>
-              : <DesktopNameChanging {...props}/>
+      {props.editingName ?
+        ( <div>
+            {isMobile ? 
+              ( <MobileNameChanging {...props}/>
+              ) : (
+                <DesktopNameChanging {...props}/>
+              )
             }
           </div>
-        : <div className={classes.nickName}>
+        ) : (
+          <div className={classes.nickName}>
             {props.mainData.name}  
             <span className={classes.editNameBtn}>
               <EditOutlined 
@@ -25,6 +27,7 @@ const NickNameArea = (props) => {
               />
             </span>
           </div>
+        )
       }
       {props.error && <ErrorMessage />}
     </>

@@ -6,7 +6,6 @@ import './../../App.css'
 import {NickNameInput, EmailInput, MessageInput} from './../common/ForForms/FormikInputs'
 
 const FeedbackForm = (props) => {
-
   const validationSchema = Yup.object({
     name: Yup.string()
       .required('Не пропускай это поле!')

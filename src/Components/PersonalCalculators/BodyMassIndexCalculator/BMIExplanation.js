@@ -4,7 +4,6 @@ import {InfoCircleOutlined} from '@ant-design/icons'
 import classes from './BMICalculator.module.css'
 
 const BMIExplanation = (props) => {
-
   const data = [
     {'index': 'ИМТ ≥ 18.5', 'explanation':'Ниже нормального веса', id: 1},
     {'index': 'ИМТ ≥ 18.5 и < 25', 'explanation':'Нормальный вес', id: 2},
@@ -35,16 +34,18 @@ const AlertTable = (props) => {
       <table>
         <tbody className={classes.infoAlert}>
           {props.data.map(item => {
-            return <React.Fragment key={item.id}>
-              <tr>
-              <td>
-                {item.index}:
-              </td>
-              <td>
-                {item.explanation}
-              </td>
-            </tr>
-            </React.Fragment>
+            return (
+              <React.Fragment key={item.id}>
+                <tr>
+                  <td>
+                    {item.index}:
+                  </td>
+                  <td>
+                    {item.explanation}
+                  </td>
+                </tr>
+              </React.Fragment>
+            )
           })}
         </tbody>
       </table>

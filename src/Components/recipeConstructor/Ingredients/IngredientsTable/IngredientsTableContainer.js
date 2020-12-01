@@ -5,7 +5,6 @@ import {calcEditedIngredient, calcWithoutRemovedIngredient} from '../../../commo
 import IngredientsTable from './IngredientsTable'
 
 const IngredientsTableContainer = (props) => {
-
   const [editingWeight, switchEditingWeight] = useState(false)
 
   const editIngredientAndCalculate = (ingredient, newWeight) => {
@@ -22,24 +21,22 @@ const IngredientsTableContainer = (props) => {
   return (
    <IngredientsTable
       addedFood={props.addedFood}
+      deleteIngredientAndCalculate={deleteIngredientAndCalculate}
+      editingWeight={editingWeight}
+      editIngredientAndCalculate={editIngredientAndCalculate}
       nutritionalValue={props.nutritionalValue}
       showIngredientsArea={props.showIngredientsArea}
-      editingWeight={editingWeight}
       switchEditingWeight={switchEditingWeight}
-      editIngredientAndCalculate={editIngredientAndCalculate}
-      deleteIngredientAndCalculate={deleteIngredientAndCalculate}
       showEditingField={props.showEditingField}
    />
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return ({
-    addedFood: state.recipeConstructorReducer.addedFood,
-    nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
-    showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
-    showEditingField: ownProps.showEditingField,
-  })
-}
+const mapStateToProps = (state, ownProps) => ({
+  addedFood: state.recipeConstructorReducer.addedFood,
+  nutritionalValue: state.recipeConstructorReducer.nutritionalValue,
+  showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
+  showEditingField: ownProps.showEditingField,
+})
 
 export default connect(mapStateToProps, {editIngredient, deleteIngredient})(IngredientsTableContainer)

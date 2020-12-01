@@ -6,7 +6,6 @@ import {setError} from './../../redux/forError'
 import FeedbackPage from './FeedbackPage'
 
 const FeedbackPageContainer = (props) => {
-
   const [successMessage, setSuccessMessage] = useState(false)
 
   const sendFeedbackMessage = (formData) => {
