@@ -38,9 +38,9 @@ const RecipeConstructor = (props) => {
           />
         }
 
-        <IngredientsContainer/>
-        <RecipeCalculationsContainer />
-        <SavingRecipeContainer />
+        <IngredientsContainer addToLocalStorage={props.addToLocalStorage}/>
+        <RecipeCalculationsContainer addToLocalStorage={props.addToLocalStorage}/>
+        <SavingRecipeContainer/>
       </div>
 
       <div>

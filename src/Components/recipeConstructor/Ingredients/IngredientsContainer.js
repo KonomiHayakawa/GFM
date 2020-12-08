@@ -11,9 +11,12 @@ const IngredientsContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
+  addToLocalStorage: ownProps.addToLocalStorage,
   addedFood: state.recipeConstructorReducer.addedFood,
   showIngredientsArea: state.recipeConstructorReducer.ingredientsArea.showIngredientsArea,
 })
 
-export default connect(mapStateToProps, {setShowIngredientsArea, closeIngredientsArea})(IngredientsContainer)
+export default connect(
+  mapStateToProps, 
+  { setShowIngredientsArea, closeIngredientsArea})(IngredientsContainer)

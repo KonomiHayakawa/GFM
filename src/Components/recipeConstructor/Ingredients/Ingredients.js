@@ -14,7 +14,7 @@ const Ingredients = (props) => {
         }
 
         {props.addedFood.length !== 0 && 
-          <IngredientsTableContainer showEditingField={true}/>
+          <IngredientsTableContainer showEditingField={true} addToLocalStorage={props.addToLocalStorage}/>
         } 
       </div>
 
