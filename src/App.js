@@ -6,8 +6,8 @@ import 'antd/dist/antd.css'
 import './App.css'
 import CalculatorsPageContainer from './components/personalCalculators/CalculatorsPage/CalculatorsPageContainer'
 import FeedbackPageContainer from './components/FeedbackPage/FeedbackPageContainer'
-import FoodCategoriesPage from './components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
 import FoodCategoryPage from './components/foodCalories/FoodCategoryPage/FoodCategoryPage'
+import FoodCategoriesPage from './components/foodCalories/FoodCategoriesPage/FoodCategoriesPage'
 import HeaderContainer from './components/Header/HeaderContainer'
 import LoginContainer from './components/auth/Login/LoginContainer'
 import MainPage from './components/MainPage/MainPage'
@@ -40,14 +40,14 @@ const App = (props) => {
         <main className='mainArea'>
           <Route exact path='/' render={() => <MainPage />} />
           <Route path='/createAccount' render={() => <RegistrationContainer />} />
-          <Route path='/login' render={() => <LoginContainer />} />
-          <Route path='/foodCategoriesList' render={() => <FoodCategoriesPage />} />
-          <Route path='/foodGroup/:category' render={() => <FoodCategoryPage/>} />
-          <Route path='/personalCalculators' render={() => <CalculatorsPageContainer />} />
-          <Route path='/recipeConstructor' render={() => <RecipeConstructorContainer />} />
+          <Route path='/login' render={() => <LoginContainer />}/>
           <Route path='/profile' render={() => <ProfileContainer/>} />
           <Route path='/savedRecipe/:category' render={() => <SavedRecipeContainer/>} />
-          <Route path='/feedbackForm' render={() => <FeedbackPageContainer/>} />
+          <Route path='/feedbackForm' render={() => <FeedbackPageContainer/>}/>
+          <Route path='/foodCategoriesList' render={() => <FoodCategoriesPage />} />
+          <Route path='/foodGroup/:category' render={() => <FoodCategoryPage/>} />
+          <Route path='/recipeConstructor' render={() => <RecipeConstructorContainer />} />
+          <Route path='/personalCalculators' render={() => <CalculatorsPageContainer />} />
           <Ripple/>
         </main>
       </div>

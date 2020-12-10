@@ -20,7 +20,6 @@ const RecipeConstructorContainer = (props) => {
     }
 }, [props.clearRecipe, props.closeIngredientsArea])
 
-
   return (
     <RecipeConstructor 
       addToLocalStorage={true}

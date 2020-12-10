@@ -8,35 +8,38 @@ import {setOpenFoodCategory, setFoodCategoryLink} from './../../../redux/recipeC
 import {setError} from './../../../redux/forError'
 
 const FoodCategoryContainer = (props) => {
-  const [searchMatches, setSearchMatches] = useState([])
+  const [foodItems, setFoodItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
   
   useEffect(() => {
     try {
       getFoodGroup(props.foodCategoryLink || props.match.params.category)
-        .then((response) => props.setFoodCategoryItems(response))
+        .then((response) => {
+          props.setFoodCategoryItems(response)
+          setFoodItems(response)
+        })
         .then(() => setIsLoading(false))
+        
     } catch (error) {
       props.setError(error)
     }
   },[props.foodCategoryLink, props.match.params.category, props.setFoodCategoryItems,  props.setError])
 
-  const searchIngredient = (searchQuery) => {
-    if (searchQuery.length === 0) {
-      return setSearchMatches([])
-    }
-    const matches = (props.foodData.filter((foodItem) => {
+  useEffect(() => {
+    const filteredFoodItems = searchFoodItems()
+    setFoodItems(filteredFoodItems)
+  },[searchQuery])
+
+  function searchFoodItems() {
+    if (!searchQuery) return props.foodData
+
+    return props.foodData.filter((foodItem) => {
       const requestLowerCase = searchQuery.toLowerCase()
       const titleLowerCase = foodItem.title.toLowerCase()
       return titleLowerCase.startsWith(requestLowerCase)
-    }))
-    matches.length === 0 ?
-      ( 
-        setSearchMatches('none') 
-      ) : (
-        setSearchMatches(matches)
-      )
-  } 
+    })
+  }
 
   const goBackToCategoriesList = () => {
     if (props.openFoodCategory) {
@@ -53,8 +56,8 @@ const FoodCategoryContainer = (props) => {
       foodData={props.foodData} 
       goBackToCategoriesList={goBackToCategoriesList}
       isLoading={isLoading}
-      searchIngredient={searchIngredient}
-      searchMatches={searchMatches}
+      foodItems={foodItems}
+      setSearchQuery={setSearchQuery}
     />
   )
 }

@@ -18,7 +18,7 @@ const FoodCategory = (props) => {
  
         <SearchInput 
           placeholder='Введи название продукта' 
-          onChange={(e) => props.searchIngredient(e.target.value)} 
+          onChange={e => props.setSearchQuery(e.target.value)}
         />
       </div>
 
@@ -29,13 +29,10 @@ const FoodCategory = (props) => {
             </div>
           ) : (
             <>
-              {props.searchMatches.length !== 0 && props.searchMatches !== 'none' &&
-                <FoodCategoryTableContainer foodData={props.searchMatches}/>
+              {props.foodItems.length !== 0 &&
+                <FoodCategoryTableContainer foodData={props.foodItems}/>
               }
-              {props.searchMatches.length === 0 && 
-                <FoodCategoryTableContainer foodData={props.foodData}/>
-              }
-              {props.searchMatches === 'none' && 
+              {props.foodItems.length === 0 && 
                 <NoSearchResults/>
               }
             </>
