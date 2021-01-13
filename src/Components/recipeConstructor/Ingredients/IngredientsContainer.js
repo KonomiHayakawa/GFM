@@ -19,4 +19,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps, 
-  { setShowIngredientsArea, closeIngredientsArea})(IngredientsContainer)
+  { setShowIngredientsArea, closeIngredientsArea}
+)(IngredientsContainer)

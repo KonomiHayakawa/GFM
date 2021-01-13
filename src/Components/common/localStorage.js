@@ -28,4 +28,3 @@ export const editIngredientLocalStorage = (editedIngredient, newTotalCalories, n
   localStorage.setItem('recipeTotalCalories', newTotalCalories)
   localStorage.setItem('recipeTotalWeight', newTotalWeight)
 }
-

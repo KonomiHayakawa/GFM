@@ -12,7 +12,7 @@ const FeedbackPageContainer = (props) => {
     const messageId = uuidv4()
     try {
       addFeedbackMessage(messageId, formData)
-      setSuccessMessage(true)
+        .then(setSuccessMessage(true))
     } catch (e) {
       props.setError(e)
     }

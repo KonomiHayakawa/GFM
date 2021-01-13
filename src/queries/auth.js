@@ -15,4 +15,3 @@ export const logout = () => {
 export const onAuthStateChange = (func) => {
   return firebase.auth().onAuthStateChanged(func)
 }
-

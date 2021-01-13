@@ -12,43 +12,42 @@ const AddingIngredientField =(props) => {
 export default AddingIngredientField
 
 const ForDesktop = (props) => {
-  return props.addedId.includes(props.foodItem.id) ? 
-    ( <button 
-        className={`${classes.cancelAddingBtn} globalBtn`}
-        onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
-      >
-        Отмена
-      </button>
-    ) : (
-      <span>
-        <AddingIngredientForm
-          addIngredientToRecipe={props.addIngredientToRecipe}
-          foodId={props.foodItem.id} 
-        />
-      </span> 
-    )
+  return props.addedId.includes(props.foodItem.id) ? ( 
+    <button 
+      className={`${classes.cancelAddingBtn} globalBtn`}
+      onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
+    >
+      Отмена
+    </button>
+  ) : (
+    <span>
+      <AddingIngredientForm
+        addIngredientToRecipe={props.addIngredientToRecipe}
+        foodId={props.foodItem.id} 
+      />
+    </span> 
+  )
 }
 
 const ForMobile = (props) => {
   return (
     <>
       {props.isMobileModalOpened && <ModalForMobile {...props}/>}
-      {props.addedId.includes(props.foodItem.id) ? 
-        ( <button 
-            className={`${classes.cancelAddingBtn} globalBtn`}
-            onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
-          >
-            Отмена
-          </button>
-        ) : (
-          <button 
-            className={`${classes.cancelAddingBtn} globalBtn`}
-            onClick={() => props.setMobileModalOpened(true)} 
-          >
-            Добавить
-          </button> 
-        )
-      }
+      {props.addedId.includes(props.foodItem.id) ? ( 
+        <button 
+          className={`${classes.cancelAddingBtn} globalBtn`}
+          onClick={() => props.cancelAddingIngredient(props.foodItem.id)}
+        >
+          Отмена
+        </button>
+      ) : (
+        <button 
+          className={`${classes.cancelAddingBtn} globalBtn`}
+          onClick={() => props.setMobileModalOpened(true)} 
+        >
+          Добавить
+        </button> 
+      )}
     </>
   )
 }

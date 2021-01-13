@@ -12,31 +12,29 @@ const AvatarArea = (props) => {
         src={props.mainData.avatar || defaultAvatar}
         alt='avatar'
       />
-      {props.editingAvatar ? 
-        ( <UploadNewImageForm     
-            setImgData={props.setUserAvatar}
-            forLoading={props.changeAvatar}
-            forCancel={() => props.switchEditingAvatar(false)}
-          />
-        ) : (<div>
+      {props.editingAvatar ? ( <UploadNewImageForm     
+          setImgData={props.setUserAvatar}
+          forLoading={props.changeAvatar}
+          forCancel={() => props.switchEditingAvatar(false)}
+        />
+      ) : (<div>
+          <button 
+            className={`${classes.btn} globalBtn`}
+            onClick={() => props.switchEditingAvatar(true)}
+          >
+            Изменить {!props.mainData.avatar && 'аватар'}
+          </button>
+
+          {props.mainData.avatar && 
             <button 
               className={`${classes.btn} globalBtn`}
-              onClick={() => props.switchEditingAvatar(true)}
+              onClick={() => props.deleteAvatar()}
             >
-              Изменить {!props.mainData.avatar && 'аватар'}
+              Удалить
             </button>
-
-            {props.mainData.avatar && 
-              <button 
-                className={`${classes.btn} globalBtn`}
-                onClick={() => props.deleteAvatar()}
-              >
-                Удалить
-              </button>
-            }
-          </div>
-        )
-      }
+          }
+        </div>
+      )}
     </div>
   )
 }

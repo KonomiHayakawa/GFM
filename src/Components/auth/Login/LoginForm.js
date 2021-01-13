@@ -39,7 +39,6 @@ const LoginForm = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(FormikProps) => (
         <Form className={classes.form}>
-
           <EmailInput />
           
           <PasswordInput />
@@ -52,19 +51,17 @@ const LoginForm = (props) => {
             Войти
           </button>
 
-          {FormikProps.errors.general ? 
-            ( <Alert 
-                banner={true}
-                className={classes.generalErrors}
-                message={FormikProps.errors.general} 
-                showIcon
-                type="error" 
-              />
-            ) : (
-              null
-            )
-          }
-     
+          {FormikProps.errors.general ? ( 
+            <Alert 
+              banner={true}
+              className={classes.generalErrors}
+              message={FormikProps.errors.general} 
+              showIcon
+              type="error" 
+            />
+          ) : (
+            null
+          )}
         </Form>
       )}
     </Formik>

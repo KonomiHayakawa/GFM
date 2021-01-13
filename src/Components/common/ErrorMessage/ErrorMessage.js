@@ -30,7 +30,3 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {clearError})(ErrorMessage)
-
-
-
-

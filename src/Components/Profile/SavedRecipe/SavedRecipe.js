@@ -15,13 +15,11 @@ const SavedRecipe = (props) => {
       <div className={classes.wrapper}>
         <RecipeCard {...props}/>
       
-        {props.ingredientsArea.showIngredientsArea && props.editingRecipe ? 
-          (
-            <IngredientsArea {...props.ingredientsArea}/>
-          ) : (
-            <PageMainImage/>
-          )
-        }
+        {props.ingredientsArea.showIngredientsArea && props.editingRecipe ? (
+          <IngredientsArea {...props.ingredientsArea}/>
+        ) : (
+          <PageMainImage/>
+        )}
       </div>
 
       {props.error && <ErrorMessage />}

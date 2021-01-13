@@ -13,9 +13,3 @@ const FoodCategoryPage = (props) => {
 }
 
 export default FoodCategoryPage
-
-
-
-
-
-

@@ -26,6 +26,5 @@ const mapStateToProps = (state) => ({
   authInfo: state.authReducer,
   userData: state.userPersonalData,
 })
-  
 
 export default withRouter(connect(mapStateToProps, {})(ProfileContainer))

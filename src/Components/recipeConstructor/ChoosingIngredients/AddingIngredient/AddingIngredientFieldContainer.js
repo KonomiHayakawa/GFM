@@ -39,5 +39,4 @@ const mapStateToProps = (state, ownProps) => ({
   foodItem:ownProps.foodItem,
 })
 
-
 export default connect(mapStateToProps, {setSelectedIngredient, setError,})(AddingIngredientFieldContainer)

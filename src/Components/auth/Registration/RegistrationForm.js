@@ -48,7 +48,6 @@ const RegistrationForm = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       {(FormikProps) => (
         <Form className={classes.form}>
-
           <EmailInput />
 
           <PasswordInput />
@@ -68,18 +67,17 @@ const RegistrationForm = (props) => {
             Создать аккаунт
           </button>
 
-          {FormikProps.errors.general ? 
-            ( <Alert 
-                banner={true}
-                type='error' 
-                message={FormikProps.errors.general} 
-                showIcon
-                className={classes.generalErrors}
-              />
-            ) : (
-              null
-            )
-          }
+          {FormikProps.errors.general ? ( 
+            <Alert 
+              banner={true}
+              type='error' 
+              message={FormikProps.errors.general} 
+              showIcon
+              className={classes.generalErrors}
+            />
+          ) : (
+            null
+          )}
         </Form>
       )}
     </Formik>

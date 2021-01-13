@@ -115,5 +115,4 @@ const CalculationItem = (props) => {
   )
 }
 
-
 export default CalculationsData

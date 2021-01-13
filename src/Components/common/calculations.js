@@ -49,4 +49,3 @@ export const calcBodyMassIndex = (form) => {
   const heightInCms = form.height / 100
   return (form.weight / (heightInCms * heightInCms)).toFixed(1)
 }
-

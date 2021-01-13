@@ -30,30 +30,27 @@ const FeedbackForm = (props) => {
   
   return ( 
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
-      {() => (
-        <Form className={classes.form}>
+      <Form className={classes.form}>
+        <NickNameInput
+          name='name' 
+        />
 
-          <NickNameInput
-            name='name' 
-          />
+        <EmailInput />
 
-          <EmailInput />
+        <MessageInput
+          autoSize={{ minRows: 4, maxRows: 5 }}
+        />
 
-          <MessageInput
-            autoSize={{ minRows: 4, maxRows: 5 }}
-          />
-
-          <div>
-            <button 
-              className={`${classes.sendMessageBtn} globalBtn`} 
-              type='submit' 
-              name='submit'
-            >
-              Отправить
-            </button>
-          </div>
-        </Form>
-      )}
+        <div>
+          <button 
+            className={`${classes.sendMessageBtn} globalBtn`} 
+            type='submit' 
+            name='submit'
+          >
+            Отправить
+          </button>
+        </div>
+      </Form>
     </Formik>
   )
 }

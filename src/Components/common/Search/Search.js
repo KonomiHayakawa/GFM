@@ -35,7 +35,3 @@ export const NoSearchResults = (props) => {
     </div>
   )
 }
-
-
-
-

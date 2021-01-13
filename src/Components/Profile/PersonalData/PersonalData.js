@@ -55,32 +55,31 @@ const PersonalData = (props) => {
        !props.userData.weight && 
        !props.userData.height && 
        !props.userData.age && 
-       !props.userData.activityType ?  
-        ( <div className={classes.welcomeTextWrapper}>
-            <Alert
-              message='Здесь пока пусто :('
-              description={welcomeText}
-              type="info"
-              showIcon
-              className={classes.welcomeText}
-            />
+       !props.userData.activityType ?  ( 
+        <div className={classes.welcomeTextWrapper}>
+          <Alert
+            message='Здесь пока пусто :('
+            description={welcomeText}
+            type="info"
+            showIcon
+            className={classes.welcomeText}
+          />
+        </div>
+      ) : (
+        <div className={classes.infoCardsWrapper}>
+          <div className={classes.infoCards}>
+            {personalInfo.map(infoItem => {
+              return (
+                <PersonalDataInfoCard
+                  {...props} 
+                  infoItem={infoItem}  
+                  key={infoItem.cardName}
+                />
+              )
+            })}
           </div>
-        ) : (
-          <div className={classes.infoCardsWrapper}>
-            <div className={classes.infoCards}>
-              {personalInfo.map(infoItem => {
-                return (
-                  <PersonalDataInfoCard
-                    {...props} 
-                    infoItem={infoItem}  
-                    key={infoItem.cardName}
-                  />
-                )
-              })}
-            </div>
-          </div>
-        )
-      }
+        </div>
+      )}
       {props.error && <ErrorMessage />}
     </>
   )
@@ -107,25 +106,23 @@ const PersonalDataInfoCard = (props) => {
           </span>
         } 
       >
-        {props.editingFieldName === props.infoItem.cardName ? 
-          ( <CalculationsDataEditingForm 
-              userData={props.userData} 
-              editPersonalData={props.editPersonalData}
-              cancelEditing={props.setEditingFieldName}
-              editingField={props.infoItem.cardName}
-            /> 
-          ) : (
-            <>
-              <div className={classes.cardInfo}>
-                {props.infoItem.innerContent  || 'Пока не указано :('}
-              </div>
-            </>
-          )
-        }
+        {props.editingFieldName === props.infoItem.cardName ? ( 
+          <CalculationsDataEditingForm 
+            userData={props.userData} 
+            editPersonalData={props.editPersonalData}
+            cancelEditing={props.setEditingFieldName}
+            editingField={props.infoItem.cardName}
+          /> 
+        ) : (
+          <>
+            <div className={classes.cardInfo}>
+              {props.infoItem.innerContent  || 'Пока не указано :('}
+            </div>
+          </>
+        )}
       </Card>
     </>
   )
 }
-
 
 export default PersonalData

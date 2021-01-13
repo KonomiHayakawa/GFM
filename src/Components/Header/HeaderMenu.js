@@ -41,44 +41,43 @@ const HeaderMenu = (props) => {
       selectedKeys={[]}
       className={classes.headerMenu}
     >
-      {props.isSignedIn === true ? 
-        ( <>
-            {headerMenuAuthorizedUser.map(item => {
-              return (
-                <Menu.Item 
-                  key={item.key}
-                  icon={item.icon}
-                  onClick={item.clickAction || null}
-                >
-                  {item.linkTo ? 
-                    ( <NavLink to={item.linkTo}>
-                        {item.name}
-                      </NavLink>
-                    ) : (
-                      item.name
-                    )
-                  }
-                </Menu.Item>
-              )
-            })}
-          </>
-        ) : (
-          <>
-            {headerMenuAnonymousUser.map(item => {
-              return (
-                <Menu.Item 
-                  key={item.key}
-                  icon={item.icon}
-                >
-                  <NavLink to={item.linkTo}>
-                    {item.name}
-                  </NavLink>
-                </Menu.Item>
-              )
-            })}
-          </>
-        )
-      }
+      {props.isSignedIn === true ? ( 
+        <>
+          {headerMenuAuthorizedUser.map(item => {
+            return (
+              <Menu.Item 
+                key={item.key}
+                icon={item.icon}
+                onClick={item.clickAction || null}
+              >
+                {item.linkTo ? 
+                  ( <NavLink to={item.linkTo}>
+                      {item.name}
+                    </NavLink>
+                  ) : (
+                    item.name
+                  )
+                }
+              </Menu.Item>
+            )
+          })}
+        </>
+      ) : (
+        <>
+          {headerMenuAnonymousUser.map(item => {
+            return (
+              <Menu.Item 
+                key={item.key}
+                icon={item.icon}
+              >
+                <NavLink to={item.linkTo}>
+                  {item.name}
+                </NavLink>
+              </Menu.Item>
+            )
+          })}
+        </>
+      )}
 
       <Menu.Item 
         key='feedbackForm' 

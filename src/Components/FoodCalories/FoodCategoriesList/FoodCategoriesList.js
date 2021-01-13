@@ -17,11 +17,21 @@ const FoodCategoriesList = (props) => {
 const FoodCategoryItem = (props) => {
   return (
     <React.Fragment>
-      {props.isForRecipeConstructor ? 
-        ( <div 
-            className={classes.categoryWrapper} 
-            onClick={() => props.openFoodCategoryInIngredientsArea(true, `${props.category.linkTo}`)}
-          >          
+      {props.isForRecipeConstructor ? ( 
+        <div 
+          className={classes.categoryWrapper} 
+          onClick={() => props.openFoodCategoryInIngredientsArea(true, `${props.category.linkTo}`)}
+        >          
+          <img 
+            className={classes.categoryImg} 
+            src={require(`./../../../img/foodCategories/${props.category.linkTo}.svg`)} 
+            alt={props.category.name} 
+          />
+          {props.category.name}
+        </div>
+      ) : (
+        <NavLink to={`foodGroup/${props.category.linkTo}`}>
+          <div className={classes.categoryWrapper}>
             <img 
               className={classes.categoryImg} 
               src={require(`./../../../img/foodCategories/${props.category.linkTo}.svg`)} 
@@ -29,19 +39,8 @@ const FoodCategoryItem = (props) => {
             />
             {props.category.name}
           </div>
-        ) : (
-          <NavLink to={`foodGroup/${props.category.linkTo}`}>
-            <div className={classes.categoryWrapper}>
-              <img 
-                className={classes.categoryImg} 
-                src={require(`./../../../img/foodCategories/${props.category.linkTo}.svg`)} 
-                alt={props.category.name} 
-              />
-              {props.category.name}
-            </div>
-          </NavLink>
-        )
-      }
+        </NavLink>
+      )}
     </React.Fragment>
   )
 }

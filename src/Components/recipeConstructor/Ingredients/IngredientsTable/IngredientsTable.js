@@ -6,8 +6,8 @@ import './../../../../App.css'
 import EditIngredientForm from '../EditIngredientForm'
 
 const IngredientsTable = (props) => {
-  const editingField = props.showEditingField ? 
-    ({
+  const editingField = props.showEditingField ? (
+    {
       key: 'action',
       width: '45%',
       render: (text, ingredient) => (
@@ -36,8 +36,7 @@ const IngredientsTable = (props) => {
           }
         </>
       )
-    }
-    ) : ({})
+    }) : ({})
 
   const columns = [
     {
@@ -86,27 +85,27 @@ const DeleteIngredientMobile = (props) => {
   }
 
   return (
-    isMobile ? 
-      ( <button 
+    isMobile ? ( 
+      <button 
+        className={`${classes.deleteBtn} globalBtn`}
+        onClick={() => confirmDeletingIngredient(props.ingredient)}
+      > 
+        Удалить
+      </button>
+    ) : (
+      <Popconfirm
+        cancelText='Нет'
+        title='Точно удалить?'
+        onConfirm={() => confirmDeletingIngredient(props.ingredient)}
+        onCancel={() => null}
+        okText='Да'
+      >
+        <button 
           className={`${classes.deleteBtn} globalBtn`}
-          onClick={() => confirmDeletingIngredient(props.ingredient)}
         > 
           Удалить
         </button>
-      ) : (
-        <Popconfirm
-          cancelText='Нет'
-          title='Точно удалить?'
-          onConfirm={() => confirmDeletingIngredient(props.ingredient)}
-          onCancel={() => null}
-          okText='Да'
-        >
-          <button 
-            className={`${classes.deleteBtn} globalBtn`}
-          > 
-            Удалить
-          </button>
-        </Popconfirm>
-      )
+      </Popconfirm>
+    )
   )
 }

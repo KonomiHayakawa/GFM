@@ -67,5 +67,3 @@ const MenuItem = (props) => {
 }
 
 export default MainPage
-
-

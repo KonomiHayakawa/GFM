@@ -15,7 +15,6 @@ const DailyCaloriesContainer = (props) => {
         props.saveDailyCalories(props.userData.userId, form, Math.round(calories))
       } catch (error) {
         props.setError(error)
-        console.log(error)
       }
     } else {
       props.setDailyCalories(Math.round(calories))

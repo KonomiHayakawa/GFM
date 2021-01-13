@@ -10,16 +10,15 @@ import './../../../App.css'
 const SavingRecipe = (props) => {
   return (
     <div className={classes.wrapper}>
-      {props.isSignedIn ? 
-        ( <SavingRecipeIfAuth {...props}/>
-        ) : (
-          <div>
-            Если <NavLink to='/createAccount'>зарегистрируешься</NavLink> на этом сайте, сможешь сохранять
-            все свои рецепты и редактировать их в любое время :) Уже регистрировался? 
-            Тогда не забудь <NavLink to='/login'>войти</NavLink> в свой аккаунт!
-          </div>
-        )
-      }
+      {props.isSignedIn ? ( 
+        <SavingRecipeIfAuth {...props}/>
+      ) : (
+        <div>
+          Если <NavLink to='/createAccount'>зарегистрируешься</NavLink> на этом сайте, сможешь сохранять
+          все свои рецепты и редактировать их в любое время :) Уже регистрировался? 
+          Тогда не забудь <NavLink to='/login'>войти</NavLink> в свой аккаунт!
+        </div>
+      )}
     </div>
   )
 }

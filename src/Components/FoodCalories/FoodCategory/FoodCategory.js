@@ -23,22 +23,20 @@ const FoodCategory = (props) => {
       </div>
 
       <div className={classes.foodDataWrapper}>
-        {props.isLoading ?
-          ( <div className={classes.spinner}>
-              <Spin size='large'/>
-            </div>
-          ) : (
-            <>
-              {props.foodItems.length !== 0 &&
-                <FoodCategoryTableContainer foodData={props.foodItems}/>
-              }
-              {props.foodItems.length === 0 && 
-                <NoSearchResults/>
-              }
-            </>
-          )
-        }
-    
+        {props.isLoading ? ( 
+          <div className={classes.spinner}>
+            <Spin size='large'/>
+          </div>
+        ) : (
+          <>
+            {props.foodItems.length !== 0 &&
+              <FoodCategoryTableContainer foodData={props.foodItems}/>
+            }
+            {props.foodItems.length === 0 && 
+              <NoSearchResults/>
+            }
+          </>
+        )}
       </div>
 
       <BackToTopContainer />

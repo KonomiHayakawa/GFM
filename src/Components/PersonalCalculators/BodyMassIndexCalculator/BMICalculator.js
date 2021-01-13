@@ -10,48 +10,46 @@ import './../../../App.css'
 const BMICalculator = (props) => {
   return (
     <div>
-      {!props.bodyMassIndex || props.isChangingData ? 
-        (
+      {!props.bodyMassIndex || props.isChangingData ? (
+        <div>
+          <h2>Узнать индекс массы тела</h2>
+          <BMIForm updateBMI={props.updateBMI}/>
+        </div>
+      ) : (
+        <div className={classes.resultWrapper}>
           <div>
-            <h2>Узнать индекс массы тела</h2>
-            <BMIForm updateBMI={props.updateBMI}/>
-          </div>
-        ) : (
-          <div className={classes.resultWrapper}>
-            <div>
-              <Row gutter={16} className='globalAntStyle'>
-                <Col span={12}>
-                  <Statistic 
-                    title={
-                      <div className={classes.headerWrapper}>
-                        <h2>Твой индекс массы тела</h2>
-                        <QuestionCircleOutlined 
-                          className={classes.showInfoIcon} 
-                          onClick={() => props.toggleShowExplanation(!props.showExplanation)}
-                        />
-                      </div>
-                    }
-                    value={props.bodyMassIndex}
-                  />
-                </Col>
-              </Row>
+            <Row gutter={16} className='globalAntStyle'>
+              <Col span={12}>
+                <Statistic 
+                  title={
+                    <div className={classes.headerWrapper}>
+                      <h2>Твой индекс массы тела</h2>
+                      <QuestionCircleOutlined 
+                        className={classes.showInfoIcon} 
+                        onClick={() => props.toggleShowExplanation(!props.showExplanation)}
+                      />
+                    </div>
+                  }
+                  value={props.bodyMassIndex}
+                />
+              </Col>
+            </Row>
 
-              <div className={classes.infoAlert}>
-                {props.showExplanation && <BMIExplanation />}
-              </div>
-              
+            <div className={classes.infoAlert}>
+              {props.showExplanation && <BMIExplanation />}
             </div>
-
-            <button 
-              className='globalMainBtn'
-              onClick={() => props.toggleIsChangingData(true)}
-            >
-              Посчитать заново
-            </button>
-
+            
           </div>
-        )
-      }
+
+          <button 
+            className='globalMainBtn'
+            onClick={() => props.toggleIsChangingData(true)}
+          >
+            Посчитать заново
+          </button>
+
+        </div>
+      )}
       {props.error && <ErrorMessage />}
     </div>
   )
