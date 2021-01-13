@@ -12,7 +12,7 @@ const RegistrationContainer = (props) => {
 
   const createNewAccount = async(formData) => {
     await props.signUp(formData.email, formData.password)
-    props.saveName(formData.nickname)
+    await props.saveName(formData.nickname)
   }
 
   return (

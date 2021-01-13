@@ -15,7 +15,7 @@ const Registration = (props) => {
         <RegistrationForm 
           addNewUserMainData={props.addNewUserMainData} 
           className={classes.registrationForm}
-          signUp={props.signUp} 
+          createNewAccount={props.createNewAccount}
         />
       </div>
 
