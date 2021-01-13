@@ -2,7 +2,7 @@ import React from 'react'
 import './../../../App.css'
 import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {SexInput, WeightInput} from './../../common/ForForms/FormikInputs'
+import {SexInput, WeightInput} from '../../common/ForForms/FormikInputs'
 
 const DailyWaterForm = (props) => {
   const validationSchema = Yup.object({

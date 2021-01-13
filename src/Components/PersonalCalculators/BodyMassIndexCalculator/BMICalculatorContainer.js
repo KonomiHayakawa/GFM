@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import BMICalculator from './BMICalculator'
 import {calcBodyMassIndex} from '../../common/calculations'
 import {saveBodyMassIndex, setBodyMassIndex} from '../../../redux/userPersonalData'
-import {setError} from './../../../redux/forError'
+import {setError} from '../../../redux/forError'
 
 const BMICalculatorContainer = (props) => {
   const [isChangingData, toggleIsChangingData] = useState(false)

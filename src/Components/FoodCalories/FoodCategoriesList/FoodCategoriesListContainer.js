@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import FoodCategoriesList from './FoodCategoriesList'
 import {getFoodGroupsData} from '../../../queries/foodCalories'
 import {openFoodCategoryInIngredientsArea} from '../../../redux/recipeConstructorReducer'
-import {setError} from './../../../redux/forError'
+import {setError} from '../../../redux/forError'
 
 const FoodCategoriesListContainer = (props) => {
   const [categories, setCategories] = useState([])

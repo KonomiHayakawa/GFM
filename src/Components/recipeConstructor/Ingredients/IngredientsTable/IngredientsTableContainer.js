@@ -4,7 +4,7 @@ import {editIngredient, deleteIngredient} from '../../../../redux/recipeConstruc
 import {calcEditedIngredient, calcWithoutRemovedIngredient} from '../../../common/calculations'
 import IngredientsTable from './IngredientsTable'
 
-import {removeIngredientLocalStorage, editIngredientLocalStorage} from './../../../common/localStorage'
+import {removeIngredientLocalStorage, editIngredientLocalStorage} from '../../../common/localStorage'
 
 const IngredientsTableContainer = (props) => {
   const [editingWeight, switchEditingWeight] = useState(false)

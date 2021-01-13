@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './SavedRecipe.module.css'
 import './../../../App.css'
-import BackArrow from './../../common/BackArrow/BackArrow'
+import BackArrow from '../../common/BackArrow/BackArrow'
 import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
-import IngredientsArea from './../../recipeConstructor/choosingIngredients/IngredientsArea'
+import IngredientsArea from '../../recipeConstructor/choosingIngredients/IngredientsArea'
 import {ReactComponent as PageMainImage} from './../../../img/profile/savedRecipeMainImage.svg'
 import RecipeCard from './RecipeCard/RecipeCard'
 

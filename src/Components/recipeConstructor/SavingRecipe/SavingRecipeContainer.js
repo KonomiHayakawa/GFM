@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import {clearRecipe} from '../../../redux/recipeConstructorReducer'
 import {setRecipe} from '../../../redux/userPersonalData'
-import {setError} from './../../../redux/forError'
+import {setError} from '../../../redux/forError'
 import {saveUserRecipes, addRecipeImg, getRecipeImgLink} from '../../../queries/recipeConstructor'
 import SavingRecipe from './SavingRecipe'
 

@@ -3,7 +3,7 @@ import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import AntDesignUploadFormik from '../../../common/ForForms/antDesignForFormik/AntDesignUploadFormik'
 import classes from './SavingRecipeForm.module.css'
-import {IngredientTitleInput} from './../../../common/ForForms/FormikInputs'
+import {IngredientTitleInput} from '../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
 
 const SavingRecipeForm = (props) => {

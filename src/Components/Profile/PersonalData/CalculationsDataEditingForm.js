@@ -1,7 +1,7 @@
 import React from 'react'
 import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import {SexInput, HeightInput, WeightInput, AgeInput, ActivityTypeInput} from './../../common/ForForms/FormikInputs'
+import {SexInput, HeightInput, WeightInput, AgeInput, ActivityTypeInput} from '../../common/ForForms/FormikInputs'
 import './../../../App.css'
 
 const CalculationsDataEditingForm = (props) => {

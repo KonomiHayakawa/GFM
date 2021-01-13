@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './FoodCategoryPage.module.css'
-import FoodCategoryContainer from './../FoodCategory/FoodCategoryContainer'
+import FoodCategoryContainer from '../FoodCategory/FoodCategoryContainer'
 import {ReactComponent as PageMainImage} from './../../../img/foodCategories/foodCategory/mainImage.svg';
 
 const FoodCategoryPage = (props) => {

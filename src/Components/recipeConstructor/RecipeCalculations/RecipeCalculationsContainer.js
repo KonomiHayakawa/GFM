@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {addIngredient, deleteIngredient} from '../../../redux/recipeConstructorReducer'
-import {addIngredientLocalStorage, removeIngredientLocalStorage} from './../../common/localStorage'
+import {addIngredientLocalStorage, removeIngredientLocalStorage} from '../../common/localStorage'
 import {calculateIngredientCalories, calcWithoutRemovedIngredient} from '../../common/calculations'
 import RecipeCalculations from './RecipeCalculations'
 import {setSelectedIngredient} from '../../../redux/foodCaloriesReducer'

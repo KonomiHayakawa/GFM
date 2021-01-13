@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FoodCategory from './FoodCategory'
 import {getFoodGroup} from '../../../queries/foodCalories'
-import {setFoodCategoryItems} from './../../../redux/foodCaloriesReducer'
-import {setOpenFoodCategory, setFoodCategoryLink} from './../../../redux/recipeConstructorReducer'
-import {setError} from './../../../redux/forError'
+import {setFoodCategoryItems} from '../../../redux/foodCaloriesReducer'
+import {setOpenFoodCategory, setFoodCategoryLink} from '../../../redux/recipeConstructorReducer'
+import {setError} from '../../../redux/forError'
 
 const FoodCategoryContainer = (props) => {
   const [foodItems, setFoodItems] = useState([])

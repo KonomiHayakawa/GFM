@@ -3,7 +3,7 @@ import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import classes from './FeedbackPage.module.css'
 import './../../App.css'
-import {NickNameInput, EmailInput, MessageInput} from './../common/ForForms/FormikInputs'
+import {NickNameInput, EmailInput, MessageInput} from '../common/ForForms/FormikInputs'
 
 const FeedbackForm = (props) => {
   const validationSchema = Yup.object({

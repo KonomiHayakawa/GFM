@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import NickNameArea from './NickNameArea'
-import {saveName} from './../../../../redux/userPersonalData'
+import {saveName} from '../../../../redux/userPersonalData'
 import { setError } from '../../../../redux/forError'
 
 const NickNameAreaContainer = (props) => {

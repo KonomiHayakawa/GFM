@@ -2,7 +2,7 @@ import React from 'react'
 import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import classes from './AddingIngredient.module.css'
-import {IngredientWeightInput} from './../../../common/ForForms/FormikInputs'
+import {IngredientWeightInput} from '../../../common/ForForms/FormikInputs'
 import './../../../../App.css'
 
 const AddingIngredientForm = React.memo((props) => {

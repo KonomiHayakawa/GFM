@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import AvatarArea from './AvatarArea'
-import {addAvatarFile, getAvatarLink, deleteAvatarFile} from './../../../../queries/personalData'
-import {saveAvatar} from './../../../../redux/userPersonalData'
+import {addAvatarFile, getAvatarLink, deleteAvatarFile} from '../../../../queries/personalData'
+import {saveAvatar} from '../../../../redux/userPersonalData'
 import { setError } from '../../../../redux/forError'
 
 const AvatarAreaContainer = (props) => {

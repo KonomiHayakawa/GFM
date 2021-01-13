@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {deleteRecipeImg, saveUserRecipes} from './../../../queries/recipeConstructor'
+import {deleteRecipeImg, saveUserRecipes} from '../../../queries/recipeConstructor'
 import MyRecipes from './MyRecipes'
-import {setError} from './../../../redux/forError'
-import {updateRecipes} from './../../../redux/userPersonalData'
+import {setError} from '../../../redux/forError'
+import {updateRecipes} from '../../../redux/userPersonalData'
 
 const MyRecipesContainer = (props) => {
   const deleteRecipe = (recipe) => {

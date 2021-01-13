@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import DailyWaterCalculator from './DailyWaterCalculator'
 import { connect } from 'react-redux'
 import {calcDailyWater} from '../../common/calculations'
-import {setError} from './../../../redux/forError'
+import {setError} from '../../../redux/forError'
 import {setDailyWater, saveDailyWater} from '../../../redux/userPersonalData'
 
 const DailyWaterCalculatorContainer = (props) => {

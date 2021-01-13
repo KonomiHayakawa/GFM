@@ -2,7 +2,7 @@ import React from 'react'
 import './../../../../App.css'
 import classes from './AvatarArea.module.css'
 import defaultAvatar from './../../../../img/default/avatar.svg'
-import UploadNewImageForm from './../../../common/ForForms/UploadNewImageForm/UploadNewImageForm'
+import UploadNewImageForm from '../../../common/ForForms/UploadNewImageForm/UploadNewImageForm'
 
 const AvatarArea = (props) => {
   return (

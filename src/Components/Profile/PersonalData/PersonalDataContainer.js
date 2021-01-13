@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import {calcDailyCalories, calcDailyWater, calcBodyMassIndex} from './../../common/calculations'
+import {calcDailyCalories, calcDailyWater, calcBodyMassIndex} from '../../common/calculations'
 import PersonalData from './PersonalData'
-import {saveDailyCalories, saveDailyWater, saveBodyMassIndex} from './../../../redux/userPersonalData'
-import {setError} from './../../../redux/forError'
+import {saveDailyCalories, saveDailyWater, saveBodyMassIndex} from '../../../redux/userPersonalData'
+import {setError} from '../../../redux/forError'
 
 const PersonalDataContainer = (props) => {
   const [editingFieldName, setEditingFieldName] = useState(false)

@@ -5,7 +5,7 @@ import { Card, Avatar, Alert, Popconfirm, message } from 'antd'
 import {DeleteOutlined, SettingOutlined} from '@ant-design/icons'
 import classes from './MyRecipes.module.css'
 import defaultRecipeImg from './../../../img/default/recipe.svg'
-import ErrorMessage from './../../common/ErrorMessage/ErrorMessage'
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage'
 
 const MyRecipes = (props) => {
   const welcomeText = 

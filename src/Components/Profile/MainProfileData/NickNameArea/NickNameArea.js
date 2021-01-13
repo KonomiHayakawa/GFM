@@ -4,7 +4,7 @@ import { Input } from 'antd'
 import {isMobile} from 'react-device-detect'
 import classes from './NickNameArea.module.css'
 import './../../../../App.css'
-import ErrorMessage from './../../../common/ErrorMessage/ErrorMessage'
+import ErrorMessage from '../../../common/ErrorMessage/ErrorMessage'
 
 const NickNameArea = (props) => {
   return (

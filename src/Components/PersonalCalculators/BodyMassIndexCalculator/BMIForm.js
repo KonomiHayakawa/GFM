@@ -2,7 +2,7 @@ import React from 'react'
 import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
 import './../../../App.css'
-import {HeightInput, WeightInput} from './../../common/ForForms/FormikInputs'
+import {HeightInput, WeightInput} from '../../common/ForForms/FormikInputs'
 
 const BodyMassIndexForm = (props) => {
   const validationSchema = Yup.object({

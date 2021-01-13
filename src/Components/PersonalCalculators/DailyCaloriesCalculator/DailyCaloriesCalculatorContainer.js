@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {calcDailyCalories} from '../../common/calculations'
 import DailyCaloriesCalculator from './DailyCaloriesCalculator'
-import {setError} from './../../../redux/forError'
+import {setError} from '../../../redux/forError'
 import {setDailyCalories, saveDailyCalories} from '../../../redux/userPersonalData'
 
 const DailyCaloriesContainer = (props) => {

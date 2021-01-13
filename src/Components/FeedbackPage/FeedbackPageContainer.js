@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import {addFeedbackMessage} from '../../queries/general'
-import {setError} from './../../redux/forError'
+import {setError} from '../../redux/forError'
 import FeedbackPage from './FeedbackPage'
 
 const FeedbackPageContainer = (props) => {

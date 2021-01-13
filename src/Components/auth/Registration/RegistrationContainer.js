@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {saveName} from './../../../redux/userPersonalData'
+import {saveName} from '../../../redux/userPersonalData'
 import {signUp} from '../../../redux/authReducer'
 import Registration from './Registration'
 

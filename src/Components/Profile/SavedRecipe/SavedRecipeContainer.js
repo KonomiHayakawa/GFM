@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getRecipe } from './../../../queries/recipeConstructor'
+import { getRecipe } from '../../../queries/recipeConstructor'
 import SavedRecipe from './SavedRecipe'
-import { setRecipeData, clearRecipe, setShowIngredientsArea, closeIngredientsArea } from './../../../redux/recipeConstructorReducer'
+import { setRecipeData, clearRecipe, setShowIngredientsArea, closeIngredientsArea } from '../../../redux/recipeConstructorReducer'
 import { saveUserRecipes, addRecipeImg, getRecipeImgLink } from '../../../queries/recipeConstructor'
-import { setError } from './../../../redux/forError'
-import { updateRecipes } from './../../../redux/userPersonalData'
+import { setError } from '../../../redux/forError'
+import { updateRecipes } from '../../../redux/userPersonalData'
 import { withRouter } from 'react-router-dom'
 
 const SavedRecipeContainer = (props) => {
