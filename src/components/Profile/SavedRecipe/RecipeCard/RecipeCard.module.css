@@ -1,0 +1,28 @@
+.changingRecipeImgWrapper {
+  margin-top: 15px;
+}
+
+.editRecipeBtn {
+  cursor: pointer;
+}
+
+.editRecipeBtn:hover {
+  color: #3fa9ff9c;
+}
+
+.cardCover {
+  height: 120px; 
+  margin: 0 auto;
+  width: auto;
+}
+
+@media screen and (max-width:1100px) {
+
+  .cardCover {
+    height: 220px;
+  }
+
+  .editRecipeBtn {
+    font-size: 1.9rem;
+  }
+}

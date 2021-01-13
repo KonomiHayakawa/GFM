@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width:1100px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
